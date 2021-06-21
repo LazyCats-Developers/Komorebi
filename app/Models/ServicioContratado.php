@@ -9,5 +9,15 @@ class ServicioContratado extends Model
 {
     use HasFactory;
     protected $table="servicios_contratados";
-    protected $timestamps=false;
+    public $timestamps = false;
+
+    public function empresa() 
+    {
+        return $this->belongsTo(Empresa::class);
+    }
+
+    public function modulo() 
+    {
+        return $this->belongsTo(Modulo::class);
+    }
 }

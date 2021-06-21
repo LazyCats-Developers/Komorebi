@@ -9,7 +9,39 @@ use Illuminate\Notifications\Notifiable;
 
 class Usuario extends Authenticatable
 {
-    use Notifiable;
-    protected $timestamps=false;
+    use HasFactory, Notifiable;
+    public $timestamps = false;
+
+    protected $fillable = [
+        'nombre',
+        'apellido',
+        'email',
+        'telefono',
+        'direccion',
+        'password'
+    ];
+
+    protected $hidden = [
+        'password'
+    ];
     
+    public function colaboradores() 
+    {
+        return $this->hasMany(Colaborador::class);
+    }
+
+    public function roles() 
+    {
+        return $this->belongsToMany(Rol::class, 'colaboradores');
+    }
+
+    public function historiales() 
+    {
+        return $this->hasMany(Historial::class);
+    }
+
+    public function ventas() 
+    {
+        return $this->hasMany(Venta::class);
+    }
 }

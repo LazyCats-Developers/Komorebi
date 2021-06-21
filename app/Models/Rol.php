@@ -9,5 +9,10 @@ class Rol extends Model
 {
     use HasFactory;
     protected $table="roles";
-    protected $timestamps=false;
+    public $timestamps = false;
+
+    public function colaboradores() 
+    {
+        return $this->hasMany(Colaborador::class);
+    }
 }

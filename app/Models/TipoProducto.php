@@ -9,5 +9,10 @@ class TipoProducto extends Model
 {
     use HasFactory;
     protected $table="tipos_producto";
-    protected $timestamps=false;
+    public $timestamps = false;
+
+    public function inventarios() 
+    {
+        return $this->hasMany(Inventario::class);
+    }
 }

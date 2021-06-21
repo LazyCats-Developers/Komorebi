@@ -8,5 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Modulo extends Model
 {
     use HasFactory;
-    protected $timestamps=false;
+    public $timestamps = false;
+
+    public function serviciosContratados()
+    {
+        return $this->hasMany(ServicioContratado::class);
+    }    
 }

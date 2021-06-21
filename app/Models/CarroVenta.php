@@ -9,7 +9,7 @@ class CarroVenta extends Model
 {
     use HasFactory;
     protected $table = "carro_venta";
-    protected $timestamps = false;
+    public $timestamps = false;
 
     public function venta() 
     {

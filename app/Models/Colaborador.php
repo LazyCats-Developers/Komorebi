@@ -9,5 +9,20 @@ class Colaborador extends Model
 {
     use HasFactory;
     protected $table="colaboradores";
-    protected $timestamps=false;
+    public $timestamps = false;
+
+    public function usuario() 
+    {
+        return $this->belongsTo(Usuario::class);
+    }
+
+    public function rol() 
+    {
+        return $this->belongsTo(Rol::class);
+    }
+
+    public function empresa() 
+    {
+        return $this->belongsTo(Empresa::class);
+    }
 }

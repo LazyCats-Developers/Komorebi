@@ -9,5 +9,10 @@ class TipoLog extends Model
 {
     use HasFactory;
     protected $table="tipos_rol";
-    protected $timestamps=false;
+    public $timestamps = false;
+
+    public function historiales() 
+    {
+        return $this->hasMany(Historial::class);
+    }
 }

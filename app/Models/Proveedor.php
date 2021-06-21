@@ -9,5 +9,10 @@ class Proveedor extends Model
 {
     use HasFactory;
     protected $table="proveedores";
-    protected $timestamps=false;
+    public $timestamps = false;
+
+    public function transacciones() 
+    {
+        return $this->hasMany(Transaccion::class);
+    }    
 }
