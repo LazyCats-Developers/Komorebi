@@ -80,10 +80,9 @@
                 </a>
             </nav>
         </header>
-    </div>
-    <div class="w-full overflow-x-hidden border-t flex flex-col">
-        @yield('content')
-    </div>
+        <main class="w-full overflow-x-hidden border-t flex flex-col">
+            @yield('content')
+        </main>
     </div>
     <script src="../js/main.js"></script>
   </body>
