@@ -16,7 +16,7 @@
                     <img class="min-w-full mb-5" src="../../img/logo.png" alt="">
                     <input type="email" id="email" name="email" placeholder="Correo Electronico" class="border border-gray w-full rounded-md py-3 px-4">
                     <input type="password" id="password" name="password" placeholder="Contraseña" class="border border-gray w-full rounded-md py-3 px-4">
-                    <input type="checkbox" id="cbox" value="first_checkbox"><label for="cbox"> Recuérdame</label>
+                    <input type="checkbox" id="remember" name='remember'><label for="remember"> Recuérdame</label>
                     <button class="min-w-full transition duration-300 ease-in-out transform hover:-translate-y-0 hover:scale-100 bg-blue-400 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-md">
                         Iniciar sesión
                     </button>
