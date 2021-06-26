@@ -7,6 +7,7 @@
     </div>
 
     <div class="bg-white grid-col p-5 rounded-md">
+        <p>Datos de la empresa</p>
         <form class="space-y-5" method="POST" action="{{route('empresas.store')}}">
         @csrf
             <div class="grid grid-col space-y-5 md:grid-cols-2 md:space-y-0 md:space-x-5">
@@ -16,6 +17,7 @@
             <div class="grid grid-col space-y-5">
                 <input type="text" id="descripcion" name="descripcion" placeholder="Descripcion de empresa" class="border border-gray w-full rounded-md py-3 px-4">            
             </div>
+            <p>Contacto de la empresa</p>
             <div class="grid grid-col space-y-5 md:grid-cols-2 md:space-y-0 md:space-x-5">
                 <input type="text" id="direccion" name="direccion" placeholder="Direccion" class="border border-gray w-auto rounded-md py-3 px-4">
                 <input type="text" id="telefono" name="telefono" placeholder="Telefono" class="border border-gray w-auto rounded-md py-3 px-4">
