@@ -10,8 +10,9 @@
         <img class= "w-24 rounded-md" src="../img/working.gif" alt="">
       </div>
       <div class="md:w-80">
-        <p>Bienvenido, "USUARIO"</p> 
-        <p>Jefe de "Empresa"</p>
+        <p>Bienvenido, {{ auth()->user()->nombre }}</p> 
+        
+        <p>"CARGO" de "Empresa"</p>
         <p class="text-sm text-blue-500">Editar tu perfil</p>
       </div>
     </div>
