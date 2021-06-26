@@ -16,7 +16,7 @@
             <!-- Header Dashboard -->
             <div class="p-6">
                 <a href="" class="text-gray-100 text-3xl font-semibold hover:text-white">
-                <i class="fas fa-user-cog mr-3"></i>Admin
+                <i class="fas fa-user-cog mr-3"></i>{{ auth()->user()->nombre }}
                 </a>
             </div>
             <!-- Body Dashboard -->
