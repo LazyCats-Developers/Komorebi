@@ -14,22 +14,21 @@
         
         <p>"CARGO" de "Empresa"</p>
         <p class="text-sm text-blue-500">Editar tu perfil</p>
-      <a href="{{route('empresas.create')}}" class="btn btn-success mb-2">Agregar</a>
       </div>
     </div>
 
     <div class="flex w-full bg-white rounded-md p-3">
       <div class="flex w-full justify-center items-center">
         <i class="fas fa-cash-register"></i><br>
-        <p class="invisible md:visible">Notificación!</p>
+        <p class="invisible md:visible"> Notificación!</p>
       </div>
       <div class="flex w-full justify-center items-center bg-red-100">
         <i class="fas fa-cash-register"></i>
-        <p class="invisible md:visible">Notificación!</p>
+        <p class="invisible md:visible"> Notificación!</p>
       </div>
       <div class="flex w-full justify-center items-center">
         <i class="fas fa-cash-register"></i><br>
-        <p class="invisible md:visible">Notificación!</p>
+        <p class="invisible md:visible"> Notificación!</p>
       </div>
     </div>
 
@@ -40,7 +39,7 @@
       <p>No tienes ninguna empresa registrada aun.</p>
     </div>
     <div class="flex justify-center">
-      <a type="submit" href="" class="flex justify-center w-full transition duration-300 ease-in-out transform hover:-translate-y-0 hover:scale-100 bg-blue-400 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-md md:max-w-xl">
+      <a href="{{route('empresas.create')}}" class="flex justify-center w-full transition duration-300 ease-in-out transform hover:-translate-y-0 hover:scale-100 bg-blue-400 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-md md:max-w-xl">
         Crear empresa
       </a>
     </div>
