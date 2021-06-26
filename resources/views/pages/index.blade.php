@@ -6,16 +6,13 @@
   <div class="flex flex-col md:flex-row md:space-x-5">
 
     <div class="flex w-auto h-auto bg-white rounded-md p-3 space-x-3">
-      <div class="w-24 h-24">
-        <img class= "h-auto w-auto rounded-md" src="../img/working.gif" alt="">
+      <div>
+        <img class= "w-24 rounded-md" src="../img/working.gif" alt="">
       </div>
-      <div class="space-y-5">
-      <p>
-        Bienvenido, Gatito!
-      </p> 
-      <p>
-        aqui estara toda la info personal
-      </p>
+      <div class="md:w-80">
+        <p>Bienvenido, "USUARIO"</p> 
+        <p>Jefe de "Empresa"</p>
+        <p class="text-sm text-blue-500">Editar tu perfil</p>
       <a href="{{route('empresas.create')}}" class="btn btn-success mb-2">Agregar</a>
       </div>
     </div>
