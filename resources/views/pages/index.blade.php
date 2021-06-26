@@ -19,15 +19,15 @@
     <div class="flex w-full bg-white rounded-md p-3">
       <div class="flex w-full justify-center items-center">
         <i class="fas fa-cash-register"></i><br>
-        <p class="invisible md:visible">Notificación!</p>
+        <p class="invisible md:visible"> Notificación!</p>
       </div>
       <div class="flex w-full justify-center items-center bg-red-100">
         <i class="fas fa-cash-register"></i>
-        <p class="invisible md:visible">Notificación!</p>
+        <p class="invisible md:visible"> Notificación!</p>
       </div>
       <div class="flex w-full justify-center items-center">
         <i class="fas fa-cash-register"></i><br>
-        <p class="invisible md:visible">Notificación!</p>
+        <p class="invisible md:visible"> Notificación!</p>
       </div>
     </div>
 

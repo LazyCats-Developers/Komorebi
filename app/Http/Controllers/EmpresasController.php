@@ -24,7 +24,7 @@ class EmpresasController extends Controller
      */
     public function create()
     {
-        return view("Empresa.empresas_create");
+        return view("pages.empresas-create");
     }
 
     /**
