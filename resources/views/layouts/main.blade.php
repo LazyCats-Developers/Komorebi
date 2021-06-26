@@ -16,13 +16,13 @@
             <!-- Header Dashboard -->
             <div class="p-6">
                 <a href="" class="text-gray-100 text-3xl font-semibold hover:text-white">
-                <i class="fas fa-user-cog mr-3"></i>Admin
+                <i class="fas fa-user-cog mr-3"></i>{{ auth()->user()->nombre }}
                 </a>
             </div>
             <!-- Body Dashboard -->
             <nav class="text-white text-base font-semibold pt-3">
                 <a href="" class="flex items-center active-nav-link text-white py-4 pl-6 nav-item">
-                    <i class="fas fa-tachometer-alt mr-3"></i>
+                    <i class="fas fa-cash-register mr-3"></i>
                     Ventas
                 </a>
                 <a href="" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">

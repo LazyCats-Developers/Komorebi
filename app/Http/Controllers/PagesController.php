@@ -10,6 +10,10 @@ class PagesController extends Controller
         return view('login');
     }
 
+    public function signup(){
+        return view('signup');
+    }
+
     public function main(){
         return view('pages.index');
     }

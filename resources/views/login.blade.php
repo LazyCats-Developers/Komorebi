@@ -11,13 +11,14 @@
         <title>Iniciar sesión en Komorebi</title>
         <div class="bg-white min-h-screen w-full flex-col flex justify-center items-center space-y-5 sm:bg-blue-300">
             <div class ="w-full bg-white flex-col flex justify-center items-center p-5 sm:w-96 sm:rounded-xl">
-                <form method="POST" class="space-y-5" action="home.php">
+                <form method="POST" class="space-y-5" action="{{ route('login') }}">
+                    @csrf
                     <img class="min-w-full mb-5" src="../../img/logo.png" alt="">
                     <input type="email" id="email" name="email" placeholder="Correo Electronico" class="border border-gray w-full rounded-md py-3 px-4">
                     <input type="password" id="password" name="password" placeholder="Contraseña" class="border border-gray w-full rounded-md py-3 px-4">
-                    <a type="submit" href="{{ url('/main')}}" class=" min-w-full transition duration-300 ease-in-out transform hover:-translate-y-0 hover:scale-100 bg-blue-400 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-md">
+                    <button class=" min-w-full transition duration-300 ease-in-out transform hover:-translate-y-0 hover:scale-100 bg-blue-400 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-md">
                         Iniciar sesión
-                    </a>
+                    </button>
                 </form>
             </div>
             <div class="w-full bg-white flex justify-center items-center p-5 space-x-2 sm:w-96 sm:rounded-xl">
