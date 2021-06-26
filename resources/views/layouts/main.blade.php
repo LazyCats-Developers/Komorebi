@@ -22,7 +22,7 @@
             <!-- Body Dashboard -->
             <nav class="text-white text-base font-semibold pt-3">
                 <a href="" class="flex items-center active-nav-link text-white py-4 pl-6 nav-item">
-                    <i class="fas fa-tachometer-alt mr-3"></i>
+                    <i class="fas fa-cash-register mr-3"></i>
                     Ventas
                 </a>
                 <a href="" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
