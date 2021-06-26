@@ -63,9 +63,13 @@
             <a href="#" class="block px-4 py-2 text-sm text-gray-700">
               <i class="fas fa-cog mr-2"></i>Settings
             </a>
-            <a href="login.php" class="block px-4 py-2 text-sm text-gray-700">
-              <i class="fas fa-sign-out-alt mr-2"></i>Sign out
-            </a>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                
+                <button class="block px-4 py-2 text-sm text-gray-700">
+                  <i class="fas fa-sign-out-alt mr-2"></i>Sign out
+                </button>
+            </form>
           </div>
         </div>
       </div>

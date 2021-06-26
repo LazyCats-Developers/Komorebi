@@ -11,18 +11,20 @@ class Usuario extends Authenticatable
 {
     use HasFactory, Notifiable;
     public $timestamps = false;
-
+    protected $table = 'usuarios';
     protected $fillable = [
         'nombre',
         'apellido',
         'email',
         'telefono',
         'direccion',
-        'password'
+        'password',
+        'remember_token'
     ];
 
     protected $hidden = [
-        'password'
+        'password',
+        'remeber_token'
     ];
     
     public function colaboradores() 

@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\RegisteredUserController;
+
 
 /* use App\Http\Controllers
 routes yweas get([PagesController::class , 'login']);
@@ -16,13 +18,16 @@ routes yweas get([PagesController::class , 'login']);
 |
 */
 
-Route::get('/', 'PagesController@login');
+Route::get('/', 'PagesController@login')
+    ->middleware('guest');
 
-Route::get('/main' , 'PagesController@main');
+Route::get('/signup', 'PagesController@signup')
+    ->middleware('guest');
 
-Route::get('/signup', function () {
-    return view('signup');
-});
+Route::post('/signup', [RegisteredUserController::class, 'store'])
+    ->middleware('guest');
+
+Route::get('/main' , 'PagesController@main')->middleware(['auth']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
