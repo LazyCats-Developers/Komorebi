@@ -10,6 +10,19 @@ class Empresa extends Model
     use HasFactory;
     public $timestamps = false;
 
+    protected $table='empresas';
+
+    protected $fillable = [
+        'id',
+        'nombre',
+        'direccion',
+        'telefono',
+        'email',
+        'rut',
+        'descripcion',
+        'empresa_rrss'
+    ];
+
     public function serviciosContratados()
     {
         return $this->hasMany(ServicioContratado::class);

@@ -16,7 +16,7 @@
       <p>
         aqui estara toda la info personal
       </p>
-      
+      <a href="{{route('empresas.create')}}" class="btn btn-success mb-2">Agregar</a>
       </div>
       
     </div>

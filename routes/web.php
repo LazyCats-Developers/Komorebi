@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EmpresasController;
 
 /* use App\Http\Controllers
 routes yweas get([PagesController::class , 'login']);
@@ -29,3 +30,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+
+Route::get('main',['uses' => 'PagesController@main']);
+Route::resource("empresas","EmpresasController")->parameters(["empresas"=>"empresa"]);
