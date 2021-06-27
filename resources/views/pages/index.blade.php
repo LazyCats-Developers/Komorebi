@@ -39,7 +39,7 @@
       <p>No tienes ninguna empresa registrada aun.</p>
     </div>
     <div class="flex justify-center">
-      <a href="{{route('empresas.create')}}" class="flex justify-center w-full transition duration-300 ease-in-out transform hover:-translate-y-0 hover:scale-100 bg-blue-400 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-md md:max-w-xl">
+      <a href="{{route('empresas.create')}}" class="flex justify-center w-full bg-blue-400 text-white font-semibold py-3 px-6 rounded-md hover:bg-green-600 md:max-w-xl">
         Crear empresa
       </a>
     </div>
