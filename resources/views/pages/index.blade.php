@@ -10,9 +10,15 @@
         <img class= "w-24 rounded-md" src="../img/working.gif" alt="">
       </div>
       <div class="md:w-80">
-        <p>Bienvenido, {{ auth()->user()->nombre }}</p> 
+        <p>Bienvenido, {{ auth()->user()->nombre }} </p> 
         
-        <p>"CARGO" de "Empresa"</p>
+        <p>
+          @if(auth()->user()->empresas()->exists())         
+            {{ auth()->user()->colaboradores()->first()->cargo_usuario }} de {{ auth()->user()->empresas()->first()->nombre }}
+          @else
+            Aún no tienes empresa registrada
+          @endif
+        </p>
         <p class="text-sm text-blue-500">Editar tu perfil</p>
       </div>
     </div>

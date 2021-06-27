@@ -8,8 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Proveedor extends Model
 {
     use HasFactory;
-    protected $table="proveedores";
+    protected $table="provedores";
     public $timestamps = false;
+
+    protected $fillable = [
+        'nombre',
+        'rut',
+        'telefono',
+        'email',
+        'direccion',
+        'proveedor_rrss',
+        'descripcion'
+    ];
 
     public function transacciones() 
     {

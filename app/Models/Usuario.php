@@ -32,6 +32,11 @@ class Usuario extends Authenticatable
         return $this->hasMany(Colaborador::class);
     }
 
+    public function empresas()
+    {
+        return $this->belongsToMany(Empresa::class, 'colaboradores');
+    }
+
     public function roles() 
     {
         return $this->belongsToMany(Rol::class, 'colaboradores');

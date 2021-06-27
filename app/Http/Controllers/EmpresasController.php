@@ -57,9 +57,9 @@ class EmpresasController extends Controller
         try {    
             $empresa = Empresa::query()->create($valid);
             $empresa->colaboradores()->create([
-            "usuario_id" => $usuario->id,
-            "cargo_usuario" => "Administrador",
-            "rol_id" => 1
+                "usuario_id" => $usuario->id,
+                "cargo_usuario" => "Administrador",
+                "rol_id" => 1
             ]);
             DB::commit();
         } catch(\Exception $exception) {

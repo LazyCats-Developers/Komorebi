@@ -11,6 +11,11 @@ class Rol extends Model
     protected $table="roles";
     public $timestamps = false;
 
+    protected $fillable = [
+        'nombre',
+        'descripcion',
+    ];
+
     public function colaboradores() 
     {
         return $this->hasMany(Colaborador::class);

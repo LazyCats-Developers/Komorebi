@@ -12,7 +12,10 @@ class Colaborador extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'cargo_usuario'
+        'usuario_id',
+        'empresa_id',
+        'cargo_usuario',
+        'rol_id'
     ];
 
     public function usuario() 
