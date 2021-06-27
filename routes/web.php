@@ -44,10 +44,6 @@ Route::get('/cashflow' , 'PagesController@cashflow')->middleware(['auth']);
 
 Route::get('/modules' , 'PagesController@modules')->middleware(['auth']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
 require __DIR__.'/auth.php';
 
 Route::get('main',['uses' => 'PagesController@main']);

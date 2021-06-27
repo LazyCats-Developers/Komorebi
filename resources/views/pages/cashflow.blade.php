@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-
-cash flow
-
+<div class="flex flex-col space-y-5 p-5">
+    <p>gestion de flujo de caja</p>
+</div>
 @endsection

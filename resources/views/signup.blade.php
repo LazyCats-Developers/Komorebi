@@ -24,7 +24,7 @@
                     <input type="text" id="email" name="email" placeholder="Correo electrónico" class="border border-gray w-full rounded-md py-3 px-4">
                     <input type="password" id="password" name="password" placeholder="Contraseña" class="border border-gray w-full rounded-md py-3 px-4">
                     <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Confirmar Contraseña" class="border border-gray w-full rounded-md py-3 px-4">
-                    <button type="submit" class="min-w-full transition duration-300 ease-in-out transform hover:-translate-y-0 hover:scale-100 bg-blue-400 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-md">
+                    <button type="submit" class="min-w-full bg-blue-400 text-white font-semibold py-3 px-6 rounded-md hover:bg-green-600">
                         Registrar
                     </button>
                 </form>
