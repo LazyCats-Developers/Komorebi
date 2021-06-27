@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use App\Models\Usuario;
+use DB;
 
 class RegisteredUserController extends Controller
 {
@@ -34,27 +35,25 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'lname' => 'required|string|max:255',
-            'phone' => 'string|max:255',
-            'address' => 'string|max:255',
+        $valid = $this->validate($request, [
+            'nombre' => 'required|string|max:255',
+            'apellido' => 'required|string|max:255',
+            'telefono' => 'string|max:255',
+            'direccion' => 'string|max:255',
             'email' => 'required|string|email|max:255|unique:usuarios',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
-
-        $user = Usuario::create([
-            'nombre' => $request->name,
-            'apellido' => $request->lname,
-            'telefono' => $request-> phone,
-            'direccion' => $request-> address, 
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+          ]);       
+          $valid['password'] = Hash::make($valid['password']); 
+          $user = Usuario::create($valid);
 
         event(new Registered($user));
 
         Auth::login($user);
+
+        session()->flash('status', [
+            'type' => 'success',
+            'message' => 'Usuario ingresado.'
+        ]);
 
         return redirect(RouteServiceProvider::HOME);
     }

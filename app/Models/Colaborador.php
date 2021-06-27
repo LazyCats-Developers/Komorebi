@@ -11,6 +11,10 @@ class Colaborador extends Model
     protected $table="colaboradores";
     public $timestamps = false;
 
+    protected $fillable = [
+        'cargo_usuario'
+    ];
+
     public function usuario() 
     {
         return $this->belongsTo(Usuario::class);

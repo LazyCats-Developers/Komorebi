@@ -17,10 +17,10 @@
                         <img class="min-w-full" src="../../img/logo.png" alt="">
                         <p class="text-xl font-medium text-gray-700">Regístrate para crear una cuenta</p>
                     </div>
-                    <input type="text" id="name" name="name" placeholder="Nombre" class="border border-gray w-full rounded-md py-3 px-4">
-                    <input type="text" id="lname" name="lname" placeholder="Apellido" class="border border-gray w-full rounded-md py-3 px-4">
-                    <input type="text" id="phone" name="phone" placeholder="Telefono" class="border border-gray w-full rounded-md py-3 px-4">
-                    <input type="text" id="address" name="address" placeholder="Direccion" class="border border-gray w-full rounded-md py-3 px-4">
+                    <input type="text" id="nombre" name="nombre" placeholder="Nombre" class="border border-gray w-full rounded-md py-3 px-4">
+                    <input type="text" id="apellido" name="apellido" placeholder="Apellido" class="border border-gray w-full rounded-md py-3 px-4">
+                    <input type="text" id="telefono" name="telefono" placeholder="Telefono" class="border border-gray w-full rounded-md py-3 px-4">
+                    <input type="text" id="direccion" name="direccion" placeholder="Direccion" class="border border-gray w-full rounded-md py-3 px-4">
                     <input type="text" id="email" name="email" placeholder="Correo electrónico" class="border border-gray w-full rounded-md py-3 px-4">
                     <input type="password" id="password" name="password" placeholder="Contraseña" class="border border-gray w-full rounded-md py-3 px-4">
                     <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Confirmar Contraseña" class="border border-gray w-full rounded-md py-3 px-4">
