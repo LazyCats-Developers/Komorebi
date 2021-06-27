@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Empresa;
 use Illuminate\Http\Request;
+use DB;
 
 class EmpresasController extends Controller
 {
@@ -35,10 +36,40 @@ class EmpresasController extends Controller
      */
     public function store(Request $request)
     {
-        $empresa = new Empresa($request->input());
+        /* $empresa = new Empresa($request->input());
         $empresa->saveOrFail();
         
-        return redirect()->action([PagesController::class, 'main'])->with(["mensaje"=>"Empresa agregada exitosamente",]);
+        return redirect()->action([PagesController::class, 'main'])->with(["mensaje"=>"Empresa agregada exitosamente",]); */
+
+        $usuario = auth()->user();
+
+        $valid = $this->validate($request, [
+            "nombre" => "required|string|max:255",
+            "direccion" => "required|string|max:255",
+            "telefono" => "required|string|max:255",
+            "email" => "required|string|max:255",
+            "rut" => "required|string|max:255",
+            "descripcion" => "required|string|max:255",
+            "empresa_rrss" => "required|string|max:255",
+        ]);
+
+        DB::beginTransaction();
+        try {    
+            $empresa = Empresa::query()->create($valid);
+            $empresa->colaboradores()->create([
+            "usuario_id" => $usuario->id,
+            "cargo_usuario" => "Administrador",
+            "rol_id" => 1
+            ]);
+            DB::commit();
+        } catch(\Exception $exception) {
+            report($exception);
+            DB::rollBack();
+
+            return redirect()->back()->with([
+                'message' => 'Ocurrio el siguiente error: ' . $exception->getMessage()
+            ]);
+        }
     }
 
     /**
