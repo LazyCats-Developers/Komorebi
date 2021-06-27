@@ -41,10 +41,6 @@
                     <i class="fas fa-calendar mr-3"></i>
                     Modulos
                 </a>
-                <a href="" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-                    <i class="fas fa-cogs mr-3"></i>
-                    Soporte
-                </a>
             </nav>
         </aside>
 
@@ -54,29 +50,28 @@
         <header id="sidebarMobile" class="w-full py-5 px-6 sm:hidden">
             <!-- Mobile Dashboard Dropdown Nav -->
             <nav class="text-white text-base font-semibold">
-                <a href="" class="block active-nav-link text-white py-4 pl-6">
+                <a href="{{ route('login') }}" class="text-gray-100 text-3xl font-semibold hover:text-white">
+                    <i class="fas fa-user-cog mr-3"></i>{{ auth()->user()->nombre }}
+                </a>
+                <a href="{{ url('sales') }}" class="block active-nav-link text-white py-4 pl-6">
                     <i class="fas fa-tachometer-alt mr-3"></i>
                     Ventas
                 </a>
-                <a href="" class="block text-white opacity-75 hover:opacity-100 py-4 pl-6">
+                <a href="{{ url('shopping') }}" class="block text-white opacity-75 hover:opacity-100 py-4 pl-6">
                     <i class="fas fa-table mr-3"></i>
                     Compras
                 </a>
-                <a href="" class="block text-white opacity-75 hover:opacity-100 py-4 pl-6 ">
+                <a href="{{ url('inventory') }}" class="block text-white opacity-75 hover:opacity-100 py-4 pl-6 ">
                     <i class="fas fa-align-left mr-3"></i>
                     Inventario
                 </a>
-                <a href="" class="block text-white opacity-75 hover:opacity-100 py-4 pl-6">
+                <a href="{{ url('cashflow') }}" class="block text-white opacity-75 hover:opacity-100 py-4 pl-6">
                     <i class="fas fa-tablet-alt mr-3"></i>
                     Finanzas
                 </a>
-                <a href="" class="block text-white opacity-75 hover:opacity-100 py-4 pl-6">
+                <a href="{{ url('modules') }}" class="block text-white opacity-75 hover:opacity-100 py-4 pl-6">
                     <i class="fas fa-calendar mr-3"></i>
                     Modulos
-                </a>
-                <a href="" class="block text-white opacity-75 hover:opacity-100 py-4 pl-6">
-                    <i class="fas fa-cogs mr-3"></i>
-                    Soporte
                 </a>
             </nav>
         </header>

@@ -32,7 +32,11 @@ Route::get('/main' , 'PagesController@main')->middleware(['auth']);
 
 Route::get('/sales' , 'PagesController@sales')->middleware(['auth']);
 
+//Route::get('/newsales' , 'PagesController@newsales')->middleware(['auth']);
+
 Route::get('/shopping' , 'PagesController@shopping')->middleware(['auth']);
+
+//Route::get('/newshop' , 'PagesController@newshop')->middleware(['auth']);
 
 Route::get('/inventory' , 'PagesController@inventory')->middleware(['auth']);
 
@@ -46,6 +50,6 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-
 Route::get('main',['uses' => 'PagesController@main']);
+
 Route::resource("empresas","EmpresasController")->parameters(["empresas"=>"empresa"]);

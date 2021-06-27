@@ -23,9 +23,19 @@ class PagesController extends Controller
         
     }
 
+    //public function newsales(){
+    //    return view('pages.newsales');
+    //    
+    //}
+
     public function shopping(){
         return view('pages.shopping');
     }
+    
+    //public function newshop(){
+    //    return view('pages.newshop');
+    //    
+    //}
 
     
     public function inventory(){
