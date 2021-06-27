@@ -37,6 +37,7 @@ class EmpresasController extends Controller
     {
         $empresa = new Empresa($request->input());
         $empresa->saveOrFail();
+        
         return redirect()->action([PagesController::class, 'main'])->with(["mensaje"=>"Empresa agregada exitosamente",]);
     }
 
