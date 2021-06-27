@@ -30,6 +30,16 @@ Route::post('/signup', [RegisteredUserController::class, 'store'])
 
 Route::get('/main' , 'PagesController@main')->middleware(['auth']);
 
+Route::get('/sales' , 'PagesController@sales')->middleware(['auth']);
+
+Route::get('/shopping' , 'PagesController@shopping')->middleware(['auth']);
+
+Route::get('/inventory' , 'PagesController@inventory')->middleware(['auth']);
+
+Route::get('/cashflow' , 'PagesController@cashflow')->middleware(['auth']);
+
+Route::get('/modules' , 'PagesController@modules')->middleware(['auth']);
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
