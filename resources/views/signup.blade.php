@@ -17,13 +17,13 @@
                         <img class="min-w-full" src="../../img/logo.png" alt="">
                         <p class="text-xl font-medium text-gray-700">Regístrate para crear una cuenta</p>
                     </div>
-                    <input type="text" id="name" name="name" placeholder="Nombre" class="border border-gray w-full rounded-md py-3 px-4">
-                    <input type="text" id="lname" name="lname" placeholder="Apellido" class="border border-gray w-full rounded-md py-3 px-4">
-                    <input type="text" id="phone" name="phone" placeholder="Telefono" class="border border-gray w-full rounded-md py-3 px-4">
-                    <input type="text" id="address" name="address" placeholder="Direccion" class="border border-gray w-full rounded-md py-3 px-4">
-                    <input type="text" id="email" name="email" placeholder="Correo electrónico" class="border border-gray w-full rounded-md py-3 px-4">
-                    <input type="password" id="password" name="password" placeholder="Contraseña" class="border border-gray w-full rounded-md py-3 px-4">
-                    <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Confirmar Contraseña" class="border border-gray w-full rounded-md py-3 px-4">
+                    <input type="text" id="name" name="name" placeholder="Nombre" class="border border-gray w-full rounded-md py-3 px-4" required>
+                    <input type="text" id="lname" name="lname" placeholder="Apellido" class="border border-gray w-full rounded-md py-3 px-4" required>
+                    <input type="text" id="phone" name="phone" placeholder="Telefono" class="border border-gray w-full rounded-md py-3 px-4" required>
+                    <input type="text" id="address" name="address" placeholder="Direccion" class="border border-gray w-full rounded-md py-3 px-4" required>
+                    <input type="text" id="email" name="email" placeholder="Correo electrónico" class="border border-gray w-full rounded-md py-3 px-4" required>
+                    <input type="password" id="password" name="password" placeholder="Contraseña" class="border border-gray w-full rounded-md py-3 px-4" required>
+                    <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Confirmar Contraseña" class="border border-gray w-full rounded-md py-3 px-4" required>
                     <button type="submit" class="min-w-full transition duration-300 ease-in-out transform hover:-translate-y-0 hover:scale-100 bg-blue-400 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-md">
                         Registrar
                     </button>
