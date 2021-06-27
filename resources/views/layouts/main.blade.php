@@ -79,19 +79,26 @@
         <main class="w-full overflow-x-hidden">
 
             @if(in_array(request()->path(), ['main','sales','shopping','inventory','cashflow','modules']))
-                <div class="grid-col">
+
+                @if(!auth()->user()->empresas()->exists())         
+                    
+                    <div class="grid-col">
                         <div class="flex justify-center bg-red-200 p-5 md:rounded-t-md">
                         <p>ATENCION</p>
                         </div>
                         <div class="flex justify-center bg-white p-5">
                         <p>No tienes ninguna empresa registrada aun, registra una empresa para poder usar los módulos.</p>
                         </div>
+
                         <div class="flex justify-center bg-white pb-5 px-5 md:rounded-b-md">
                         <a href="{{route('empresas.create')}}" class="flex justify-center w-full bg-blue-400 text-white font-semibold py-3 px-6 rounded-md hover:bg-green-600 md:w-80">
                             Crear empresa
                         </a>
                         </div>
                     </div>
+                    
+                @endif
+                
             @endif
 
             @yield('content')

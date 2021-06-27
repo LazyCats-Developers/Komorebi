@@ -36,6 +36,11 @@
         <p class="invisible md:visible"> Notificación!</p>
       </div>
     </div>
+    <p>
+      @if(auth()->user()->empresas()->exists()) 
+        pichuklos
+      @endif
+    </p>
   </div>
 </div>
 @endsection
