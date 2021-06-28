@@ -10,6 +10,13 @@ class Producto extends Model
     use HasFactory;
     public $timestamps = false;
 
+    protected $table='productos';
+    protected $fillable = [
+        'nombre',
+        'marca',
+        'unidad',
+        'descripcion'
+    ];
     public function carrosVenta() 
     {
         return $this->hasMany(CarroVenta::class);

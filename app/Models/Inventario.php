@@ -9,6 +9,15 @@ class Inventario extends Model
 {
     use HasFactory;
     public $timestamps = false;
+    protected $table = 'inventarios';
+
+    protected $fillable = [
+        'producto_id',
+        'emrpesa_id',
+        'cantidad',
+        'tipo_producto_id',
+        'precio_unitario'
+    ];
 
     public function producto() 
     {
