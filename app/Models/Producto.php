@@ -15,7 +15,8 @@ class Producto extends Model
         'nombre',
         'marca',
         'unidad',
-        'descripcion'
+        'descripcion',
+        'codigo'
     ];
     public function carrosVenta() 
     {

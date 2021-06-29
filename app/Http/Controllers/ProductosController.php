@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Producto;
+use App\Models\TipoProducto;
 use Illuminate\Http\Request;
+use DB;
 
 class ProductosController extends Controller
 {
@@ -14,7 +16,7 @@ class ProductosController extends Controller
      */
     public function index()
     {
-        //
+        return view("pages.inventory", ["productos"=>Producto::all()]);
     }
 
     /**
@@ -24,7 +26,7 @@ class ProductosController extends Controller
      */
     public function create()
     {
-        return view("pages.newitem");
+        return view("pages.newitem",["tipoproductos"=>TipoProducto::all()]);
     }
 
     /**
@@ -35,14 +37,38 @@ class ProductosController extends Controller
      */
     public function store(Request $request)
     {
-        $valid = $this->validate($request, [
+        $validp = $this->validate($request, [
             "nombre" => "required|string|max:255",
             "marca" => "required|string|max:255",
             "unidad" => "required|string|max:255",
             "descripcion" => "required|string|max:255",
-        ]);
+            "codigo" => "required|string|max:255",
 
-        $producto = Producto::query()->create($valid);
+            
+
+
+        ]);
+        $usuario = auth()->user();
+        $em=$usuario->empresas()->first();
+        DB::beginTransaction();
+        try{
+        $producto = Producto::query()->create($validp);
+        $producto->inventarios()->create([
+            "cantidad" => $request->cantidad,
+            "precio_unitario" => $request->precio_unitario,
+            "tipo_producto_id" => $request->tipo_producto_id,
+            "empresa_id" => $em->id
+
+        ]);
+        DB::commit();
+        }catch(\Exception $exception) {
+            report($exception);
+            DB::rollBack();
+
+            return redirect()->back()->with([
+                'message' => 'Ocurrio el siguiente error: ' . $exception->getMessage()
+            ]);
+        }
 
     }
 
@@ -65,7 +91,7 @@ class ProductosController extends Controller
      */
     public function edit(Producto $producto)
     {
-        return view("pages.edititem");
+        return view("pages.edititem",["tipoproductos"=>TipoProducto::all()]);
     }
 
     /**

@@ -10,9 +10,13 @@
         <input  name="marca" type="text" placeholder="Marca">
         <input  name="cantidad" type="text" placeholder="Cantidad">
         <input  name="unidad" type="text" placeholder="Unidad">
-        <input  name="precio" type="text" placeholder="Precio">
-        <select  name="tipo"  >
-            <option value=0 selected>Tipo</option>
+        <input  name="precio_unitario" type="text" placeholder="Precio">
+        <select name="tipo_producto_id">
+            
+            <option value="0" selected>Tipo</option>
+            @foreach ($tipoproductos as $tp)
+            <option value="{{$tp->id}}" >{{$tp->nombre}}</option>
+            @endforeach
         </select>
         <input  name="descripcion" type="text" placeholder="Descripcion">
         <a class="btn btn-primary" href="{{route('tipoproductos.create')}}">Añadir opcion</a>
