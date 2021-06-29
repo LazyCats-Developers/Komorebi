@@ -65,7 +65,7 @@ class TipoProductosController extends Controller
      */
     public function edit(TipoProducto $tipoProducto)
     {
-        //
+        return view("pages.edititem");
     }
 
     /**
