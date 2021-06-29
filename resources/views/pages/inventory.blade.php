@@ -10,6 +10,7 @@
                 Editar items
         </a>
         <p>crear el form en views/pages/edititem.blade.php</p>
+        
         <form method="POST" action="">
                 @csrf
                 <div class="form-group">
