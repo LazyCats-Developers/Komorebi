@@ -10,7 +10,7 @@
 </head>
 <body>
     @include('components.navbar')
-    <div class="flex bg-gray-200">
+    <div class="flex bg-gray-300">
 
         <aside>
             <!-- Header Dashboard -->
