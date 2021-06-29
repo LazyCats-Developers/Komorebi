@@ -45,10 +45,10 @@ class EmpresasController extends Controller
 
         $valid = $this->validate($request, [
             "nombre" => "required|string|max:255",
-            "direccion" => "required|string|max:255",
-            "telefono" => "required|string|max:255",
-            "email" => "required|string|max:255",
-            "rut" => "required|string|max:255",
+            "direccion" => "string|max:255",
+            "telefono" => "string|max:255",
+            "email" => "string|max:255",
+            "rut" => "string|max:255",
             "descripcion" => "string|max:255",
             "empresa_rrss" => "string|max:255",
         ]);
@@ -80,7 +80,17 @@ class EmpresasController extends Controller
      */
     public function show(Empresa $empresa)
     {
-        
+        //
+    }
+
+    /**
+     * Display all the resources from the auth user
+     */
+    public function showAll()
+    {
+        $usuario = auth()->user();
+        $empresas = $usuario->empresas()->get();
+        return $empresas;
     }
 
     /**
@@ -106,10 +116,10 @@ class EmpresasController extends Controller
 
         $valid = $this->validate($request, [
             "nombre" => "required|string|max:255",
-            "direccion" => "required|string|max:255",
-            "telefono" => "required|string|max:255",
-            "email" => "required|string|max:255",
-            "rut" => "required|string|max:255",
+            "direccion" => "string|max:255",
+            "telefono" => "string|max:255",
+            "email" => "string|max:255",
+            "rut" => "string|max:255",
             "descripcion" => "string|max:255",
             "empresa_rrss" => "string|max:255",
         ]);
@@ -136,12 +146,16 @@ class EmpresasController extends Controller
 
         DB::beginTransaction();
         try {    
+
+            /**
+             * TODO Implementar el borrado de los productos y demas datos relacionados a la empresa
+             */
             $empresa->colaboradores()
                 ->delete();
 
             $empresa 
                 ->delete();
-                
+
             DB::commit();
         } catch(\Exception $exception) {
             report($exception);

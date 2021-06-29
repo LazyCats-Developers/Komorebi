@@ -51,3 +51,4 @@ Route::get('main',['uses' => 'PagesController@main']);
 Route::resource("empresas","EmpresasController")->parameters(["empresas"=>"empresa"]);
 Route::resource("productos","ProductosController")->parameters(["productos"=>"producto"]);
 Route::resource("tipoproductos","TipoProductosController")->parameters(["tipoproductos"=>"tipoproducto"]);
+Route::resource('empresas.colaboradores', 'ColaboradoresController')->parameters(['colaboradores' => 'colaborador']);
