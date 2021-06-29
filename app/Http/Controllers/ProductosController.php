@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Inventario;
 use App\Models\Producto;
 use App\Models\TipoProducto;
 use Illuminate\Http\Request;
@@ -16,7 +17,7 @@ class ProductosController extends Controller
      */
     public function index()
     {
-        return view("pages.inventory", ["productos"=>Producto::all()]);
+        return view("pages.inventory", ["productos" => Producto::all()]);
     }
 
     /**
@@ -26,7 +27,7 @@ class ProductosController extends Controller
      */
     public function create()
     {
-        return view("pages.newitem",["tipoproductos"=>TipoProducto::all()]);
+        return view("pages.newitem", ["tipoproductos" => TipoProducto::all()]);
     }
 
     /**
@@ -44,24 +45,24 @@ class ProductosController extends Controller
             "descripcion" => "required|string|max:255",
             "codigo" => "required|string|max:255",
 
-            
+
 
 
         ]);
         $usuario = auth()->user();
-        $em=$usuario->empresas()->first();
+        $em = $usuario->empresas()->first();
         DB::beginTransaction();
-        try{
-        $producto = Producto::query()->create($validp);
-        $producto->inventarios()->create([
-            "cantidad" => $request->cantidad,
-            "precio_unitario" => $request->precio_unitario,
-            "tipo_producto_id" => $request->tipo_producto_id,
-            "empresa_id" => $em->id
+        try {
+            $producto = Producto::query()->create($validp);
+            $producto->inventarios()->create([
+                "cantidad" => $request->cantidad,
+                "precio_unitario" => $request->precio_unitario,
+                "tipo_producto_id" => $request->tipo_producto_id,
+                "empresa_id" => $em->id
 
-        ]);
-        DB::commit();
-        }catch(\Exception $exception) {
+            ]);
+            DB::commit();
+        } catch (\Exception $exception) {
             report($exception);
             DB::rollBack();
 
@@ -69,7 +70,6 @@ class ProductosController extends Controller
                 'message' => 'Ocurrio el siguiente error: ' . $exception->getMessage()
             ]);
         }
-
     }
 
     /**
@@ -91,7 +91,8 @@ class ProductosController extends Controller
      */
     public function edit(Producto $producto)
     {
-        return view("pages.edititem",["tipoproductos"=>TipoProducto::all()]);
+        $inventario = $producto->inventarios()->first();
+        return view("pages.edititem", ["inventario" => $inventario, "producto" => $producto, "tipoproductos" => TipoProducto::all()]);
     }
 
     /**
@@ -101,9 +102,37 @@ class ProductosController extends Controller
      * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Producto $producto)
+    public function update(Request $request, Producto $producto, Inventario $inventario)
     {
-        //
+        $valid = $this->validate($request, [
+            "nombre" => "required|string|max:255",
+            "marca" => "required|string|max:255",
+            "unidad" => "required|string|max:255",
+            "descripcion" => "required|string|max:255",
+            "codigo" => "required|string|max:255",
+            "cantidad" => "required|numeric",
+            "precio_unitario" => "required|numeric",
+            "tipo_producto_id" => "required|numeric|min:1",
+        ]);
+        $validi = $this->validate($request, [
+            
+            "cantidad" => "required|numeric",
+            "precio_unitario" => "required|numeric",
+            "tipo_producto_id" => "required|numeric|min:1",
+        ]);
+        DB::beginTransaction();
+        try {
+            $producto->update($valid);
+            $producto->inventarios()->update($validi);
+            DB::commit();
+        } catch (\Exception $exception) {
+            report($exception);
+            DB::rollBack();
+
+            return redirect()->back()->with([
+                'message' => 'Ocurrio el siguiente error: ' . $exception->getMessage()
+            ]);
+        }
     }
 
     /**
@@ -114,6 +143,22 @@ class ProductosController extends Controller
      */
     public function destroy(Producto $producto)
     {
-        //
+        DB::beginTransaction();
+        try {    
+            $producto->inventarios()
+                ->delete();
+
+            $producto 
+                ->delete();
+                
+            DB::commit();
+        } catch(\Exception $exception) {
+            report($exception);
+            DB::rollBack();
+
+            return redirect()->back()->with([
+                'message' => 'Ocurrio el siguiente error: ' . $exception->getMessage()
+            ]);
+        }|  
     }
 }
