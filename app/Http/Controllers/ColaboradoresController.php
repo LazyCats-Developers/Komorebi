@@ -100,7 +100,21 @@ class ColaboradoresController extends Controller
      */
     public function update(Request $request, Colaborador $colaborador)
     {
-        //
+        $valid = $this->validate($request, [
+            "cargo_usuario" => "required|string|max:255",
+            "rol_id" => "required|digits"
+        ]);
+        
+        $colaborador->update([
+            "cargo_usuario" => $valid['cargo_usuario'],
+            "rol_id" => $valid['rol_id']
+        ]);
+
+        session()->flash('status', [
+            'type' => 'success',
+            'message' => 'Datos de colaborador actualizados.'
+        ]);
+
     }
 
     /**
