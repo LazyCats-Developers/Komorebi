@@ -32,12 +32,12 @@
                                 <td>{{$producto->descripcion}}</td>
                                 <td>{{$producto->unidad}}</td>
                                 <td>
-                                        <a class="btn btn-warning" href="{{route("productos.edit",[$producto])}}">
+                                        <a class="btn btn-warning" href="{{route('productos.edit',[$producto])}}">
                                                 <i class="fa fa-edit"></i>
                                         </a>
                                 </td>
                                 <td>
-                                        <form action="{{route("productos.destroy", [$producto])}}" method="post">
+                                        <form action="{{route('productos.destroy', [$producto])}}" method="post">
                                                 @method("delete")
                                                 @csrf
                                                 <button type="submit" class="btn btn-danger">

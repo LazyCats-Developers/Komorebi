@@ -159,6 +159,6 @@ class ProductosController extends Controller
             return redirect()->back()->with([
                 'message' => 'Ocurrio el siguiente error: ' . $exception->getMessage()
             ]);
-        }|  
+        }
     }
 }
