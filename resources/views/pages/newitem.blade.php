@@ -6,6 +6,7 @@
     @csrf
     <div class="form-group">
         <input  name="nombre" type="text" placeholder="Nombre">
+        <input  name="codigo" type="text" placeholder="Codigo">
         <input  name="marca" type="text" placeholder="Marca">
         <input  name="cantidad" type="text" placeholder="Cantidad">
         <input  name="unidad" type="text" placeholder="Unidad">
