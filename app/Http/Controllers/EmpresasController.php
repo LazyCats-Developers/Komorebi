@@ -49,8 +49,8 @@ class EmpresasController extends Controller
             "telefono" => "required|string|max:255",
             "email" => "required|string|max:255",
             "rut" => "required|string|max:255",
-            "descripcion" => "required|string|max:255",
-            "empresa_rrss" => "required|string|max:255",
+            "descripcion" => "string|max:255",
+            "empresa_rrss" => "string|max:255",
         ]);
 
         DB::beginTransaction();
@@ -80,7 +80,7 @@ class EmpresasController extends Controller
      */
     public function show(Empresa $empresa)
     {
-        //
+        
     }
 
     /**
@@ -103,7 +103,26 @@ class EmpresasController extends Controller
      */
     public function update(Request $request, Empresa $empresa)
     {
-        //
+
+        $valid = $this->validate($request, [
+            "nombre" => "required|string|max:255",
+            "direccion" => "required|string|max:255",
+            "telefono" => "required|string|max:255",
+            "email" => "required|string|max:255",
+            "rut" => "required|string|max:255",
+            "descripcion" => "string|max:255",
+            "empresa_rrss" => "string|max:255",
+        ]);
+
+        $empresa 
+            ->update($valid);
+
+        session()->flash('status', [
+            'type' => 'success',
+            'message' => 'Empresa actualizada.'
+        ]);
+
+        return redirect()->route('main');
     }
 
     /**
@@ -114,6 +133,23 @@ class EmpresasController extends Controller
      */
     public function destroy(Empresa $empresa)
     {
-        //
+
+        DB::beginTransaction();
+        try {    
+            $empresa->colaboradores()
+                ->delete();
+
+            $empresa 
+                ->delete();
+                
+            DB::commit();
+        } catch(\Exception $exception) {
+            report($exception);
+            DB::rollBack();
+
+            return redirect()->back()->with([
+                'message' => 'Ocurrio el siguiente error: ' . $exception->getMessage()
+            ]);
+        }
     }
 }
