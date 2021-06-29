@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Producto;
 
 use Illuminate\Http\Request;
 
@@ -39,7 +40,7 @@ class PagesController extends Controller
 
     
     public function inventory(){
-        return view('pages.inventory');
+        return view('pages.inventory',["productos"=>Producto::all()]);
     }
 
     public function cashflow(){
