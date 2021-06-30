@@ -125,6 +125,12 @@ class ColaboradoresController extends Controller
      */
     public function destroy(Colaborador $colaborador)
     {
-        //
+        $colaborador -> delete();
+
+        session()->flash('status', [
+            'type' => 'success',
+            'message' => 'Colaborador eliminado con exito.'
+        ]);
+
     }
 }
