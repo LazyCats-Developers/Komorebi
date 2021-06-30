@@ -17,7 +17,10 @@
                     Aún no tienes empresa registrada
                 @endif
                 </p>
-                <p class="text-sm text-blue-500">Editar tu perfil</p>
+                <a href="{{ url('ups') }}">
+                    <p class="text-sm text-blue-500">Editar tu perfil</p>
+                </a>
+
             </div>
             </div>
 

@@ -30,6 +30,8 @@ Route::post('/signup', [RegisteredUserController::class, 'store'])
 
 Route::get('/main' , 'PagesController@main')->middleware(['auth']);
 
+Route::get('/ups' , 'PagesController@ups')->middleware(['auth']);
+
 Route::get('/sales' , 'PagesController@sales')->middleware(['auth']);
 
 //Route::get('/newsales' , 'PagesController@newsales')->middleware(['auth']);
