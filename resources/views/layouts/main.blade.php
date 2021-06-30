@@ -80,8 +80,8 @@
 
             @if(in_array(request()->path(), ['main','sales','shopping','inventory','cashflow','modules']))
 
-                @if(!auth()->user()->empresas()->exists())         
-                    
+                @if(!auth()->user()->empresas()->exists())
+
                     <div class="grid-col">
                         <div class="flex justify-center bg-red-200 p-5 md:rounded-t-md">
                         <p>ATENCION</p>
@@ -96,9 +96,9 @@
                         </a>
                         </div>
                     </div>
-                    
+
                 @endif
-                
+
             @endif
 
             @yield('content')
