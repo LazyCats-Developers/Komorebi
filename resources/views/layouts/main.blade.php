@@ -21,26 +21,28 @@
             </div>
             <!-- Body Dashboard -->
             <nav class="text-white text-base font-semibold pt-3">
-                <a href="{{ url('sales') }}" class="flex items-center active-nav-link text-white py-4 pl-6 nav-item">
-                    <i class="fas fa-cash-register mr-3"></i>
-                    Ventas
-                </a>
-                <a href="{{ url('shopping') }}" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-                    <i class="fas fa-truck mr-3"></i>
-                    Compras
-                </a>
-                <a href="{{ route('productos.index') }}" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-                    <i class="fas fa-clipboard-list mr-3"></i>
-                    Inventario
-                </a>
-                <a href="{{ url('cashflow') }}" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-                    <i class="fas fa-chart-line mr-3"></i>
-                    Finanzas
-                </a>
-                <a href="{{ url('modules') }}" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-                    <i class="fas fa-plus-square mr-3"></i>
-                    Modulos
-                </a>
+                @if(auth()->user()->empresas()->exists())
+                    <a href="{{ url('sales') }}" class="flex items-center active-nav-link text-white py-4 pl-6 nav-item">
+                        <i class="fas fa-cash-register mr-3"></i>
+                        Ventas
+                    </a>
+                    <a href="{{ url('shopping') }}" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+                        <i class="fas fa-truck mr-3"></i>
+                        Compras
+                    </a>
+                    <a href="{{ route('productos.index') }}" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+                        <i class="fas fa-clipboard-list mr-3"></i>
+                        Inventario
+                    </a>
+                    <a href="{{ url('cashflow') }}" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+                        <i class="fas fa-chart-line mr-3"></i>
+                        Finanzas
+                    </a>
+                    <a href="{{ url('modules') }}" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+                        <i class="fas fa-plus-square mr-3"></i>
+                        Modulos
+                    </a>
+                @endif
             </nav>
         </aside>
 
@@ -53,26 +55,28 @@
                 <a href="{{ route('login') }}" class="text-gray-100 text-3xl font-semibold hover:text-white">
                     <i class="fas fa-house-user mr-3"></i>{{ auth()->user()->nombre }}
                 </a>
-                <a href="{{ url('sales') }}" class="block active-nav-link text-white py-4 pl-6">
-                    <i class="fas fa-cash-register mr-3"></i>
-                    Ventas
-                </a>
-                <a href="{{ url('shopping') }}" class="block text-white opacity-75 hover:opacity-100 py-4 pl-6">
-                    <i class="fas fa-truck mr-3"></i>
-                    Compras
-                </a>
-                <a href="{{ url('inventory') }}" class="block text-white opacity-75 hover:opacity-100 py-4 pl-6 ">
-                    <i class="fas fa-clipboard-list mr-3"></i>
-                    Inventario
-                </a>
-                <a href="{{ url('cashflow') }}" class="block text-white opacity-75 hover:opacity-100 py-4 pl-6">
-                    <i class="fas fa-chart-line mr-3"></i>
-                    Finanzas
-                </a>
-                <a href="{{ url('modules') }}" class="block text-white opacity-75 hover:opacity-100 py-4 pl-6">
-                    <i class="fas fa-plus-square mr-3"></i>
-                    Modulos
-                </a>
+                @if(auth()->user()->empresas()->exists())
+                    <a href="{{ url('sales') }}" class="block active-nav-link text-white py-4 pl-6">
+                        <i class="fas fa-cash-register mr-3"></i>
+                        Ventas
+                    </a>
+                    <a href="{{ url('shopping') }}" class="block text-white opacity-75 hover:opacity-100 py-4 pl-6">
+                        <i class="fas fa-truck mr-3"></i>
+                        Compras
+                    </a>
+                    <a href="{{ url('inventory') }}" class="block text-white opacity-75 hover:opacity-100 py-4 pl-6 ">
+                        <i class="fas fa-clipboard-list mr-3"></i>
+                        Inventario
+                    </a>
+                    <a href="{{ url('cashflow') }}" class="block text-white opacity-75 hover:opacity-100 py-4 pl-6">
+                        <i class="fas fa-chart-line mr-3"></i>
+                        Finanzas
+                    </a>
+                    <a href="{{ url('modules') }}" class="block text-white opacity-75 hover:opacity-100 py-4 pl-6">
+                        <i class="fas fa-plus-square mr-3"></i>
+                        Modulos
+                    </a>
+                @endif
             </nav>
         </header>
 
