@@ -79,7 +79,8 @@ class ProductosController extends Controller
             ]);
         }
 
-        return redirect('/main');
+        return redirect('/inventory');
+
     }
 
     /**
@@ -152,6 +153,7 @@ class ProductosController extends Controller
                 'message' => 'Ocurrio el siguiente error: ' . $exception->getMessage()
             ]);
         }
+        return redirect('/inventory');
     }
 
     /**
@@ -179,5 +181,7 @@ class ProductosController extends Controller
                 'message' => 'Ocurrio el siguiente error: ' . $exception->getMessage()
             ]);
         }
+
+        return redirect('/inventory');
     }
 }

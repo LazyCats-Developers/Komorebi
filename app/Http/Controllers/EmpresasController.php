@@ -69,7 +69,10 @@ class EmpresasController extends Controller
             return redirect()->back()->with([
                 'message' => 'Ocurrio el siguiente error: ' . $exception->getMessage()
             ]);
+
         }
+
+        return redirect('/main');
     }
 
     /**
@@ -132,7 +135,7 @@ class EmpresasController extends Controller
             'message' => 'Empresa actualizada.'
         ]);
 
-        return redirect()->route('main');
+        return redirect('/main');
     }
 
     /**
