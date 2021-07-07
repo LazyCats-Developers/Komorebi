@@ -18,7 +18,7 @@ class Producto extends Model
         'descripcion',
         'codigo'
     ];
-    public function carrosVenta() 
+    public function carrosVenta()
     {
         return $this->hasMany(CarroVenta::class);
     }

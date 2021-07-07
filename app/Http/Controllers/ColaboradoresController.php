@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Colaborador;
 use Illuminate\Http\Request;
-use DB;
 
 class ColaboradoresController extends Controller
 {
@@ -42,7 +41,7 @@ class ColaboradoresController extends Controller
         ]);
 
         $usuario = auth()->user();
-    
+
         $colaborador = Usuario::query()->where('email', $valid['email'])->first();
 
         if (!$colaborador) {
@@ -51,7 +50,7 @@ class ColaboradoresController extends Controller
             return redirect()->back()->with([
                 'causa' => 'FALTA_USUARIO',
                 'mensaje' => 'Debe crear un usuario...'
-            ]);                
+            ]);
         }
 
         $empresa = $usuario->empresas()->find($id);
@@ -60,7 +59,7 @@ class ColaboradoresController extends Controller
             "cargo_usuario" => $valid['cargo_usuario'],
             "rol_id" => 2
         ]);
-        
+
         session()->flash('status', [
             'type' => 'success',
             'message' => 'Colaborador ingresado.'
@@ -104,7 +103,7 @@ class ColaboradoresController extends Controller
             "cargo_usuario" => "required|string|max:255",
             "rol_id" => "required|digits"
         ]);
-        
+
         $colaborador->update([
             "cargo_usuario" => $valid['cargo_usuario'],
             "rol_id" => $valid['rol_id']

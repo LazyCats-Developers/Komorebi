@@ -26,20 +26,21 @@ class Empresa extends Model
     public function serviciosContratados()
     {
         return $this->hasMany(ServicioContratado::class);
-    } 
+    }
 
     public function colaboradores()
     {
         return $this->hasMany(Colaborador::class);
-    } 
+    }
 
-    public function transacciones() 
+    public function transacciones()
     {
         return $this->hasMany(Transaccion::class);
     }
 
-    public function inventarios() 
+    public function inventarios()
     {
         return $this->hasMany(Inventario::class);
     }
+
 }

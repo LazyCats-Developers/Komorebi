@@ -17,7 +17,15 @@ class ProductosController extends Controller
      */
     public function index()
     {
-        return view("pages.inventory", ["productos" => Producto::all()]);
+        /**
+         * $usuario = auth()->user();
+        * $em = $usuario->empresas()->first();
+        * return view("pages.inventory", ["productos" => Producto::with(['inventarios' => function($query) use($em) {$query->where('empresa_id',$em->id);}])->get()]);
+         */
+        $usuario = auth()->user();
+        $empresa = $usuario->empresas()->first();
+        $productos = Producto::query()->whereHas('inventarios', fn($query) => $query->where('empresa_id', $empresa->id))->get();
+        return view("pages.inventory", ["productos" => $productos ]);
     }
 
     /**
@@ -70,6 +78,8 @@ class ProductosController extends Controller
                 'message' => 'Ocurrio el siguiente error: ' . $exception->getMessage()
             ]);
         }
+
+        return redirect('/main');
     }
 
     /**
@@ -81,6 +91,15 @@ class ProductosController extends Controller
     public function show(Producto $producto)
     {
         //
+    }
+
+    public function showAll()
+    {
+        $usuario = auth()->user();
+        $em = $usuario->empresas()->first();
+        $productos = Inventario::query()->where('empresa_id', $em->id )->get();
+
+        return $productos;
     }
 
     /**
@@ -115,7 +134,7 @@ class ProductosController extends Controller
             "tipo_producto_id" => "required|numeric|min:1",
         ]);
         $validi = $this->validate($request, [
-            
+
             "cantidad" => "required|numeric",
             "precio_unitario" => "required|numeric",
             "tipo_producto_id" => "required|numeric|min:1",
@@ -144,13 +163,13 @@ class ProductosController extends Controller
     public function destroy(Producto $producto)
     {
         DB::beginTransaction();
-        try {    
+        try {
             $producto->inventarios()
                 ->delete();
 
-            $producto 
+            $producto
                 ->delete();
-                
+
             DB::commit();
         } catch(\Exception $exception) {
             report($exception);
