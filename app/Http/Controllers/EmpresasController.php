@@ -38,7 +38,7 @@ class EmpresasController extends Controller
     {
         /* $empresa = new Empresa($request->input());
         $empresa->saveOrFail();
-        
+
         return redirect()->action([PagesController::class, 'main'])->with(["mensaje"=>"Empresa agregada exitosamente",]); */
 
         $usuario = auth()->user();
@@ -54,7 +54,7 @@ class EmpresasController extends Controller
         ]);
 
         DB::beginTransaction();
-        try {    
+        try {
             $empresa = Empresa::query()->create($valid);
             $empresa->colaboradores()->create([
                 "usuario_id" => $usuario->id,
@@ -69,7 +69,10 @@ class EmpresasController extends Controller
             return redirect()->back()->with([
                 'message' => 'Ocurrio el siguiente error: ' . $exception->getMessage()
             ]);
+
         }
+
+        return redirect('/main');
     }
 
     /**
@@ -124,7 +127,7 @@ class EmpresasController extends Controller
             "empresa_rrss" => "string|max:255",
         ]);
 
-        $empresa 
+        $empresa
             ->update($valid);
 
         session()->flash('status', [
@@ -132,7 +135,7 @@ class EmpresasController extends Controller
             'message' => 'Empresa actualizada.'
         ]);
 
-        return redirect()->route('main');
+        return redirect('/main');
     }
 
     /**
@@ -145,7 +148,7 @@ class EmpresasController extends Controller
     {
 
         DB::beginTransaction();
-        try {    
+        try {
 
             /**
              * TODO Implementar el borrado de los productos y demas datos relacionados a la empresa
@@ -153,7 +156,7 @@ class EmpresasController extends Controller
             $empresa->colaboradores()
                 ->delete();
 
-            $empresa 
+            $empresa
                 ->delete();
 
             DB::commit();

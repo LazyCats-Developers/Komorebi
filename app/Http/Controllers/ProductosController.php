@@ -70,6 +70,9 @@ class ProductosController extends Controller
                 'message' => 'Ocurrio el siguiente error: ' . $exception->getMessage()
             ]);
         }
+
+        return redirect('/inventory');
+
     }
 
     /**
@@ -115,7 +118,7 @@ class ProductosController extends Controller
             "tipo_producto_id" => "required|numeric|min:1",
         ]);
         $validi = $this->validate($request, [
-            
+
             "cantidad" => "required|numeric",
             "precio_unitario" => "required|numeric",
             "tipo_producto_id" => "required|numeric|min:1",
@@ -133,6 +136,7 @@ class ProductosController extends Controller
                 'message' => 'Ocurrio el siguiente error: ' . $exception->getMessage()
             ]);
         }
+        return redirect('/inventory');
     }
 
     /**
@@ -144,13 +148,13 @@ class ProductosController extends Controller
     public function destroy(Producto $producto)
     {
         DB::beginTransaction();
-        try {    
+        try {
             $producto->inventarios()
                 ->delete();
 
-            $producto 
+            $producto
                 ->delete();
-                
+
             DB::commit();
         } catch(\Exception $exception) {
             report($exception);
@@ -160,5 +164,7 @@ class ProductosController extends Controller
                 'message' => 'Ocurrio el siguiente error: ' . $exception->getMessage()
             ]);
         }
+
+        return redirect('/inventory');
     }
 }

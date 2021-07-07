@@ -1,3 +1,4 @@
+
 <form method="POST" action="{{route('productos.update',[$producto,$inventario])}}">
     @method("PUT")
     @csrf
@@ -9,14 +10,14 @@
         <input value="{{$producto->unidad}}" name="unidad" type="text" placeholder="Unidad">
         <input value="{{$inventario->precio_unitario}}" name="precio_unitario" type="text" placeholder="Precio">
         <select name="tipo_producto_id">
-            
+
             <option value="0" >Tipo</option>
             @foreach ($tipoproductos as $tp)
             <option value="{{$tp->id}}" {{ ( $tp->id == $inventario->tipo_producto_id) ? 'selected' : '' }}>{{$tp->nombre}}</option>
             @endforeach
         </select>
         <input value="{{$producto->descripcion}}" name="descripcion" type="text" placeholder="Descripcion">
-        
+
     </div>
     <button class="btn btn-success">Guardar</button>
 </form>

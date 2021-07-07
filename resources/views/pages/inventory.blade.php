@@ -14,10 +14,9 @@
                 </div>
                 <div class="bg-white grid grid-col space-y-3 p-3 border-b">
                     <p>Consulta de items</p>
-                    <table class="">
-                        <thead class="bg-gray-300">
-                            <tr>
-                                <th>ID</th>
+                    <table class="overflow-x-auto w-full">
+                        <thead class="bg-gray-100">
+                            <tr class="grid grid-cols-7 justify-items-center">
                                 <th>Nombre</th>
                                 <th>Codigo</th>
                                 <th>Marca</th>
@@ -29,8 +28,7 @@
                         </thead>
                         <tbody>
                             @foreach($productos as $producto)
-                            <tr>
-                                <td>{{$producto->id}}</td>
+                            <tr class="grid grid-cols-7 justify-items-center">
                                 <td>{{$producto->nombre}}</td>
                                 <td>{{$producto->codigo}}</td>
                                 <td>{{$producto->marca}}</td>
