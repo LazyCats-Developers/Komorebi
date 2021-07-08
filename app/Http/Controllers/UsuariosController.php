@@ -69,7 +69,21 @@ class UsuariosController extends Controller
      */
     public function update(Request $request, Usuario $usuario)
     {
-        //
+        $valid = $this->validate($request, [
+            'nombre' => 'required|string|max:255',
+            'apellido' => 'required|string|max:255',
+            'telefono' => 'string|max:255',
+            'direccion' => 'string|max:255',
+          ]);
+
+          $usuario -> update($valid);
+
+        session()->flash('status', [
+            'type' => 'success',
+            'message' => 'Usuario actualizado.'
+        ]);
+
+        return redirect('/profile');
     }
 
     /**
@@ -80,6 +94,6 @@ class UsuariosController extends Controller
      */
     public function destroy(Usuario $usuario)
     {
-        
+
     }
 }

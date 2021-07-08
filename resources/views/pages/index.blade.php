@@ -17,7 +17,7 @@
                     Aún no tienes empresa registrada
                 @endif
                 </p>
-                <a href="{{ url('ups') }}">
+                <a href="{{ route('profile') }}">
                     <p class="text-sm text-blue-500">Editar tu perfil</p>
                 </a>
 

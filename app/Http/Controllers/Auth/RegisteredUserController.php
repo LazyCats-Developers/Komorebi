@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -11,7 +10,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use App\Models\Usuario;
-use DB;
 
 class RegisteredUserController extends Controller
 {
@@ -42,8 +40,8 @@ class RegisteredUserController extends Controller
             'direccion' => 'string|max:255',
             'email' => 'required|string|email|max:255|unique:usuarios',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-          ]);       
-          $valid['password'] = Hash::make($valid['password']); 
+          ]);
+          $valid['password'] = Hash::make($valid['password']);
           $user = Usuario::create($valid);
 
         event(new Registered($user));
