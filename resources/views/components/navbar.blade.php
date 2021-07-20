@@ -51,7 +51,7 @@
             <button type="button" class="bg-gray-800 flex text-sm rounded-full focus:outline-none
             focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="profileBtn">
               <span class="sr-only">Open user menu</span>
-              <img class="h-8 w-8 rounded-full" src="../img/avatar.jpg" alt="">
+              <img class="h-8 w-8 rounded-full" src="/uploads/avatars/{{$user->avatar}}" alt="">
             </button>
           </div>
 

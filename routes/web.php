@@ -48,7 +48,7 @@ Route::get('/modules' , 'PagesController@modules')->middleware(['auth']);
 
 Route::get('/profile', 'PagesController@profile')->middleware(['auth'])->name('profile');
 
-Route::post('/profile', 'PagesController@profile')->middleware(['auth'])->name('profile');
+Route::post('/profile', 'UsuariosController@update_avatar')->middleware(['auth'])->name('profile');
 
 require __DIR__.'/auth.php';
 

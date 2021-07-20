@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Producto;
+use Auth;
 
 use Illuminate\Http\Request;
 
@@ -16,7 +17,7 @@ class PagesController extends Controller
     }
 
     public function main(){
-        return view('pages.index');
+        return view('pages.index', array('user' => Auth::user()));
     }
 
     public function ups(){
@@ -24,7 +25,7 @@ class PagesController extends Controller
     }
 
     public function profile(){
-        return view('pages.profile');
+        return view('pages.profile', array('user' => Auth::user() ));
     }
 
     public function sales(){
