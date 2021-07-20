@@ -17,7 +17,7 @@ class PagesController extends Controller
     }
 
     public function main(){
-        return view('pages.index', array('user' => Auth::user()));
+        return view('pages.index');
     }
 
     public function ups(){
