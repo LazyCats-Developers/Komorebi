@@ -34,11 +34,11 @@ Route::get('/ups', 'PagesController@ups')->middleware(['auth']);
 
 Route::get('/sales', 'PagesController@sales')->middleware(['auth']);
 
-//Route::get('/newsales' , 'PagesController@newsales')->middleware(['auth']);
+Route::get('/newsales' , 'PagesController@newsales')->middleware(['auth']);
 
 Route::get('/shopping', 'PagesController@shopping')->middleware(['auth']);
 
-//Route::get('/newshop' , 'PagesController@newshop')->middleware(['auth']);
+Route::get('/newshop' , 'PagesController@newshop')->middleware(['auth']);
 
 Route::get('/inventory', 'PagesController@inventory')->middleware(['auth']);
 

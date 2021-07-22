@@ -8,7 +8,7 @@
                     <p>COMPRAS</p>
                 </div>
                 <div class="bg-white flex flex-row-reverse p-3 border-b">
-                    <a href="" class="flex justify-center w-full bg-blue-400 text-white font-semibold py-3 px-6 rounded-md hover:bg-green-600 md:max-w-md">
+                    <a href="{{ url('newshop') }}" class="flex justify-center w-full bg-blue-400 text-white font-semibold py-3 px-6 rounded-md hover:bg-green-600 md:max-w-md">
                         Crear compra
                     </a>
                 </div>
