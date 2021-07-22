@@ -20,6 +20,7 @@ class Empresa extends Model
         'email',
         'rut',
         'descripcion',
+        'logo',
         'empresa_rrss'
     ];
 

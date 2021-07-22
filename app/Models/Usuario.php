@@ -19,15 +19,16 @@ class Usuario extends Authenticatable
         'telefono',
         'direccion',
         'password',
-        'remember_token'
+        'remember_token',
+        'avatar'
     ];
 
     protected $hidden = [
         'password',
         'remeber_token'
     ];
-    
-    public function colaboradores() 
+
+    public function colaboradores()
     {
         return $this->hasMany(Colaborador::class);
     }
@@ -37,17 +38,17 @@ class Usuario extends Authenticatable
         return $this->belongsToMany(Empresa::class, 'colaboradores');
     }
 
-    public function roles() 
+    public function roles()
     {
         return $this->belongsToMany(Rol::class, 'colaboradores');
     }
 
-    public function historiales() 
+    public function historiales()
     {
         return $this->hasMany(Historial::class);
     }
 
-    public function ventas() 
+    public function ventas()
     {
         return $this->hasMany(Venta::class);
     }
