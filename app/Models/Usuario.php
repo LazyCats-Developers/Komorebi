@@ -6,12 +6,20 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 
+/**
+ * Class Usuario
+ * @package App\Models
+ * @property mixed|string avatar
+ * @property string avatar_url
+ */
 class Usuario extends Authenticatable
 {
     use HasFactory, Notifiable;
     public $timestamps = false;
     protected $table = 'usuarios';
+
     protected $fillable = [
         'nombre',
         'apellido',
@@ -25,7 +33,7 @@ class Usuario extends Authenticatable
 
     protected $hidden = [
         'password',
-        'remeber_token'
+        'remember_token'
     ];
 
     public function colaboradores()
@@ -51,5 +59,18 @@ class Usuario extends Authenticatable
     public function ventas()
     {
         return $this->hasMany(Venta::class);
+    }
+
+    /**
+     * Crear propiedad avatar_url
+     * @return string
+     */
+    public function getAvatarUrlAttribute()
+    {
+        if ($this->avatar === 'default.jpg') {
+            return asset('uploads/avatars/default.jpg');
+        }
+
+        return Storage::disk('public')->url($this->avatar);
     }
 }

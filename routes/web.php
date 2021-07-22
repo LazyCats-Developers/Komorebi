@@ -28,33 +28,35 @@ Route::get('/signup', 'PagesController@signup')
 Route::post('/signup', [RegisteredUserController::class, 'store'])
     ->middleware('guest');
 
-Route::get('/main' , 'PagesController@main')->middleware(['auth']);
+Route::get('/main', 'PagesController@main')->middleware(['auth']);
 
-Route::get('/ups' , 'PagesController@ups')->middleware(['auth']);
+Route::get('/ups', 'PagesController@ups')->middleware(['auth']);
 
-Route::get('/sales' , 'PagesController@sales')->middleware(['auth']);
+Route::get('/sales', 'PagesController@sales')->middleware(['auth']);
 
 //Route::get('/newsales' , 'PagesController@newsales')->middleware(['auth']);
 
-Route::get('/shopping' , 'PagesController@shopping')->middleware(['auth']);
+Route::get('/shopping', 'PagesController@shopping')->middleware(['auth']);
 
 //Route::get('/newshop' , 'PagesController@newshop')->middleware(['auth']);
 
-Route::get('/inventory' , 'PagesController@inventory')->middleware(['auth']);
+Route::get('/inventory', 'PagesController@inventory')->middleware(['auth']);
 
-Route::get('/cashflow' , 'PagesController@cashflow')->middleware(['auth']);
+Route::get('/cashflow', 'PagesController@cashflow')->middleware(['auth']);
 
-Route::get('/modules' , 'PagesController@modules')->middleware(['auth']);
+Route::get('/modules', 'PagesController@modules')->middleware(['auth']);
 
-Route::get('/profile', 'PagesController@profile')->middleware(['auth'])->name('profile');
+Route::middleware('auth')
+    ->group(function () {
+        Route::get('/profile', 'PagesController@profile')->name('profile');
+        Route::post('/profile/change-avatar', 'UsuariosController@update_avatar')->name('profile.change-avatar');
+    });
 
-Route::post('/profile', 'UsuariosController@update_avatar')->middleware(['auth'])->name('profile');
+require __DIR__ . '/auth.php';
 
-require __DIR__.'/auth.php';
+Route::get('main', ['uses' => 'PagesController@main']);
 
-Route::get('main',['uses' => 'PagesController@main']);
-
-Route::resource("empresas","EmpresasController")->parameters(["empresas"=>"empresa"]);
-Route::resource("productos","ProductosController")->parameters(["productos"=>"producto"]);
-Route::resource("tipoproductos","TipoProductosController")->parameters(["tipoproductos"=>"tipoproducto"]);
+Route::resource("empresas", "EmpresasController")->parameters(["empresas" => "empresa"]);
+Route::resource("productos", "ProductosController")->parameters(["productos" => "producto"]);
+Route::resource("tipoproductos", "TipoProductosController")->parameters(["tipoproductos" => "tipoproducto"]);
 Route::resource('empresas.colaboradores', 'ColaboradoresController')->parameters(['colaboradores' => 'colaborador']);
