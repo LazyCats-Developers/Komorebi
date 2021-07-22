@@ -2,27 +2,26 @@
 
 @section('content')
     <div class="flex flex-col md:p-3">
-
         <form method="POST" action="{{route('productos.store')}}">
             @csrf
             <div class="bg-white grid-col p-3 border-b border-gray-300 md:rounded-t-md">
                 <p>Datos del item</p>
             </div>
             <div class="bg-white flex flex-col space-y-3 p-3 mb-3 md:rounded-b-md">
-                <div class="grid grid-col md:grid-cols-2 space-y-3 md:space-y-0 md:space-x-3">
+                <div class="grid grid-col space-y-3 md:grid-cols-2 md:space-y-0 md:space-x-3">
                     <input  name="nombre" type="text" placeholder="Nombre" class="border border-gray-300 w-auto rounded-md py-3 px-4" required>
                     <input  name="marca" type="text" placeholder="Marca" class="border border-gray-300 w-auto rounded-md py-3 px-4" required>
                 </div>
-                <div class="grid grid-col md:grid-cols-2 space-y-3 md:space-y-0 md:space-x-3">
+                <div class="grid grid-col space-y-3 md:grid-cols-2 md:space-y-0 md:space-x-3">
                     <input  name="codigo" type="text" placeholder="Codigo" class="border border-gray-300 w-auto rounded-md py-3 px-4" required>
-                    <input  name="descripcion" type="text" placeholder="Descripcion" class="border border-gray w-auto rounded-md py-3 px-4">
+                    <input  name="descripcion" type="text" placeholder="Descripcion" class="border border-gray-300 w-auto rounded-md py-3 px-4">
                 </div>
             </div>
             <div class="bg-white grid-col p-3 border-b border-gray-300 md:rounded-t-md">
                 <p>Dosificación del item</p>
             </div>
             <div class="bg-white flex flex-col space-y-3 p-3 mb-3 md:rounded-b-md">
-                <div class="grid grid-col md:grid-cols-2 space-y-3 md:space-y-0 md:space-x-3">
+                <div class="grid grid-col space-y-3 md:grid-cols-2 md:space-y-0 md:space-x-3">
                     <input  name="cantidad" type="text" placeholder="Cantidad" class="border border-gray-300 w-auto rounded-md py-3 px-4" required>
                     <select  name="unidad" type="text" placeholder="Unidad de medida" class="border border-gray-300 w-auto rounded-md py-3 px-4" required>
                         <option value="" selected>-- Elegir Unidad de medida --</option>
@@ -39,8 +38,8 @@
                 <p>Tipo del item</p>
             </div>
             <div class="bg-white flex flex-col space-y-3 p-3 mb-3 md:rounded-b-md">
-                <div class="grid grid-col md:grid-cols-2 space-y-3 md:space-y-0 md:space-x-3">
-                    <select name="tipo_producto_id" class="border border-gray w-auto rounded-md py-3 px-4" required>
+                <div class="grid grid-col space-y-3 md:grid-cols-2 md:space-y-0 md:space-x-3">
+                    <select name="tipo_producto_id" class="border border-gray-300 w-auto rounded-md py-3 px-4" required>
                         <option value="" selected>-- Elegir tipo de item --</option>
                         @foreach ($tipoproductos as $tp)
                         <option value="{{$tp->id}}" >{{$tp->nombre}}</option>
@@ -53,7 +52,7 @@
                 <p>Datos del insumo</p>
             </div>
             <div class="bg-white flex flex-col space-y-3 p-3 mb-3 md:rounded-b-md">
-                <div class="grid grid-col md:grid-cols-2 space-y-3 md:space-y-0 md:space-x-3">
+                <div class="grid grid-col space-y-3 md:grid-cols-2 md:space-y-0 md:space-x-3">
                     <input  name="costo_unitario" type="text" placeholder="Costo insumo" class="border border-gray-300 w-auto rounded-md py-3 px-4" required>
                     <input  name="stock_inicial" type="text" placeholder="Stock inicial" class="border border-gray-300 w-auto rounded-md py-3 px-4">
                 </div>
@@ -67,7 +66,7 @@
                 <p>Datos del Producto de venta</p>
             </div>
             <div class="bg-white flex flex-col space-y-3 p-3 mb-3 md:rounded-b-md">
-                <div class="grid grid-col md:grid-cols-2 space-y-3 md:space-y-0 md:space-x-3">
+                <div class="grid grid-col space-y-3 md:grid-cols-2 md:space-y-0 md:space-x-3">
                     <input  name="precio_unitario" type="text" placeholder="Valor venta" class="border border-gray-300 w-auto rounded-md py-3 px-4" required>
                     <input  name="stock_inicial" type="text" placeholder="Stock inicial" class="border border-gray-300 w-auto rounded-md py-3 px-4">
                 </div>
