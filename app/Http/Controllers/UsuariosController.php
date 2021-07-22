@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Usuario;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Image\Image;
 use Spatie\Image\Manipulations;
 
@@ -33,7 +33,7 @@ class UsuariosController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -44,7 +44,7 @@ class UsuariosController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Usuario  $usuario
+     * @param \App\Models\Usuario $usuario
      * @return \Illuminate\Http\Response
      */
     public function show(Usuario $usuario)
@@ -55,7 +55,7 @@ class UsuariosController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Usuario  $usuario
+     * @param \App\Models\Usuario $usuario
      * @return \Illuminate\Http\Response
      */
     public function edit(Usuario $usuario)
@@ -66,8 +66,8 @@ class UsuariosController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Usuario  $usuario
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Usuario $usuario
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Usuario $usuario)
@@ -77,9 +77,9 @@ class UsuariosController extends Controller
             'apellido' => 'required|string|max:255',
             'telefono' => 'string|max:255',
             'direccion' => 'string|max:255',
-          ]);
+        ]);
 
-          $usuario -> update($valid);
+        $usuario->update($valid);
 
         session()->flash('status', [
             'type' => 'success',
@@ -89,22 +89,39 @@ class UsuariosController extends Controller
         return redirect('/profile');
     }
 
-    public function update_avatar(Request $request){
-        if($request->hasFile('avatar')){
-            $avatar = $request->file('avatar');
-            $filename = time() . '.' . $avatar->getClientOriginalExtension();
-            Image::load($avatar)->fit(Manipulations::FIT_CROP, 300, 300 )->save(\public_path('/uploads/avatars/' . $filename ));
-            $user = Auth::user();
-            $user->avatar = $filename;
-            $user->save();
-        }
-        return view('pages.profile', array('user' => Auth::user() ) );
+    public function update_avatar(Request $request)
+    {
+        $this->validate($request, [
+            'avatar' => 'required|mimes:jpeg,bmp,png'
+        ]);
+
+        /** @var Usuario $user */
+        $user = auth()->user();
+
+        $avatar = $request->file('avatar');
+        $filename = 'avatars/' . rand() . '.' . $avatar->getClientOriginalExtension();
+
+        Storage::disk('public')->makeDirectory('avatars');
+
+        Image::load($avatar)
+            ->fit(Manipulations::FIT_CROP, 300, 300)
+            ->optimize()
+            ->save(storage_path('app/public/' . $filename));
+        $user->avatar = $filename;
+        $user->save();
+
+        return redirect()->route('profile')->with([
+            'status' => [
+                'type' => 'success',
+                'message' => 'Avatar Updated'
+            ]
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Usuario  $usuario
+     * @param \App\Models\Usuario $usuario
      * @return \Illuminate\Http\Response
      */
     public function destroy(Usuario $usuario)

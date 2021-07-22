@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Producto;
 use Auth;
 
@@ -8,27 +9,33 @@ use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
-    public function login(){
+    public function login()
+    {
         return view('login');
     }
 
-    public function signup(){
+    public function signup()
+    {
         return view('signup');
     }
 
-    public function main(){
+    public function main()
+    {
         return view('pages.index');
     }
 
-    public function ups(){
+    public function ups()
+    {
         return view('pages.ups');
     }
 
-    public function profile(){
-        return view('pages.profile', array('user' => Auth::user() ));
+    public function profile()
+    {
+        return view('pages.profile', array('user' => Auth::user()));
     }
 
-    public function sales(){
+    public function sales()
+    {
         return view('pages.sales');
 
     }
@@ -38,7 +45,8 @@ class PagesController extends Controller
     //
     //}
 
-    public function shopping(){
+    public function shopping()
+    {
         return view('pages.shopping');
     }
 
@@ -48,15 +56,18 @@ class PagesController extends Controller
     //}
 
 
-    public function inventory(){
-        return view('pages.inventory',["productos"=>Producto::all()]);
+    public function inventory()
+    {
+        return view('pages.inventory', ["productos" => Producto::all()]);
     }
 
-    public function cashflow(){
+    public function cashflow()
+    {
         return view('pages.cashflow');
     }
 
-    public function modules(){
+    public function modules()
+    {
         return view('pages.modules');
     }
 }
