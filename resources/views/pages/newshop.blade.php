@@ -4,7 +4,7 @@
     <div class="flex flex-col md:p-3">
         <div class="bg-white flex flex-col space-y-3 p-3 border-b md:rounded-t-md">
             <div class="flex flex-col items-center">
-                <p>CARRITO DE COMPRAS</p>
+                <p class="font-bold">CARRITO DE COMPRAS</p>
             </div>
         </div>
         <div class="bg-white flex flex-row space-x-3 p-3 border-b justify-between">

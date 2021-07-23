@@ -22,26 +22,15 @@
                             Buscar item
                         </button>
                     </div>
-                    <div class="flex flex-row space-x-3">
-                        <button class="w-full bg-blue-400 text-white font-semibold py-3 px-6 rounded-md md:w-32 hover:bg-blue-600">
-                            Semana
-                        </button>
-                        <button class="w-full bg-blue-400 text-white font-semibold py-3 px-6 rounded-md md:w-32 hover:bg-blue-600">
-                            Mes
-                        </button>
-                        <button class="w-full bg-blue-400 text-white font-semibold py-3 px-6 rounded-md md:w-32 hover:bg-blue-600">
-                            Año
-                        </button>
-                    </div>
                 </div>
                 <div class="bg-white flex flex-col space-y-3 p-3 border-b md:space-y-0 md:space-x-3 md:flex-row md:justify-between">
                     <div class="space-y-3 md:space-y-0 md:space-x-3">
-                        <input type="text" placeholder="Nombre item" class="border border-gray w-full rounded-md py-3 px-4 md:w-64" disabled>
-                        <input type="text" placeholder="Valor del item" class="border border-gray w-full rounded-md py-3 px-4 md:w-40" disabled>
-                        <input type="text" placeholder="Ingresar cantidad" class="border border-gray w-full rounded-md py-3 px-4 md:w-40 ">
+                        <input type="text" placeholder="Nombre item" class="border border-gray w-full rounded-md py-3 px-4 md:w-40" disabled>
+                        <input type="text" placeholder="Marca item" class="border border-gray w-full rounded-md py-3 px-4 md:w-40" disabled>
+                        <input type="text" placeholder="Cantidad item" class="border border-gray w-full rounded-md py-3 px-4 md:w-40" disabled>
                     </div>
                     <button class="w-full bg-blue-400 text-white font-semibold py-3 px-6 rounded-md md:w-64 hover:bg-blue-600">
-                        Agregar item
+                        Detalles item
                     </button>
                 </div>
                 <div class="bg-white space-y-3 py-3 border-b">

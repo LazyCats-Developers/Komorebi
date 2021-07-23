@@ -4,7 +4,7 @@
     @if(auth()->user()->empresas()->exists())
         <div class="flex flex-col md:p-3">
             <div class="bg-white grid-col p-3 border-b md:rounded-t-md">
-                <p class="font-bold">VENTAS</p>
+                <p class="font-bold"><i class="fas fa-cash-register mr-3"></i> VENTAS</p>
             </div>
             <div class="bg-white flex flex-row p-3 border-b">
                 <a href="{{ url('newsales') }}" class="flex justify-center w-full bg-green-400 text-white font-semibold py-3 px-6 rounded-md hover:bg-green-600 md:w-64">
