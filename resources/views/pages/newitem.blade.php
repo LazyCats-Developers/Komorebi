@@ -50,7 +50,7 @@
             </div>
             <div class="bg-white flex flex-col space-y-3 p-3 mb-3 md:rounded-b-md">
                 <div class="grid grid-col space-y-3 md:grid-cols-2 md:space-y-0 md:space-x-3">
-                    <input  name="costo_unitario" type="text" placeholder="Costo insumo" class="border border-gray-300 w-auto rounded-md py-3 px-4" required>
+                    <input  name="costo_unitario" type="text" placeholder="Costo insumo" class="border border-gray-300 w-auto rounded-md py-3 px-4">
                     <input  name="stock_inicial" type="text" placeholder="Stock inicial" class="border border-gray-300 w-auto rounded-md py-3 px-4">
                 </div>
                 <div class="space-y-3 md:space-y-0 md:space-x-3">
@@ -64,7 +64,7 @@
             </div>
             <div class="bg-white flex flex-col space-y-3 p-3 mb-3 md:rounded-b-md">
                 <div class="grid grid-col space-y-3 md:grid-cols-2 md:space-y-0 md:space-x-3">
-                    <input  name="precio_unitario" type="text" placeholder="Valor venta" class="border border-gray-300 w-auto rounded-md py-3 px-4" required>
+                    <input  name="precio_unitario" type="text" placeholder="Valor venta" class="border border-gray-300 w-auto rounded-md py-3 px-4">
                     <input  name="stock_inicial" type="text" placeholder="Stock inicial" class="border border-gray-300 w-auto rounded-md py-3 px-4">
                 </div>
                 <div class="space-y-3 md:space-y-0 md:space-x-3">
