@@ -33,16 +33,16 @@
             <p class="p-2 text-sm text-gray-700">Colors:</p>
             <div class="py-2">
                 <button class="bg-blue-500 w-12 h-8 rounded block mx-auto my-1"
-                    onclick="setColor('bg-blue-500')">
+                    onclick="setColor('bg-blue-600')">
                 </button>
                 <button class="bg-indigo-500 w-12 h-8 rounded block mx-auto my-1"
-                    onclick="setColor('bg-indigo-500')">
+                    onclick="setColor('bg-purple-900')">
                 </button>
                 <button class="bg-green-500 w-12 h-8 rounded block mx-auto my-1"
-                    onclick="setColor('bg-green-500')">
+                    onclick="setColor('bg-green-600')">
                 </button>
                 <button class="bg-red-500 w-12 h-8 rounded block mx-auto my-1"
-                    onclick="setColor('bg-red-500')">
+                    onclick="setColor('bg-red-600')">
                 </button>
                 <button class="bg-gray-800 w-12 h-8 rounded block mx-auto my-1"
                     onclick="setColor('bg-gray-800')">

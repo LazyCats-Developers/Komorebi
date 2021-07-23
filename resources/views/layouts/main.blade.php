@@ -11,36 +11,40 @@
 <body>
     @include('components.navbar')
     <div class="flex bg-gray-200">
-
         <aside>
             <!-- Header Dashboard -->
-            <div class="p-6">
-                <a href="{{ route('login') }}" class="text-gray-100 text-3xl font-semibold hover:text-white">
-                <i class="fas fa-house-user mr-3"></i>{{ auth()->user()->nombre }}
+            <div class="p-5">
+                <a href="{{ route('login') }}" class="text-gray-100 text-xl">
+                <p><i class="fas fa-house-user mr-3"></i>{{ auth()->user()->nombre }}</p>
                 </a>
             </div>
             <!-- Body Dashboard -->
-            <nav class="text-white text-base font-semibold pt-3">
+            <nav class="flex flex-col space-y-3 p-5">
                 @if(auth()->user()->empresas()->exists())
-                    <a href="{{ url('sales') }}" class="flex items-center active-nav-link text-white py-4 pl-6 nav-item">
-                        <i class="fas fa-cash-register mr-3"></i>
-                        Ventas
+                    <a href="{{ url('sales') }}" class="active-nav-link nav-item">
+                        <div class="text-gray-100 rounded-md p-4 hover:text-black hover:bg-gray-100">
+                            <p><i class="fas fa-cash-register mr-3"></i>Ventas</p>
+                        </div>
                     </a>
-                    <a href="{{ url('shopping') }}" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-                        <i class="fas fa-truck mr-3"></i>
-                        Compras
+                    <a href="{{ url('shopping') }}" class="active-nav-link nav-item">
+                        <div class="text-gray-100 rounded-md p-4 hover:text-black hover:bg-gray-100">
+                            <p><i class="fas fa-truck mr-3"></i></i>Compras</p>
+                        </div>
                     </a>
-                    <a href="{{ route('productos.index') }}" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-                        <i class="fas fa-clipboard-list mr-3"></i>
-                        Inventario
+                    <a href="{{ route('productos.index') }}" class="active-nav-link nav-item">
+                        <div class="text-gray-100 rounded-md p-4 hover:text-black hover:bg-gray-100">
+                            <p><i class="fas fa-clipboard-list mr-3"></i>Inventario</p>
+                        </div>
                     </a>
-                    <a href="{{ url('cashflow') }}" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-                        <i class="fas fa-chart-line mr-3"></i>
-                        Finanzas
+                    <a href="{{ url('cashflow') }}" class="active-nav-link nav-item">
+                        <div class="text-gray-100 rounded-md p-4 hover:text-black hover:bg-gray-100">
+                            <p><i class="fas fa-chart-line mr-3"></i>Finanzas</p>
+                        </div>
                     </a>
-                    <a href="{{ url('modules') }}" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-                        <i class="fas fa-plus-square mr-3"></i>
-                        Modulos
+                    <a href="{{ url('modules') }}" class="active-nav-link nav-item">
+                        <div class="text-gray-100 rounded-md p-4 hover:text-black hover:bg-gray-100">
+                            <p><i class="fas fa-plus-square mr-3"></i>Modulos</p>
+                        </div>
                     </a>
                 @endif
             </nav>
@@ -49,32 +53,37 @@
     <!-- Mobile Dashboard -->
     <div class="w-full flex flex-col h-screen overflow-y-hidden">
         <!-- Mobile Dashboard Header & Nav -->
-        <header id="sidebarMobile" class="w-full py-5 px-6 sm:hidden">
+        <header id="sidebarMobile" class="w-full py-3 px-6 sm:hidden">
             <!-- Mobile Dashboard Dropdown Nav -->
-            <nav class="text-white text-base font-semibold">
-                <a href="{{ route('login') }}" class="text-gray-100 text-3xl font-semibold hover:text-white">
+            <nav class="flex flex-col">
+                <a href="{{ route('login') }}" class="text-gray-100 text-3xl">
                     <i class="fas fa-house-user mr-3"></i>{{ auth()->user()->nombre }}
                 </a>
                 @if(auth()->user()->empresas()->exists())
-                    <a href="{{ url('sales') }}" class="block active-nav-link text-white py-4 pl-6">
-                        <i class="fas fa-cash-register mr-3"></i>
-                        Ventas
+                    <a href="{{ url('sales') }}" class="active-nav-link nav-item">
+                        <div class="text-gray-100 rounded-md p-4 hover:text-black hover:bg-gray-100">
+                            <p><i class="fas fa-cash-register mr-3"></i>Ventas</p>
+                        </div>
                     </a>
-                    <a href="{{ url('shopping') }}" class="block text-white opacity-75 hover:opacity-100 py-4 pl-6">
-                        <i class="fas fa-truck mr-3"></i>
-                        Compras
+                    <a href="{{ url('shopping') }}" class="active-nav-link nav-item">
+                        <div class="text-gray-100 rounded-md p-4 hover:text-black hover:bg-gray-100">
+                            <p><i class="fas fa-truck mr-3"></i></i>Compras</p>
+                        </div>
                     </a>
-                    <a href="{{ url('inventory') }}" class="block text-white opacity-75 hover:opacity-100 py-4 pl-6 ">
-                        <i class="fas fa-clipboard-list mr-3"></i>
-                        Inventario
+                    <a href="{{ route('productos.index') }}" class="active-nav-link nav-item">
+                        <div class="text-gray-100 rounded-md p-4 hover:text-black hover:bg-gray-100">
+                            <p><i class="fas fa-clipboard-list mr-3"></i>Inventario</p>
+                        </div>
                     </a>
-                    <a href="{{ url('cashflow') }}" class="block text-white opacity-75 hover:opacity-100 py-4 pl-6">
-                        <i class="fas fa-chart-line mr-3"></i>
-                        Finanzas
+                    <a href="{{ url('cashflow') }}" class="active-nav-link nav-item">
+                        <div class="text-gray-100 rounded-md p-4 hover:text-black hover:bg-gray-100">
+                            <p><i class="fas fa-chart-line mr-3"></i>Finanzas</p>
+                        </div>
                     </a>
-                    <a href="{{ url('modules') }}" class="block text-white opacity-75 hover:opacity-100 py-4 pl-6">
-                        <i class="fas fa-plus-square mr-3"></i>
-                        Modulos
+                    <a href="{{ url('modules') }}" class="active-nav-link nav-item">
+                        <div class="text-gray-100 rounded-md p-4 hover:text-black hover:bg-gray-100">
+                            <p><i class="fas fa-plus-square mr-3"></i>Modulos</p>
+                        </div>
                     </a>
                 @endif
             </nav>
