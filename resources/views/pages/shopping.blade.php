@@ -4,12 +4,15 @@
     @if(auth()->user()->empresas()->exists())
         <div class="flex flex-col md:p-3">
             <div class="bg-white grid-col p-3 border-b md:rounded-t-md">
-                <p>COMPRAS</p>
+                <p class="font-bold">COMPRAS</p>
             </div>
             <div class="bg-white flex flex-row p-3 border-b">
                 <a href="{{ url('newshop') }}" class="flex justify-center w-full bg-green-400 text-white font-semibold py-3 px-6 rounded-md hover:bg-green-600 md:w-64">
                     Nueva compra
                 </a>
+            </div>
+            <div class="bg-white flex flex-row p-3 border-b">
+                <p>Consulta de compras</p>
             </div>
             <div class="bg-white flex flex-col space-y-3 p-3 border-b md:space-y-0 md:space-x-3 md:flex-row md:justify-between">
                 <div class="space-y-3 md:space-y-0 md:space-x-3">
