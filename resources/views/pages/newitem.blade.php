@@ -5,7 +5,7 @@
         @csrf
             <div class="w-full max-w-7xl">
                 <div class="flex flex-col space-y-3 md:flex-row md:space-y-0 md:justify-between bg-gray-50 shadow-lg grid-col p-2 border-b md:rounded-t-3xl">
-                    <p class="font-bold text-xl"><i class="fas fa-plus-square p-3 bg-white rounded-full border"></i> Nuevo item</p>
+                    <p class="font-bold text-xl"><i class="fas fa-plus-circle p-3 bg-white rounded-full border"></i> Nuevo item</p>
                     <button type="submit" class="flex justify-center w-full bg-gradient-to-r from-green-300 to-green-500 text-white text-xl hover:from-green-600 hover:to-green-600 focus:outline-none  p-2 rounded-full hover:bg-green-600 md:w-72">
                         Crear item
                     </button>
@@ -15,26 +15,12 @@
                 </div>
                 <div class="bg-white flex flex-col space-y-3 p-3 border-b">
                     <div class="grid grid-col space-y-3 md:grid-cols-2 md:space-y-0 md:space-x-3">
-                        <input  name="nombre" type="text" placeholder="Nombre" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-l-full md:w-64" required>
-                        <input  name="marca" type="text" placeholder="Marca" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-l-full md:w-64" required>
+                        <input  name="nombre" type="text" placeholder="Nombre" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full" required>
+                        <input  name="marca" type="text" placeholder="Marca" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full" required>
                     </div>
                     <div class="grid grid-col space-y-3 md:grid-cols-2 md:space-y-0 md:space-x-3">
-                        <input  name="codigo" type="text" placeholder="Codigo" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-l-full md:w-64" required>
-                        <input  name="descripcion" type="text" placeholder="Descripcion" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-l-full md:w-64">
-                    </div>
-                </div>
-                <div class="bg-white shadow-lg space-y-3 p-3">
-                    <p>Dosificación del item</p>
-                </div>
-                <div class="bg-white flex flex-col space-y-3 p-3 border-b">
-                    <div class="grid grid-col space-y-3 md:grid-cols-2 md:space-y-0 md:space-x-3">
-                        <input  name="cantidad" type="text" placeholder="Cantidad" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-l-full md:w-64" required>
-                        <select  name="unidad_id" type="text" placeholder="Unidad de medida" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-l-full md:w-64" required>
-                            <option value="" selected>-- Elegir Unidad de medida --</option>
-                            @foreach ($unidades as $unidad)
-                            <option value="{{$unidad->id}}" >{{$unidad->nombre}}</option>
-                            @endforeach
-                        </select>
+                        <input  name="codigo" type="text" placeholder="Codigo" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full" required>
+                        <input  name="descripcion" type="text" placeholder="Descripcion" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full">
                     </div>
                 </div>
                 <div class="bg-white shadow-lg space-y-3 p-3">
@@ -42,8 +28,18 @@
                 </div>
                 <div class="bg-white flex flex-col space-y-3 p-3 border-b">
                     <div class="grid grid-col space-y-3 md:grid-cols-2 md:space-y-0 md:space-x-3">
-                        <input  name="cantidad" type="text" placeholder="Cantidad" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-l-full md:w-64">
-                        <select name="tipo_producto_id" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-l-full md:w-64" required>
+                        <input  name="cantidad" type="text" placeholder="Cantidad inicial" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full">
+                        <select  name="unidad_id" type="text" placeholder="Unidad de medida" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full" required>
+                            <option value="" selected>-- Elegir Unidad de medida --</option>
+                            @foreach ($unidades as $unidad)
+                            <option value="{{$unidad->id}}" >{{$unidad->nombre}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="bg-white flex flex-col space-y-3 p-3 border-b">
+                    <div class="grid grid-col space-y-3 md:grid-cols-2 md:space-y-0 md:space-x-3">
+                        <select name="tipo_producto_id" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full" required>
                             <option value="" selected>-- Elegir tipo de item --</option>
                             @foreach ($tipoproductos as $tp)
                             <option value="{{$tp->id}}" >{{$tp->nombre}}</option>
@@ -57,7 +53,7 @@
                 </div>
                 <div class="bg-white flex flex-col space-y-3 p-3 border-b">
                     <div class="grid grid-col space-y-3 md:grid-cols-2 md:space-y-0 md:space-x-3">
-                        <input  name="costo_unitario" type="text" placeholder="Costo neto insumo" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-l-full md:w-64">
+                        <input  name="costo_unitario" type="text" placeholder="Costo neto insumo" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full">
                     </div>
                 </div>
                 <!-- Fin opcion insumos -->
@@ -67,7 +63,7 @@
                 </div>
                 <div class="bg-white flex flex-col space-y-3 p-3 border-b">
                     <div class="grid grid-col space-y-3 md:grid-cols-2 md:space-y-0 md:space-x-3">
-                        <input  name="precio_unitario" type="text" placeholder="Valor venta" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-l-full md:w-64">
+                        <input  name="precio_unitario" type="text" placeholder="Valor venta" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full">
                     </div>
                     <!-- Fin opcion productos -->
                 </div>
