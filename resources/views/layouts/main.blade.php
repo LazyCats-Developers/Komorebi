@@ -22,27 +22,27 @@
             <nav class="flex flex-col space-y-3 p-5">
                 @if(auth()->user()->empresas()->exists())
                     <a href="{{ url('sales') }}" class="active-nav-link nav-item">
-                        <div class="text-gray-100 rounded-md p-4 hover:text-black hover:bg-gray-100">
+                        <div class="text-gray-100 rounded-full px-6 py-3 hover:text-black hover:bg-gray-100">
                             <p><i class="fas fa-cash-register mr-3"></i>Ventas</p>
                         </div>
                     </a>
                     <a href="{{ url('shopping') }}" class="active-nav-link nav-item">
-                        <div class="text-gray-100 rounded-md p-4 hover:text-black hover:bg-gray-100">
+                        <div class="text-gray-100 rounded-full px-6 py-3 hover:text-black hover:bg-gray-100">
                             <p><i class="fas fa-truck mr-3"></i></i>Compras</p>
                         </div>
                     </a>
                     <a href="{{ route('productos.index') }}" class="active-nav-link nav-item">
-                        <div class="text-gray-100 rounded-md p-4 hover:text-black hover:bg-gray-100">
+                        <div class="text-gray-100 rounded-full px-6 py-3 hover:text-black hover:bg-gray-100">
                             <p><i class="fas fa-clipboard-list mr-3"></i>Inventario</p>
                         </div>
                     </a>
                     <a href="{{ url('cashflow') }}" class="active-nav-link nav-item">
-                        <div class="text-gray-100 rounded-md p-4 hover:text-black hover:bg-gray-100">
+                        <div class="text-gray-100 rounded-full px-6 py-3 hover:text-black hover:bg-gray-100">
                             <p><i class="fas fa-chart-line mr-3"></i>Finanzas</p>
                         </div>
                     </a>
                     <a href="{{ url('modules') }}" class="active-nav-link nav-item">
-                        <div class="text-gray-100 rounded-md p-4 hover:text-black hover:bg-gray-100">
+                        <div class="text-gray-100 rounded-full px-6 py-3 hover:text-black hover:bg-gray-100">
                             <p><i class="fas fa-plus-square mr-3"></i>Modulos</p>
                         </div>
                     </a>
