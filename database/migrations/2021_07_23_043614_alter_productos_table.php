@@ -14,7 +14,7 @@ class AlterProductosTable extends Migration
     public function up()
     {
         Schema::table('productos', function(Blueprint $table){
-            $table->unsignedBigInteger('unidad_id');
+            $table->unsignedBigInteger('unidad_id')->nullable();
             $table->dropColumn('unidad');
             $table->foreign('unidad_id')->references('id')->on('unidades');
         });
