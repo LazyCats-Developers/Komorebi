@@ -55,7 +55,7 @@
                         <td>9999999</td>
                         <td>Chokita</td>
                         <td>350</td>
-                        <td>2</td>
+                        <td><input type="text" value="2" class="text-center"></td>
                         <td>700</td>
                         <td>
                             <button class="btn btn-warning" href="">
