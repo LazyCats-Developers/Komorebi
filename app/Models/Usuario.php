@@ -68,7 +68,7 @@ class Usuario extends Authenticatable
     public function getAvatarUrlAttribute()
     {
         if ($this->avatar === 'default.jpg') {
-            return asset('uploads/avatars/default.jpg');
+            return asset('img/default.jpg');
         }
 
         return Storage::disk('public')->url($this->avatar);

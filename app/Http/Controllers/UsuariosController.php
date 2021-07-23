@@ -70,8 +70,10 @@ class UsuariosController extends Controller
      * @param \App\Models\Usuario $usuario
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Usuario $usuario)
+    public function update(Request $request)
     {
+        $usuario = auth()->user();
+
         $valid = $this->validate($request, [
             'nombre' => 'required|string|max:255',
             'apellido' => 'required|string|max:255',

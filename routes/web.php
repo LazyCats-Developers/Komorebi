@@ -49,6 +49,7 @@ Route::get('/modules', 'PagesController@modules')->middleware(['auth']);
 Route::middleware('auth')
     ->group(function () {
         Route::get('/profile', 'PagesController@profile')->name('profile');
+        Route::post('/profile/update', 'UsuariosController@update')->name('profile.update');
         Route::post('/profile/change-avatar', 'UsuariosController@update_avatar')->name('profile.change-avatar');
     });
 

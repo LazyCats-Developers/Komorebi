@@ -33,24 +33,24 @@
                 </form>
             </div>
             <div class="w-full">
-                <form action="" method="POST">
+                <form action="{{ route('profile.update')}}" method="POST">
                 @csrf
                     <div class="flex-col p-3">
                         <p>Datos personales</p>
                     </div>
                     <div class="flex flex-col space-y-3 md:flex-row md:space-y-0 md:space-x-5 p-3">
-                        <input type="text" id="nombre" name="nombre" placeholder="{{ auth()->user()->nombre }}" class="border border-gray w-full rounded-md py-3 px-4">
-                        <input type="text" id="apellido" name="apellido" placeholder="{{ auth()->user()->apellido }}" class="border border-gray w-full rounded-md py-3 px-4">
+                        <input type="text" id="nombre" name="nombre" value="{{ auth()->user()->nombre }}" class="border border-gray w-full rounded-md py-3 px-4">
+                        <input type="text" id="apellido" name="apellido" value="{{ auth()->user()->apellido }}" class="border border-gray w-full rounded-md py-3 px-4">
                     </div>
                     <div class="flex-col px-3 pt-3">
                         <p>Datos de Contactos</p>
                     </div>
                     <div class="flex flex-col space-y-3 p-3">
                         <p class="text-gray-400 p-3">{{ auth()->user()->email}}</p>
-                        <input type="text" id="telefono" name="telefono" placeholder="{{ auth()->user()->telefono }}" class="border border-gray w-full rounded-md py-3 px-4">
+                        <input type="text" id="telefono" name="telefono" value="{{ auth()->user()->telefono }}" class="border border-gray w-full rounded-md py-3 px-4">
                     </div>
                     <div class="flex flex-col space-y-3 p-3">
-                        <input type="text" id="direccion" name="direccion" placeholder="{{ auth()->user()->direccion }}" class="border border-gray w-full rounded-md py-3 px-4">
+                        <input type="text" id="direccion" name="direccion" value="{{ auth()->user()->direccion }}" class="border border-gray w-full rounded-md py-3 px-4">
                     </div>
                     <div class="flex flex-col space-y-3 p-3 items-center">
                         <button type="submit" class="w-full bg-blue-400 text-white font-semibold py-3 px-6 rounded-md md:w-60 hover:bg-green-600">
