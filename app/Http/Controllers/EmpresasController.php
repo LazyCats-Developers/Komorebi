@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Empresa;
 use Illuminate\Http\Request;
 use DB;
+use Illuminate\Support\Facades\Storage;
+use Spatie\Image\Image;
+use Spatie\Image\Manipulations;
 
 class EmpresasController extends Controller
 {
@@ -114,8 +117,9 @@ class EmpresasController extends Controller
      * @param  \App\Models\Empresa  $empresa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Empresa $empresa)
+    public function update(Request $request)
     {
+        $empresa = auth()->user()->empresas()->first(); //preguntar si la cagué o no
 
         $valid = $this->validate($request, [
             "nombre" => "required|string|max:255",
@@ -136,6 +140,13 @@ class EmpresasController extends Controller
         ]);
 
         return redirect('/main');
+    }
+
+    public function updateLogo(Request $request){
+        //implementar el cambio de logo de empresa
+        $empresa = auth()->user()->empresas()->first();
+
+
     }
 
     /**
