@@ -23,14 +23,11 @@
             <div class="bg-white flex flex-col space-y-3 p-3 mb-3 md:rounded-b-md">
                 <div class="grid grid-col space-y-3 md:grid-cols-2 md:space-y-0 md:space-x-3">
                     <input  name="cantidad" type="text" placeholder="Cantidad" class="border border-gray-300 w-auto rounded-md py-3 px-4" required>
-                    <select  name="unidad" type="text" placeholder="Unidad de medida" class="border border-gray-300 w-auto rounded-md py-3 px-4" required>
+                    <select  name="unidad_id" type="text" placeholder="Unidad de medida" class="border border-gray-300 w-auto rounded-md py-3 px-4" required>
                         <option value="" selected>-- Elegir Unidad de medida --</option>
-                        <option value="1">Unidad</option>
-                        <option value="2">Kilogramo</option>
-                        <option value="3">Gramos</option>
-                        <option value="4">Litros</option>
-                        <option value="5">Mililitros</option>
-                        <option value="6">Onsas</option>
+                        @foreach ($unidades as $unidad)
+                        <option value="{{$unidad->id}}" >{{$unidad->nombre}}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>

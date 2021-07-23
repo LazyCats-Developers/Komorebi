@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Inventario;
 use App\Models\Producto;
 use App\Models\TipoProducto;
+use App\Models\Unidad;
 use Illuminate\Http\Request;
 use DB;
 
@@ -35,7 +36,7 @@ class ProductosController extends Controller
      */
     public function create()
     {
-        return view("pages.newitem", ["tipoproductos" => TipoProducto::all()]);
+        return view("pages.newitem", ["tipoproductos" => TipoProducto::all(), "unidades" => Unidad::all()]);
     }
 
     /**
@@ -46,27 +47,28 @@ class ProductosController extends Controller
      */
     public function store(Request $request)
     {
-        $validp = $this->validate($request, [
+        $valid = $this->validate($request, [
             "nombre" => "required|string|max:255",
             "marca" => "required|string|max:255",
-            "unidad" => "required|string|max:255",
-            "descripcion" => "required|string|max:255",
+            "unidad_id" => "required|numeric",
+            "descripcion" => "string|max:255",
             "codigo" => "required|string|max:255",
+            "cantidad" => "required|",
 
 
 
 
         ]);
         $usuario = auth()->user();
-        $em = $usuario->empresas()->first();
+        $empresa = $usuario->empresas()->first();
         DB::beginTransaction();
         try {
-            $producto = Producto::query()->create($validp);
+            $producto = Producto::query()->create($valid);
             $producto->inventarios()->create([
                 "cantidad" => $request->cantidad,
                 "precio_unitario" => $request->precio_unitario,
                 "tipo_producto_id" => $request->tipo_producto_id,
-                "empresa_id" => $em->id
+                "empresa_id" => $empresa->id
 
             ]);
             DB::commit();
@@ -122,12 +124,12 @@ class ProductosController extends Controller
      * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Producto $producto, Inventario $inventario)
+    public function update(Request $request, Producto $producto)
     {
         $valid = $this->validate($request, [
             "nombre" => "required|string|max:255",
             "marca" => "required|string|max:255",
-            "unidad" => "required|string|max:255",
+            "unidad_id" => "required|numeric",
             "descripcion" => "required|string|max:255",
             "codigo" => "required|string|max:255",
             "cantidad" => "required|numeric",

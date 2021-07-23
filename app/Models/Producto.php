@@ -14,7 +14,7 @@ class Producto extends Model
     protected $fillable = [
         'nombre',
         'marca',
-        'unidad',
+        'unidad_id',
         'descripcion',
         'codigo'
     ];
@@ -31,6 +31,10 @@ class Producto extends Model
     public function inventarios()
     {
         return $this->hasMany(Inventario::class);
+    }
+
+    public function unidad(){
+        return $this->belongsTo(Unidad::class);
     }
 
     public function ventas()
