@@ -3,34 +3,36 @@
 @section('content')
     <form method="POST" action="{{route('productos.store')}}" class="flex flex-col md:p-5 items-center">
         @csrf
-            <div class="w-full max-w-7xl">
-                <div class="flex flex-col space-y-3 md:flex-row md:space-y-0 md:justify-between bg-gray-50 shadow-lg grid-col p-2 border-b md:rounded-t-3xl">
-                    <p class="font-bold text-xl"><i class="fas fa-plus-circle p-3 bg-white rounded-full border"></i> NUEVO ITEM</p>
-                    <button type="submit" class="flex justify-center w-full bg-gradient-to-r from-green-300 to-green-500 text-white text-xl p-2 rounded-full hover:from-green-600 hover:to-green-600 focus:outline-none  hover:bg-green-600 md:w-72">
-                        Crear item
-                    </button>
+        <div class="w-full max-w-7xl">
+            <div class="flex flex-col space-y-3 md:flex-row md:space-y-0 md:justify-between bg-gray-50 shadow-lg grid-col p-2 border-b md:rounded-t-3xl">
+                <p class="font-bold text-xl"><i class="fas fa-plus-circle p-3 bg-white rounded-full border"></i> NUEVO ITEM</p>
+                <button type="submit" class="flex justify-center w-full bg-gradient-to-r from-green-300 to-green-500 text-white text-xl p-2 rounded-full hover:from-green-600 hover:to-green-600 focus:outline-none  hover:bg-green-600 md:w-72">
+                    Crear item
+                </button>
+            </div>
+            <div class="bg-white shadow-lg space-y-3 p-3 px-6">
+                <p>Datos del item</p>
+            </div>
+            <div class="bg-white flex flex-col space-y-3 p-3 border-b">
+                <div class="grid grid-col gap-3 md:grid-cols-2">
+                    <input name="producto[nombre]" type="text" placeholder="Nombre" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full" required>
+                    <input name="producto[marca]" type="text" placeholder="Marca" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full" required>
                 </div>
                 <div class="grid grid-col gap-3 md:grid-cols-2">
-                    <input name="producto[codigo]" value="{{ old('producto.codigo') }}" type="text" placeholder="Codigo" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full" required>
-                    <input name="producto[descripcion]" value="{{ old('producto.descripcion') }}" type="text" placeholder="Descripcion" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full">
+                    <input name="producto[codigo]" type="text" placeholder="Codigo" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full" required>
+                    <input name="producto[descripcion]" type="text" placeholder="Descripcion" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full">
                 </div>
             </div>
-
             <div class="bg-white shadow-lg space-y-3 p-3 px-6">
                 <p>Detalles del item</p>
             </div>
-
             <div class="bg-white flex flex-col space-y-3 p-3 border-b">
                 <div class="grid grid-col gap-3 md:grid-cols-2">
-                    <input name="inventario[cantidad]" value="{{ old('inventario.cantidad') }}" type="text" placeholder="Cantidad inicial" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full">
+                    <input name="inventario[cantidad]" type="text" placeholder="Cantidad inicial" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full">
                     <select name="producto[unidad_id]" placeholder="Unidad de medida" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full" required>
                         <option value="" selected>-- Elegir Unidad de medida --</option>
                         @foreach ($unidades as $unidad)
-                            @if($unidad->id == old('producto.unidad_id'))
-                                <option selected value="{{$unidad->id}}">{{$unidad->nombre}}</option>
-                            @else
-                                <option value="{{$unidad->id}}">{{$unidad->nombre}}</option>
-                            @endif
+                            <option value="{{$unidad->id}}">{{$unidad->nombre}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -40,11 +42,7 @@
                     <select name="inventario[tipo_producto_id]" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full" required>
                         <option value="" selected>-- Elegir tipo de item --</option>
                         @foreach ($tipoproductos as $tp)
-                            @if($tp->id == old('inventario.tipo_producto_id'))
-                                <option selected value="{{$tp->id}}">{{$tp->nombre}}</option>
-                            @else
-                                <option value="{{$tp->id}}">{{$tp->nombre}}</option>
-                            @endif
+                            <option value="{{$tp->id}}">{{$tp->nombre}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -55,7 +53,7 @@
             </div>
             <div class="bg-white flex flex-col space-y-3 p-3 border-b">
                 <div class="grid grid-col gap-3 md:grid-cols-2">
-                    <input name="inventario[costo_unitario]" value="{{ old('inventario.costo_unitario') }}" type="text" placeholder="Costo neto insumo" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full">
+                    <input name="inventario[costo_unitario]" type="text" placeholder="Costo neto insumo" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full">
                 </div>
             </div>
             <!-- Fin opcion insumos -->
@@ -65,7 +63,7 @@
             </div>
             <div class="bg-white flex flex-col space-y-3 p-3 border-b">
                 <div class="grid grid-col gap-3 md:grid-cols-2">
-                    <input name="inventario[precio_unitario]" value="{{ old('inventario.precio_unitario') }}" type="text" placeholder="Valor venta" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full">
+                    <input name="inventario[precio_unitario]" type="text" placeholder="Valor venta" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full">
                 </div>
                 <!-- Fin opcion productos -->
             </div>

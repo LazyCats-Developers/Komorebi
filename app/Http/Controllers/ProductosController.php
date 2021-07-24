@@ -13,12 +13,12 @@ class ProductosController extends Controller
 {
     public function index()
     {
-        return view("pages.inventory");
+        return view("pages.inventories.index");
     }
 
     public function create()
     {
-        return view("pages.newitem", ["tipoproductos" => TipoProducto::all(), "unidades" => Unidad::all()]);
+        return view("pages.inventories.create", ["tipoproductos" => TipoProducto::all(), "unidades" => Unidad::all()]);
     }
 
     public function store(Request $request)
@@ -80,25 +80,17 @@ class ProductosController extends Controller
         return $productos;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param \App\Models\Producto $producto
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Producto $producto)
     {
         $inventario = $producto->inventarios()->first();
-        return view("pages.edititem", ["inventario" => $inventario, "producto" => $producto, "tipoproductos" => TipoProducto::all(), "unidades" => Unidad::all()]);
+        return view("pages.inventories.edit", [
+            "inventario" => $inventario,
+            "producto" => $producto,
+            "tipoproductos" => TipoProducto::all(),
+            "unidades" => Unidad::all()
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Producto $producto
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Producto $producto)
     {
         $valid = $this->validate($request, [
@@ -128,12 +120,6 @@ class ProductosController extends Controller
         return redirect('/inventory');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param \App\Models\Producto $producto
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Producto $producto)
     {
         DB::beginTransaction();
