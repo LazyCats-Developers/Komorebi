@@ -2,6 +2,22 @@
 
 @section('content')
 
+@if(session('status'))
+        <div>
+            {{ session('status')['message'] }}
+        </div>
+    @endif
+
+    @if($errors->any())
+        <div>
+            <ul>
+                @foreach($errors->all() as $error)
+                    {{ $error }}
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
         <form method="POST" action="{{route('productos.store')}}" class="flex flex-col md:p-5 items-center">
         @csrf
             <div class="w-full max-w-7xl">
@@ -16,12 +32,12 @@
                 </div>
                 <div class="bg-white flex flex-col space-y-3 p-3 border-b">
                     <div class="grid grid-col gap-3 md:grid-cols-2">
-                        <input  name="nombre" type="text" placeholder="Nombre" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full" required>
-                        <input  name="marca" type="text" placeholder="Marca" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full" required>
+                        <input  name="producto[nombre]" type="text" placeholder="Nombre" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full" required>
+                        <input  name="producto[marca]" type="text" placeholder="Marca" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full" required>
                     </div>
                     <div class="grid grid-col gap-3 md:grid-cols-2">
-                        <input  name="codigo" type="text" placeholder="Codigo" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full" required>
-                        <input  name="descripcion" type="text" placeholder="Descripcion" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full">
+                        <input  name="producto[codigo]" type="text" placeholder="Codigo" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full" required>
+                        <input  name="producto[descripcion]" type="text" placeholder="Descripcion" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full">
                     </div>
                 </div>
                 <div class="bg-white shadow-lg space-y-3 p-3 px-6">
@@ -29,8 +45,8 @@
                 </div>
                 <div class="bg-white flex flex-col space-y-3 p-3 border-b">
                     <div class="grid grid-col gap-3 md:grid-cols-2">
-                        <input  name="cantidad" type="text" placeholder="Cantidad inicial" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full">
-                        <select  name="unidad_id" placeholder="Unidad de medida" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full" required>
+                        <input  name="inventario[cantidad]" type="text" placeholder="Cantidad inicial" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full">
+                        <select  name="producto[unidad_id]" placeholder="Unidad de medida" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full" required>
                             <option value="" selected>-- Elegir Unidad de medida --</option>
                             @foreach ($unidades as $unidad)
                             <option value="{{$unidad->id}}" >{{$unidad->nombre}}</option>
@@ -40,7 +56,7 @@
                 </div>
                 <div class="bg-white flex flex-col space-y-3 p-3 border-b">
                     <div class="grid grid-col gap-3 md:grid-cols-2">
-                        <select name="tipo_producto_id" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full" required>
+                        <select name="inventario[tipo_producto_id]" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full" required>
                             <option value="" selected>-- Elegir tipo de item --</option>
                             @foreach ($tipoproductos as $tp)
                             <option value="{{$tp->id}}" >{{$tp->nombre}}</option>
@@ -54,7 +70,7 @@
                 </div>
                 <div class="bg-white flex flex-col space-y-3 p-3 border-b">
                     <div class="grid grid-col gap-3 md:grid-cols-2">
-                        <input  name="costo_unitario" type="text" placeholder="Costo neto insumo" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full">
+                        <input  name="inventario[costo_unitario]" type="text" placeholder="Costo neto insumo" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full">
                     </div>
                 </div>
                 <!-- Fin opcion insumos -->
@@ -64,7 +80,7 @@
                 </div>
                 <div class="bg-white flex flex-col space-y-3 p-3 border-b">
                     <div class="grid grid-col gap-3 md:grid-cols-2">
-                        <input  name="precio_unitario" type="text" placeholder="Valor venta" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full">
+                        <input  name="inventario[precio_unitario]" type="text" placeholder="Valor venta" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full">
                     </div>
                     <!-- Fin opcion productos -->
                 </div>

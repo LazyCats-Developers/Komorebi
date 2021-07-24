@@ -44,32 +44,27 @@ class ProductosController extends Controller
     {
         $valid = $this->validate($request, [
 
-            "nombre"            => "required|string|max:255",
-            "marca"             => "required|string|max:255",
-            "unidad_id"         => "required|numeric",
-            "descripcion"       => "string|max:255",
-            "codigo"            => "required|string|max:255",
-            "cantidad"          => "required|numeric",
-            "precio_unitario"   => "numeric",
-            "costo_unitario"    => "numeric",
-            "tipo_producto_id"  => "required|numeric|min:1",
-
+            "producto.nombre"            => "required|string|max:255",
+            "producto.marca"             => "required|string|max:255",
+            "producto.unidad_id"         => "required|numeric",
+            "producto.descripcion"       => "string|max:255",
+            "producto.codigo"            => "required|string|max:255",
+            "inventario.cantidad"          => "required|numeric",
+            "inventario.precio_unitario"   => "numeric",
+            "inventario.costo_unitario"    => "numeric",
+            "inventario.tipo_producto_id"  => "required|numeric|min:1",
 
         ]);
 
         $usuario = auth()->user();
-        $empresa = $usuario->empresas()->first();
+        $empresa = $usuario->empresas()->firstOrFail();
+
+        $valid['inventario']['empresa_id'] = $empresa->id;
 
         DB::beginTransaction();
         try {
-            $producto = Producto::query()->create($valid);
-            $producto->inventarios()->create([
-                "cantidad" => $valid['cantidad'] ,
-                "tipo_producto_id" => $valid['tipo_producto_id'] ,
-                "precio_unitario" => $valid['precio_unitario'] ,
-                "costo_unitario" => $valid['costo_unitario'] ,
-                "empresa_id" => $empresa->id,
-        ]);
+            $producto = Producto::query()->create($valid['producto']);
+            $producto->inventarios()->create($valid['inventario']);
         DB::commit();
     } catch (\Exception $exception) {
         report($exception);
