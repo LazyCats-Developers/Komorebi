@@ -29,8 +29,6 @@
                         </button>
                     </div>
                 </div>
-                <div class="bg-white shadow-lg space-y-3 p-3 border-b">
-                </div>
                 <div class="bg-gray-50 shadow-lg p-2 md:rounded-b-3xl">
                     <p class="text-center text-gray-400">Komorebi</p>
                 </div>
