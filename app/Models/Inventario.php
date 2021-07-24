@@ -16,20 +16,21 @@ class Inventario extends Model
         'empresa_id',
         'cantidad',
         'tipo_producto_id',
-        'precio_unitario'
+        'precio_unitario',
+        'costo_unitario',
     ];
 
-    public function producto() 
+    public function producto()
     {
         return $this->belongsTo(Producto::class);
     }
 
-    public function empresa() 
+    public function empresa()
     {
         return $this->belongsTo(Empresa::class);
     }
 
-    public function tipoProducto() 
+    public function tipoProducto()
     {
         return $this->belongsTo(TipoProducto::class);
     }

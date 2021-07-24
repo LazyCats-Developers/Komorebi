@@ -8,6 +8,7 @@ use App\Models\TipoProducto;
 use App\Models\Unidad;
 use Illuminate\Http\Request;
 use DB;
+use Faker\Core\Number;
 
 class ProductosController extends Controller
 {
@@ -18,11 +19,6 @@ class ProductosController extends Controller
      */
     public function index()
     {
-        /**
-         * $usuario = auth()->user();
-        * $em = $usuario->empresas()->first();
-        * return view("pages.inventory", ["productos" => Producto::with(['inventarios' => function($query) use($em) {$query->where('empresa_id',$em->id);}])->get()]);
-         */
         $usuario = auth()->user();
         $empresa = $usuario->empresas()->first();
         $productos = Producto::query()->whereHas('inventarios', fn($query) => $query->where('empresa_id', $empresa->id))->get();
@@ -48,29 +44,28 @@ class ProductosController extends Controller
     public function store(Request $request)
     {
         $valid = $this->validate($request, [
-            "nombre" => "required|string|max:255",
-            "marca" => "required|string|max:255",
-            "unidad_id" => "required|numeric",
-            "descripcion" => "string|max:255",
-            "codigo" => "required|string|max:255",
-            "cantidad" => "required|",
 
-
-
+            "nombre"            => "required|string|max:255",
+            "marca"             => "required|string|max:255",
+            "unidad_id"         => "required|numeric",
+            "descripcion"       => "string|max:255",
+            "codigo"            => "required|string|max:255",
+            "cantidad"          => "required|numeric",
+            "precio_unitario"   => "numeric",
+            "costo_unitario"    => "numeric",
+            "tipo_producto_id"  => "required|numeric|min:1",
 
         ]);
+
         $usuario = auth()->user();
         $empresa = $usuario->empresas()->first();
+
         DB::beginTransaction();
         try {
             $producto = Producto::query()->create($valid);
-            $producto->inventarios()->create([
-                "cantidad" => $request->cantidad,
-                "precio_unitario" => $request->precio_unitario,
-                "tipo_producto_id" => $request->tipo_producto_id,
+            $producto->inventarios()->create([$valid,
                 "empresa_id" => $empresa->id
-
-            ]);
+        ]);
             DB::commit();
         } catch (\Exception $exception) {
             report($exception);
@@ -130,22 +125,17 @@ class ProductosController extends Controller
             "nombre" => "required|string|max:255",
             "marca" => "required|string|max:255",
             "unidad_id" => "required|numeric",
-            "descripcion" => "required|string|max:255",
+            "descripcion" => "string|max:255",
             "codigo" => "required|string|max:255",
-            "cantidad" => "required|numeric",
-            "precio_unitario" => "required|numeric",
-            "tipo_producto_id" => "required|numeric|min:1",
-        ]);
-        $validi = $this->validate($request, [
-
-            "cantidad" => "required|numeric",
-            "precio_unitario" => "required|numeric",
+            "cantidad" => "numeric",
+            "precio_unitario" => "numeric|default:0",
+            "costo_unitario"    => "numeric|default:0",
             "tipo_producto_id" => "required|numeric|min:1",
         ]);
         DB::beginTransaction();
         try {
             $producto->update($valid);
-            $producto->inventarios()->update($validi);
+            $producto->inventarios()->update($valid);
             DB::commit();
         } catch (\Exception $exception) {
             report($exception);

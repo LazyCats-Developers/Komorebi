@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
+
         <form method="POST" action="{{route('productos.store')}}" class="flex flex-col md:p-5 items-center">
         @csrf
             <div class="w-full max-w-7xl">
