@@ -43,22 +43,23 @@
                     </div>
                 </div>
                 <div class="bg-white shadow-lg space-y-3 p-3 border-b">
-                    <table class="w-full">
+                    <table class="w-ful">
                         <thead>
-                            <tr class="grid grid-cols-6 justify-items-center bg-gray-100 border rounded-t-3xl">
-                                <th>ID</th>
-                                <th>Fecha</th>
-                                <th>Hora</th>
-                                <th>Valor</th>
-                                <th>Vendedor</th>
-                                <th>Tipo</th>
+                            <tr class="grid grid-cols-7 justify-items-center bg-gray-100 border rounded-t-3xl">
+                                <th>Codigo</th>
+                                <th>Nombre</th>
+                                <th>Marca</th>
+                                <th>Descripcion</th>
+                                <th>Unidad</th>
+                                <th>Editar</th>
+                                <th>Eliminar</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($productos as $producto)
-                            <tr class="grid grid-cols-6 justify-items-center bg-gray-100 border rounded-t-3xl">
-                                <td>{{$producto->nombre}}</td>
+                            <tr class="grid grid-cols-7 justify-items-center border rounded-b-3xl">
+                                @foreach($productos as $producto)
                                 <td>{{$producto->codigo}}</td>
+                                <td>{{$producto->nombre}}</td>
                                 <td>{{$producto->marca}}</td>
                                 <td>{{$producto->descripcion}}</td>
                                 <td>{{$producto->unidad}}</td>
@@ -76,8 +77,8 @@
                                         </button>
                                     </form>
                                 </td>
+                                @endforeach
                             </tr>
-                            @endforeach
                         </tbody>
                     </table>
                 </div>
