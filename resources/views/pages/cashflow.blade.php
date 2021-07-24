@@ -57,20 +57,6 @@
                                 <td>Yisus</td>
                                 <td>Factura</td>
 
-                                <td>1111111</td>
-                                <td>01/01/0001</td>
-                                <td>01:01</td>
-                                <td>1000</td>
-                                <td>Yisus</td>
-                                <td>Factura</td>
-
-                                <td>1111111</td>
-                                <td>01/01/0001</td>
-                                <td>01:01</td>
-                                <td>1000</td>
-                                <td>Yisus</td>
-                                <td>Factura</td>
-
                             </tr>
                         </tbody>
                     </table>
