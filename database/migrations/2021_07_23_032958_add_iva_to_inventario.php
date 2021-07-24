@@ -14,8 +14,8 @@ class AddIvaToInventario extends Migration
     public function up()
     {
         Schema::table('inventarios', function (Blueprint $table) {
-            $table->float('costo_unitario');
-            $table->float('iva',10,8);
+            $table->float('costo_unitario')->nullable();
+
             $table->float('precio_unitario',10,8)->change();
         });
     }
@@ -29,7 +29,7 @@ class AddIvaToInventario extends Migration
     {
         Schema::table('inventarios', function (Blueprint $table) {
             $table->dropColumn('costo_unitario');
-            $table->dropColumn('iva');
+
             $table->dropColumn('precio_unitario');
         });
     }

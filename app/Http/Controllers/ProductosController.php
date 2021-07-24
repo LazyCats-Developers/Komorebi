@@ -19,10 +19,9 @@ class ProductosController extends Controller
      */
     public function index()
     {
-        $usuario = auth()->user();
-        $empresa = $usuario->empresas()->first();
-        $productos = Producto::query()->whereHas('inventarios', fn($query) => $query->where('empresa_id', $empresa->id))->get();
-        return view("pages.inventory", ["productos" => $productos ]);
+        
+        return view("/inventory");
+
     }
 
     /**
@@ -50,11 +49,14 @@ class ProductosController extends Controller
             "unidad_id"         => "required|numeric",
             "descripcion"       => "string|max:255",
             "codigo"            => "required|string|max:255",
+            
+
+        ]);
+        $validd =$this->validate($request, [
             "cantidad"          => "required|numeric",
             "precio_unitario"   => "numeric",
             "costo_unitario"    => "numeric",
             "tipo_producto_id"  => "required|numeric|min:1",
-
         ]);
 
         $usuario = auth()->user();
@@ -63,20 +65,18 @@ class ProductosController extends Controller
         DB::beginTransaction();
         try {
             $producto = Producto::query()->create($valid);
-            $producto->inventarios()->create([$valid,
+            $producto->inventarios()->create([$validd,
                 "empresa_id" => $empresa->id
         ]);
             DB::commit();
         } catch (\Exception $exception) {
             report($exception);
             DB::rollBack();
-
-            return redirect()->back()->with([
-                'message' => 'Ocurrio el siguiente error: ' . $exception->getMessage()
-            ]);
+            echo $exception->getMessage();
+            ;
         }
 
-        return redirect('/inventory');
+        return null;
 
     }
 
@@ -177,3 +177,4 @@ class ProductosController extends Controller
         return redirect('/inventory');
     }
 }
+

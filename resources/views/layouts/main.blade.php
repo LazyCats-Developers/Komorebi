@@ -31,7 +31,7 @@
                             <p><i class="fas fa-truck mr-3"></i></i>Compras</p>
                         </div>
                     </a>
-                    <a href="{{ route('productos.index') }}" class="active-nav-link nav-item">
+                    <a href="{{ url('inventory') }}" class="active-nav-link nav-item">
                         <div class="text-gray-100 rounded-full px-6 py-3 hover:text-black hover:bg-gray-100">
                             <p><i class="fas fa-clipboard-list mr-3"></i>Inventario</p>
                         </div>

@@ -58,7 +58,11 @@ class PagesController extends Controller
 
     public function inventory()
     {
-        return view('pages.inventory', ["productos" => Producto::all()]);
+        $usuario = auth()->user();
+        $empresa = $usuario->empresas()->first();
+        $productos = Producto::query()->whereHas('inventarios', fn($query) => $query->where('empresa_id', $empresa->id))->get();
+        return view("pages.inventory", ["productos" => $productos ]);
+        
     }
 
     public function cashflow()
