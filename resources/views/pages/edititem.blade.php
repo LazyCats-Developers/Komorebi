@@ -7,8 +7,17 @@
         <input value="{{$producto->codigo}}" name="codigo" type="text" placeholder="Codigo">
         <input value="{{$producto->marca}}" name="marca" type="text" placeholder="Marca">
         <input value="{{$inventario->cantidad}}" name="cantidad" type="text" placeholder="Cantidad">
-        <input value="{{$producto->unidad}}" name="unidad" type="text" placeholder="Unidad">
-        <input value="{{$inventario->precio_unitario}}" name="precio_unitario" type="text" placeholder="Precio">
+        <select name="unidad_id">
+
+            <option value="0" >Unidad</option>
+            @foreach ($unidades as $unidad)
+            <option value="{{$unidad->id}}" {{ ( $unidad->id == $inventario->unidad_id) ? 'selected' : '' }}>{{$unidad->nombre}}</option>
+            @endforeach
+        </select>
+        <input value="{{$producto->unidad_id}}" name="unidad_id" type="text" placeholder="Unidad">
+        <input value="{{$inventario->precio_unitario}}" name="precio_unitario" type="text" placeholder="Precio unitario">
+        <input value="{{$inventario->costo_unitario}}" name="costo_unitario" type="text" placeholder="Costo unitario">
+
         <select name="tipo_producto_id">
 
             <option value="0" >Tipo</option>

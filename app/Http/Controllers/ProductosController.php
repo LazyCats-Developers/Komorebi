@@ -19,7 +19,7 @@ class ProductosController extends Controller
      */
     public function index()
     {
-        
+
         return view("/inventory");
 
     }
@@ -49,16 +49,13 @@ class ProductosController extends Controller
             "unidad_id"         => "required|numeric",
             "descripcion"       => "string|max:255",
             "codigo"            => "required|string|max:255",
-            
-
-        ]);
-        $validd =$this->validate($request, [
             "cantidad"          => "required|numeric",
             "precio_unitario"   => "numeric",
             "costo_unitario"    => "numeric",
             "tipo_producto_id"  => "required|numeric|min:1",
-        ]);
 
+
+        ]);
 
         $usuario = auth()->user();
         $empresa = $usuario->empresas()->first();
@@ -83,7 +80,7 @@ class ProductosController extends Controller
             ]);
         }
 
-        return null;
+        return redirect('/inventory');
 
     }
 
@@ -116,7 +113,7 @@ class ProductosController extends Controller
     public function edit(Producto $producto)
     {
         $inventario = $producto->inventarios()->first();
-        return view("pages.edititem", ["inventario" => $inventario, "producto" => $producto, "tipoproductos" => TipoProducto::all()]);
+        return view("pages.edititem", ["inventario" => $inventario, "producto" => $producto, "tipoproductos" => TipoProducto::all(), "unidades" => Unidad::all()]);
     }
 
     /**
@@ -135,14 +132,19 @@ class ProductosController extends Controller
             "descripcion" => "string|max:255",
             "codigo" => "required|string|max:255",
             "cantidad" => "numeric",
-            "precio_unitario" => "numeric|default:0",
-            "costo_unitario"    => "numeric|default:0",
+            "precio_unitario" => "numeric",
+            "costo_unitario"    => "numeric",
             "tipo_producto_id" => "required|numeric|min:1",
         ]);
         DB::beginTransaction();
         try {
             $producto->update($valid);
-            $producto->inventarios()->update($valid);
+            $producto->inventarios()->update([
+                "cantidad" => $valid['cantidad'] ,
+                "tipo_producto_id" => $valid['tipo_producto_id'] ,
+                "precio_unitario" => $valid['precio_unitario'] ,
+                "costo_unitario" => $valid['costo_unitario'] ,
+            ]);
             DB::commit();
         } catch (\Exception $exception) {
             report($exception);
