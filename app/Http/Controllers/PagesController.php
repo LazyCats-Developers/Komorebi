@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Producto;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
@@ -62,7 +62,7 @@ class PagesController extends Controller
         $empresa = $usuario->empresas()->first();
         $productos = Producto::query()->whereHas('inventarios', fn($query) => $query->where('empresa_id', $empresa->id))->get();
         return view("pages.inventory", ["productos" => $productos ]);
-        
+
     }
 
     public function cashflow()
