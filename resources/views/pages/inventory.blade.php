@@ -43,7 +43,7 @@
                     </div>
                 </div>
                 <div class="bg-white shadow-lg space-y-3 p-3 border-b">
-                    <table class="w-ful">
+                    <table class="w-full">
                         <thead>
                             <tr class="grid grid-cols-7 justify-items-center bg-gray-100 border rounded-t-3xl">
                                 <th>Codigo</th>
