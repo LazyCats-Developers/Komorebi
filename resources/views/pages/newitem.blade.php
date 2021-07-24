@@ -22,7 +22,7 @@
         @csrf
             <div class="w-full max-w-7xl">
                 <div class="flex flex-col space-y-3 md:flex-row md:space-y-0 md:justify-between bg-gray-50 shadow-lg grid-col p-2 border-b md:rounded-t-3xl">
-                    <p class="font-bold text-xl"><i class="fas fa-plus-circle p-3 bg-white rounded-full border"></i> Nuevo item</p>
+                    <p class="font-bold text-xl"><i class="fas fa-plus-circle p-3 bg-white rounded-full border"></i> NUEVO ITEM</p>
                     <button type="submit" class="flex justify-center w-full bg-gradient-to-r from-green-300 to-green-500 text-white text-xl p-2 rounded-full hover:from-green-600 hover:to-green-600 focus:outline-none  hover:bg-green-600 md:w-72">
                         Crear item
                     </button>
