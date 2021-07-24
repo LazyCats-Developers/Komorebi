@@ -62,7 +62,7 @@
                                 <td>{{$producto->nombre}}</td>
                                 <td>{{$producto->marca}}</td>
                                 <td>{{$producto->descripcion}}</td>
-                                <td>{{$producto->unidad}}</td>
+                                <td>{{$producto->unidad_id}}</td>
                                 <td>
                                     <a class="btn btn-warning" href="{{route("productos.edit",[$producto])}}">
                                             <i class="fa fa-edit"></i>
