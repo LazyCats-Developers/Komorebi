@@ -49,10 +49,6 @@ class ProductosController extends Controller
             "unidad_id"         => "required|numeric",
             "descripcion"       => "string|max:255",
             "codigo"            => "required|string|max:255",
-            
-
-        ]);
-        $validd =$this->validate($request, [
             "cantidad"          => "required|numeric",
             "precio_unitario"   => "numeric",
             "costo_unitario"    => "numeric",
@@ -83,7 +79,7 @@ class ProductosController extends Controller
             ]);
         }
 
-        return null;
+        return redirect('/inventory');
 
     }
 
