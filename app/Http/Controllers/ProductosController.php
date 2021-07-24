@@ -59,21 +59,28 @@ class ProductosController extends Controller
             "tipo_producto_id"  => "required|numeric|min:1",
         ]);
 
+
         $usuario = auth()->user();
         $empresa = $usuario->empresas()->first();
 
         DB::beginTransaction();
         try {
             $producto = Producto::query()->create($valid);
-            $producto->inventarios()->create([$validd,
-                "empresa_id" => $empresa->id
+            $producto->inventarios()->create([
+                "cantidad" => $valid['cantidad'] ,
+                "tipo_producto_id" => $valid['tipo_producto_id'] ,
+                "precio_unitario" => $valid['precio_unitario'] ,
+                "costo_unitario" => $valid['costo_unitario'] ,
+                "empresa_id" => $empresa->id,
         ]);
-            DB::commit();
-        } catch (\Exception $exception) {
-            report($exception);
-            DB::rollBack();
-            echo $exception->getMessage();
-            ;
+        DB::commit();
+    } catch (\Exception $exception) {
+        report($exception);
+        DB::rollBack();
+
+            return redirect()->back()->with([
+                'message' => 'Ocurrio el siguiente error: ' . $exception->getMessage()
+            ]);
         }
 
         return null;
