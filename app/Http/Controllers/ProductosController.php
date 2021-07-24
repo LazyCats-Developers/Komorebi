@@ -121,25 +121,20 @@ class ProductosController extends Controller
     public function update(Request $request, Producto $producto)
     {
         $valid = $this->validate($request, [
-            "nombre" => "required|string|max:255",
-            "marca" => "required|string|max:255",
-            "unidad_id" => "required|numeric",
-            "descripcion" => "string|max:255",
-            "codigo" => "required|string|max:255",
-            "cantidad" => "numeric",
-            "precio_unitario" => "numeric",
-            "costo_unitario"    => "numeric",
-            "tipo_producto_id" => "required|numeric|min:1",
+            "producto.nombre"            => "required|string|max:255",
+            "producto.marca"             => "required|string|max:255",
+            "producto.unidad_id"         => "required|numeric",
+            "producto.descripcion"       => "string|max:255",
+            "producto.codigo"            => "required|string|max:255",
+            "inventario.cantidad"          => "required|numeric",
+            "inventario.precio_unitario"   => "numeric",
+            "inventario.costo_unitario"    => "numeric",
+            "inventario.tipo_producto_id"  => "required|numeric|min:1",
         ]);
         DB::beginTransaction();
         try {
-            $producto->update($valid);
-            $producto->inventarios()->update([
-                "cantidad" => $valid['cantidad'] ,
-                "tipo_producto_id" => $valid['tipo_producto_id'] ,
-                "precio_unitario" => $valid['precio_unitario'] ,
-                "costo_unitario" => $valid['costo_unitario'] ,
-            ]);
+            $producto->update($valid['producto']);
+            $producto->inventarios()->update($valid['inventario']);
             DB::commit();
         } catch (\Exception $exception) {
             report($exception);
