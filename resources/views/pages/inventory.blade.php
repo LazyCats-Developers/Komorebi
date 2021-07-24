@@ -1,8 +1,8 @@
 @extends('layouts.main')
 
 @section('content')
-    @if(auth()->user()->empresas()->exists())
 
+    @if(auth()->user()->empresas()->exists())
         <div class="flex flex-col md:p-5 items-center">
             <div class="w-full max-w-7xl">
                 <div class="flex flex-col space-y-3 md:flex-row md:space-y-0 md:justify-between bg-gray-50 shadow-lg grid-col p-2 border-b md:rounded-t-3xl">
@@ -87,6 +87,5 @@
                 </div>
             </div>
         </div>
-
     @endif
 @endsection
