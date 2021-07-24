@@ -4,39 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Empresa;
 use Illuminate\Http\Request;
-use DB;
-use Illuminate\Support\Facades\Storage;
-use Spatie\Image\Image;
-use Spatie\Image\Manipulations;
+use Illuminate\Support\Facades\DB;
 
 class EmpresasController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view("pages.empresas-create");
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         /* $empresa = new Empresa($request->input());
@@ -65,33 +46,25 @@ class EmpresasController extends Controller
                 "rol_id" => 1
             ]);
             DB::commit();
-        } catch(\Exception $exception) {
+        } catch (\Exception $exception) {
             report($exception);
             DB::rollBack();
 
-            return redirect()->back()->with([
-                'message' => 'Ocurrio el siguiente error: ' . $exception->getMessage()
-            ]);
-
+            return redirect()->back()
+                ->withInput($request->input())
+                ->withErrors([
+                    'message' => 'Ocurrio el siguiente error: ' . $exception->getMessage()
+                ]);
         }
 
         return redirect('/main');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Empresa  $empresa
-     * @return \Illuminate\Http\Response
-     */
     public function show(Empresa $empresa)
     {
         //
     }
 
-    /**
-     * Display all the resources from the auth user
-     */
     public function showAll()
     {
         $usuario = auth()->user();
@@ -99,27 +72,14 @@ class EmpresasController extends Controller
         return $empresas;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Empresa  $empresa
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Empresa $empresa)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Empresa  $empresa
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request)
     {
-        $empresa = auth()->user()->empresas()->first(); //preguntar si la cagué o no
+        $empresa = auth()->user()->empresas()->firstOrFail();
 
         $valid = $this->validate($request, [
             "nombre" => "required|string|max:255",
@@ -131,38 +91,29 @@ class EmpresasController extends Controller
             "empresa_rrss" => "string|max:255",
         ]);
 
-        $empresa
-            ->update($valid);
+        $empresa->update($valid);
 
-        session()->flash('status', [
-            'type' => 'success',
-            'message' => 'Empresa actualizada.'
+        return redirect('/main')->with([
+            'status' => [
+                'type' => 'success',
+                'message' => 'Empresa actualizada.'
+            ]
         ]);
-
-        return redirect('/main');
     }
 
-    public function updateLogo(Request $request){
+    public function updateLogo(Request $request)
+    {
         //implementar el cambio de logo de empresa
         $empresa = auth()->user()->empresas()->first();
-
-
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Empresa  $empresa
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Empresa $empresa)
     {
-
         DB::beginTransaction();
         try {
-
             /**
              * TODO Implementar el borrado de los productos y demas datos relacionados a la empresa
+             * NOTE: Cambiar como manejan estos productos mediante el uso de "cascade"
              */
             $empresa->colaboradores()
                 ->delete();
@@ -171,7 +122,7 @@ class EmpresasController extends Controller
                 ->delete();
 
             DB::commit();
-        } catch(\Exception $exception) {
+        } catch (\Exception $exception) {
             report($exception);
             DB::rollBack();
 
@@ -179,5 +130,7 @@ class EmpresasController extends Controller
                 'message' => 'Ocurrio el siguiente error: ' . $exception->getMessage()
             ]);
         }
+
+        return redirect()->route('main');
     }
 }
