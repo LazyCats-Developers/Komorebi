@@ -1,13 +1,15 @@
 <?php
 
+use App\Http\Controllers\ColaboradoresController;
+use App\Http\Controllers\EmpresasController;
+use App\Http\Controllers\PagesController;
+use App\Http\Controllers\ProductosController;
+use App\Http\Controllers\TipoProductosController;
+use App\Http\Controllers\UsuariosController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Auth\RegisteredUserController;
 
-
-/* use App\Http\Controllers
-routes yweas get([PagesController::class , 'login']);
-*/
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,45 +21,35 @@ routes yweas get([PagesController::class , 'login']);
 |
 */
 
-Route::get('/', 'PagesController@login')
-    ->middleware('guest');
-
-Route::get('/signup', 'PagesController@signup')
-    ->middleware('guest');
-
-Route::post('/signup', [RegisteredUserController::class, 'store'])
-    ->middleware('guest');
-
-Route::get('/main', 'PagesController@main')->middleware(['auth']);
-
-Route::get('/ups', 'PagesController@ups')->middleware(['auth']);
-
-Route::get('/sales', 'PagesController@sales')->middleware(['auth']);
-
-Route::get('/newsales' , 'PagesController@newsales')->middleware(['auth']);
-
-Route::get('/shopping', 'PagesController@shopping')->middleware(['auth']);
-
-Route::get('/newshop' , 'PagesController@newshop')->middleware(['auth']);
-
-Route::get('/inventory', 'PagesController@inventory')->middleware(['auth']);
-
-Route::get('/cashflow', 'PagesController@cashflow')->middleware(['auth']);
-
-Route::get('/modules', 'PagesController@modules')->middleware(['auth']);
+Route::middleware('guest')
+    ->group(function () {
+        Route::get('/', [PagesController::class, 'login'])->name('login');
+        Route::get('/signup', [RegisteredUserController::class, 'create'])->name('signup');
+        Route::post('/signup', [RegisteredUserController::class, 'store']);
+    });
 
 Route::middleware('auth')
     ->group(function () {
-        Route::get('/profile', 'PagesController@profile')->name('profile');
-        Route::post('/profile/update', 'UsuariosController@update')->name('profile.update');
-        Route::post('/profile/change-avatar', 'UsuariosController@update_avatar')->name('profile.change-avatar');
+        Route::get('/main', [PagesController::class, 'main']);
+        Route::get('/ups', [PagesController::class, 'ups']);
+        Route::get('/sales', [PagesController::class, 'sales']);
+        Route::get('/newsales', [PagesController::class, 'newsales']);
+        Route::get('/shopping', [PagesController::class, 'ups']);
+        Route::get('/newshop', [PagesController::class, 'newshop']);
+        Route::get('/inventory', [PagesController::class, 'inventory'])->name('inventory.index');
+        Route::get('/cashflow', [PagesController::class, 'cashflow']);
+        Route::get('/modules', [PagesController::class, 'modules']);
+
+        Route::get('/profile', [PagesController::class, 'profile'])->name('profile');
+        Route::post('/profile/update', [UsuariosController::class, 'update'])->name('profile.update');
+        Route::post('/profile/change-avatar', [UsuariosController::class, 'update_avatar'])->name('profile.change-avatar');
     });
 
 require __DIR__ . '/auth.php';
 
-Route::get('main', ['uses' => 'PagesController@main']);
+Route::get('main', [PagesController::class, 'main'])->name('main');
 
-Route::resource("empresas", "EmpresasController")->parameters(["empresas" => "empresa"]);
-Route::resource("productos", "ProductosController")->parameters(["productos" => "producto"]);
-Route::resource("tipoproductos", "TipoProductosController")->parameters(["tipoproductos" => "tipoproducto"]);
-Route::resource('empresas.colaboradores', 'ColaboradoresController')->parameters(['colaboradores' => 'colaborador']);
+Route::resource("empresas", EmpresasController::class)->parameters(["empresas" => "empresa"]);
+Route::resource("productos", ProductosController::class)->parameters(["productos" => "producto"]);
+Route::resource("tipoproductos", TipoProductosController::class)->parameters(["tipoproductos" => "tipoproducto"]);
+Route::resource('empresas.colaboradores', ColaboradoresController::class)->parameters(['colaboradores' => 'colaborador']);
