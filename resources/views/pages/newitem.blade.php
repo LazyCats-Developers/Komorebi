@@ -30,7 +30,7 @@
                 <div class="bg-white flex flex-col space-y-3 p-3 border-b">
                     <div class="grid grid-col gap-3 md:grid-cols-2">
                         <input  name="cantidad" type="text" placeholder="Cantidad inicial" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full">
-                        <select  name="unidad_id" type="text" placeholder="Unidad de medida" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full" required>
+                        <select  name="unidad_id" placeholder="Unidad de medida" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full" required>
                             <option value="" selected>-- Elegir Unidad de medida --</option>
                             @foreach ($unidades as $unidad)
                             <option value="{{$unidad->id}}" >{{$unidad->nombre}}</option>
