@@ -29,6 +29,14 @@
                         </button>
                     </div>
                 </div>
+                <div class="bg-white shadow-lg flex flex-col space-y-3 p-3 md:space-y-0 md:flex-row md:justify-between">
+                    <div class="flex flex-col space-y-3 md:flex-row md:space-y-0">
+                        <p></p>
+                    </div>
+                    <div class="flex flex-row">
+
+                    </div>
+                </div>
                 <div class="bg-gray-50 shadow-lg p-2 md:rounded-b-3xl">
                     <p class="text-center text-gray-400">Komorebi</p>
                 </div>
