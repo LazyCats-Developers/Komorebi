@@ -14,7 +14,7 @@ class ProveedoresController extends Controller
      */
     public function index()
     {
-        //
+        return view("pages.providers.index");
     }
 
     /**
@@ -24,7 +24,7 @@ class ProveedoresController extends Controller
      */
     public function create()
     {
-        //
+        return view("pages.providers.create");
     }
 
     /**
@@ -85,7 +85,22 @@ class ProveedoresController extends Controller
      */
     public function update(Request $request, Proveedor $proveedor)
     {
-        //
+        $valid = $this->validate($request, [
+            "proveedor.nombre" => "required|string|max:255",
+            "proveedor.rut" => "string|max:255",
+            "proveedor.telefono" => "string|max:255",
+            "proveedor.email" => "string|max_255",
+            "proveedor.direccion" => "string|max_255",
+            "proveedor.proveedor_rrss" => "string|max_255",
+            "proveedor.descripcion" => "string",
+        ]);
+
+        $proveedor->update($valid);
+
+        session()->flash('status', [
+            'type' => 'success',
+            'message' => 'Datos de proveedor actualizados.'
+        ]);
     }
 
     /**
@@ -96,6 +111,6 @@ class ProveedoresController extends Controller
      */
     public function destroy(Proveedor $proveedor)
     {
-        //
+        $proveedor->delete();
     }
 }

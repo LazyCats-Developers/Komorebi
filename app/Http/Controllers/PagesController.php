@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Producto;
+use App\Models\Proveedor;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
@@ -63,6 +64,17 @@ class PagesController extends Controller
 
         return view("pages.inventories.index", [
             "productos" => $productos
+        ]);
+    }
+
+    public function provider()
+    {
+        $usuario = auth()->user();
+        $empresa = $usuario->empresas()->first();
+        $proveedores = Proveedor::query()->whereHas('transacciones', fn($query) => $query->where('empresa_id', $empresa->id))->get();
+
+        return view("pages.providers.index", [
+            "proveedores" => $proveedores
         ]);
     }
 

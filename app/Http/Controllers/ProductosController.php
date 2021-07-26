@@ -117,7 +117,7 @@ class ProductosController extends Controller
                 'message' => 'Ocurrio el siguiente error: ' . $exception->getMessage()
             ]);
         }
-        return redirect('/inventory');
+        return redirect()->route('inventory.index');
     }
 
     public function destroy(Producto $producto)
@@ -140,7 +140,7 @@ class ProductosController extends Controller
             ]);
         }
 
-        return redirect('/inventory');
+        return redirect()->route('inventory.index');
     }
 }
 

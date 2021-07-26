@@ -37,6 +37,7 @@ Route::middleware('auth')
         Route::get('/shopping', [PagesController::class, 'shopping']);
         Route::get('/newshop', [PagesController::class, 'newshop']);
         Route::get('/inventory', [PagesController::class, 'inventory'])->name('inventory.index');
+        Route::get('/provider', [PagesController::class, 'provider'])->name('provider.index');
         Route::get('/cashflow', [PagesController::class, 'cashflow']);
         Route::get('/modules', [PagesController::class, 'modules']);
 

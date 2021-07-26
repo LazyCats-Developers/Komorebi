@@ -11,17 +11,26 @@ class Transaccion extends Model
     protected $table="transacciones";
     public $timestamps = false;
 
-    public function producto() 
+    protected $fillable = [
+        'producto_id',
+        'proveedor_id',
+        'empresa_id',
+        'valor',
+        'cantidad',
+        'fecha',
+    ];
+
+    public function producto()
     {
         return $this->belongsTo(Producto::class);
     }
 
-    public function proveedor() 
+    public function proveedor()
     {
         return $this->belongsTo(Proveedor::class);
     }
 
-    public function empresa() 
+    public function empresa()
     {
         return $this->belongsTo(Empresa::class);
     }

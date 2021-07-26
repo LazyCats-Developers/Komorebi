@@ -57,7 +57,7 @@ class EmpresasController extends Controller
                 ]);
         }
 
-        return redirect('/main');
+        return redirect()->route('main');
     }
 
     public function show(Empresa $empresa)
@@ -93,7 +93,7 @@ class EmpresasController extends Controller
 
         $empresa->update($valid);
 
-        return redirect('/main')->with([
+        return redirect()->route('main')->with([
             'status' => [
                 'type' => 'success',
                 'message' => 'Empresa actualizada.'
