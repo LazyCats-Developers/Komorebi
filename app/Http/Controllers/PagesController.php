@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Inventario;
 use App\Models\Producto;
 use App\Models\Proveedor;
 use Illuminate\Support\Facades\Auth;
@@ -62,8 +63,13 @@ class PagesController extends Controller
         $empresa = $usuario->empresas()->first();
         $productos = Producto::query()->whereHas('inventarios', fn($query) => $query->where('empresa_id', $empresa->id))->get();
 
+        foreach ($productos as $producto){
+            $inventario = Inventario::query()->where('producto_id', $producto->id)->first('cantidad');
+            $producto ['cantidad'] = $inventario['cantidad'];
+        };
+
         return view("pages.inventories.index", [
-            "productos" => $productos
+            "productos" => $productos,
         ]);
     }
 
