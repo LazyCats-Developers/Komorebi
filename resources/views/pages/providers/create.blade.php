@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
+
     @if(session('status'))
         <div>
             {{ session('status')['message'] }}
