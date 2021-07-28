@@ -47,6 +47,9 @@
                     </div>
                 </div>
                 <div class="bg-white shadow-lg space-y-3 p-3 border-b">
+                    <a href="{{ url('provider') }}">Crear proovedor</a>
+                </div>
+                <div class="bg-white shadow-lg space-y-3 p-3 border-b">
                     <table class="w-full">
                         <thead>
                             <tr class="grid grid-cols-6 justify-items-center bg-gray-100 border rounded-t-3xl">

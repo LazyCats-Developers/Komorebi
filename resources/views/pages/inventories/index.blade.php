@@ -8,7 +8,7 @@
                 <div class="flex flex-col space-y-3 md:flex-row md:space-y-0 md:justify-between bg-gray-50 shadow-lg grid-col p-2 border-b md:rounded-t-3xl">
                     <p class="font-bold text-xl"><i class="fas fa-clipboard-list p-3 bg-white rounded-full border"></i> INVENTARIO</p>
                     <a href="{{route('productos.create')}}"
-                       class="flex justify-center w-full bg-gradient-to-r from-green-300 to-green-500 text-white text-md rounded-full hover:from-green-600 hover:to-green-600 focus:outline-none p-2 md:w-36 2xl:text-lg 2xl:w-44">
+                       class="flex justify-center w-full bg-gradient-to-r from-green-300 to-green-500 text-white text-lg rounded-full hover:from-green-600 hover:to-green-600 focus:outline-none p-2 md:w-36 2xl:text-xl 2xl:w-44">
                         Crear item
                     </a>
                 </div>
