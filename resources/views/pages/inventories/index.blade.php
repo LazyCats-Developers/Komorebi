@@ -8,68 +8,68 @@
                 <div class="flex flex-col space-y-3 md:flex-row md:space-y-0 md:justify-between bg-gray-50 shadow-lg grid-col p-2 border-b md:rounded-t-3xl">
                     <p class="font-bold text-xl"><i class="fas fa-clipboard-list p-3 bg-white rounded-full border"></i> INVENTARIO</p>
                     <a href="{{route('productos.create')}}"
-                       class="flex justify-center w-full bg-gradient-to-r from-green-300 to-green-500 text-white text-lg rounded-full hover:from-green-600 hover:to-green-600 focus:outline-none p-2 md:w-36 2xl:text-xl 2xl:w-44">
+                       class="flex justify-center w-full bg-gradient-to-r from-green-300 to-green-500 text-white text-2xl p-2 rounded-full hover:from-green-600 hover:to-green-600 focus:outline-none md:text-xl md:w-36 2xl:w-44 2xl:text-xl">
                         Crear item
                     </a>
                 </div>
                 <div class="bg-white shadow-lg flex flex-col space-y-3 pt-3 px-3 md:space-y-0 md:flex-row md:justify-between">
                     <div class="flex flex-col space-y-3 md:flex-row md:space-y-0">
-                        <input type="text" placeholder="Codigo item" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 text-md md:rounded-l-full md:w-36 2xl:text-lg 2xl:w-40">
-                        <button class="bg-blue-400 w-full text-white p-3 rounded-3xl md:rounded-r-full md:w-32 text-md hover:bg-blue-500 2xl:text-lg 2xl:w-40">
+                        <input type="text" placeholder="Codigo item" class="w-full placeholder-gray-400 text-xl px-5 py-3 border border-gray-300 md:w-36 md:text-base md:rounded-l-full 2xl:w-40 2xl:text-xl">
+                        <button class="bg-blue-400 w-full text-white text-2xl p-3 rounded-3xl md:text-base md:rounded-r-full md:w-36 hover:bg-blue-500 2xl:w-40 2xl:text-xl">
                             Buscar item
                         </button>
                     </div>
                     <div class="flex flex-row">
-                        <button class="w-full bg-blue-400 text-white py-3 px-5 rounded-l-full text-md hover:bg-blue-500 md:w-20 2xl:text-lg 2xl:w-24">
+                        <button class="w-full bg-blue-400 text-white text-2xl py-3 px-5 rounded-l-full hover:bg-blue-500 md:w-20 md:text-base 2xl:w-24 2xl:text-xl">
                             Semana
                         </button>
-                        <button class="w-full bg-blue-400 text-white py-3 px-5 text-md hover:bg-blue-500 md:w-20 2xl:text-lg 2xl:w-24">
+                        <button class="w-full bg-blue-400 text-white text-2xl py-3 px-5 hover:bg-blue-500 md:text-base md:w-20 md:text-base 2xl:w-24 2xl:text-xl">
                             Mes
                         </button>
-                        <button class="w-full bg-blue-400 text-white py-3 px-5 rounded-r-full text-md hover:bg-blue-500 md:w-20 2xl:text-lg 2xl:w-24">
+                        <button class="w-full bg-blue-400 text-white text-2xl py-3 px-5 rounded-r-full hover:bg-blue-500 md:w-20 md:text-base 2xl:w-24 2xl:text-xl">
                             Año
                         </button>
                     </div>
                 </div>
                 <div class="bg-white shadow-lg flex flex-col space-y-3 pt-3 px-3 md:space-y-0 md:flex-row md:justify-between">
                     <div class="flex flex-col space-y-3 md:flex-row md:space-y-0">
-                        <input type="text" placeholder="Nombre item" class="w-full placeholder-gray-400 px-5 py-3 border border-gray-300 text-md md:rounded-l-full md:w-36 2xl:text-lg 2xl:w-40" disabled>
-                        <input type="text" placeholder="Marca item" class="w-full placeholder-gray-400 px-5 py-3 border border-gray-300 text-md md:w-32 2xl:text-xl 2xl:w-40" disabled>
-                        <input type="text" placeholder="Cantidad" class="w-full placeholder-gray-400 px-5 py-3 border border-gray-300 text-md md:rounded-r-full md:w-28 2xl:text-xl 2xl:w-32" disabled>
+                        <input type="text" placeholder="Nombre item" class="w-full placeholder-gray-400 text-xl px-5 py-3 border border-gray-300 md:w-36 md:text-base md:rounded-l-full 2xl:w-40 2xl:text-xl" disabled>
+                        <input type="text" placeholder="Marca item" class="w-full placeholder-gray-400 text-xl px-5 py-3 border border-gray-300 md:w-36 md:text-base 2xl:w-40 2xl:text-xl" disabled>
+                        <input type="text" placeholder="Cantidad" class="w-full placeholder-gray-400 text-xl px-5 py-3 border border-gray-300 md:w-36 md:text-base md:rounded-r-full 2xl:w-40 2xl:text-xl" disabled>
                     </div>
                     <div class="flex flex-row">
-                        <button class="w-full bg-blue-400 text-white py-3 px-6 rounded-full text-md hover:bg-blue-500 md:w-36 2xl:text-xl 2xl:w-44">
+                        <button class="w-full bg-blue-400 text-white text-2xl py-3 px-5 rounded-full hover:bg-blue-500 md:w-36 md:text-base 2xl:w-44 2xl:text-xl">
                             Detalles item
                         </button>
                     </div>
                 </div>
-                <div class="bg-white shadow-lg space-y-3 p-3 border-b">
+
+                <div class="bg-white shadow-lg p-3 border-b">
                     <table class="w-full">
                         <thead>
-                        <tr class="grid grid-cols-7 justify-items-center bg-gray-100 border rounded-t-3xl text-xs lg:text-sm 2xl:text-lg">
-                            <th>Codigo</th>
+                        <tr class="grid grid-cols-5 md:grid-cols-7 bg-gray-200 border rounded-t-md md:rounded-t-xl text-base 2xl:text-xl">
+                            <th>Código</th>
                             <th>Nombre</th>
                             <th>Marca</th>
-                            <th>Descripcion</th>
-                            <th>Unidad</th>
-                            <th>Editar</th>
-                            <th>Eliminar</th>
+                            <th><p class="md:hidden">Cant</p><p class="hidden md:block">Cantidad</p></th>
+                            <th class="hidden md:block">Medida</th>
+                            <th class="hidden md:block">Descipcion</th>
+                            <th>Opcion</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr class="grid grid-cols-7 justify-items-center border rounded-b-3xl text-xs lg:text-sm 2xl:text-lg">
+                        <tr class="grid grid-cols-5 md:grid-cols-7 border rounded-b-md md:rounded-b-xl text-base 2xl:text-xl">
                             @foreach($productos as $producto)
-                                <td>{{$producto->codigo}}</td>
-                                <td>{{$producto->nombre}}</td>
-                                <td>{{$producto->marca}}</td>
-                                <td>{{$producto->descripcion}}</td>
-                                <td>{{$producto->unidad_id}}</td>
-                                <td>
+                                <td class="text-center">{{$producto->codigo}}</td>
+                                <td class="text-center">{{$producto->nombre}}</td>
+                                <td class="text-center">{{$producto->marca}}</td>
+                                <td class="text-center">{{$producto->cantidad}}</td>
+                                <td class="hidden md:block text-center">{{$producto->unidad_id}}</td>
+                                <td class="hidden md:block text-center">{{$producto->descripcion}}</td>
+                                <td class="flex justify-around">
                                     <a class="btn btn-warning" href="{{ route("productos.edit", $producto) }}">
                                         <i class="fa fa-edit"></i>
                                     </a>
-                                </td>
-                                <td>
                                     <form action="{{route("productos.destroy", $producto)}}" method="post">
                                         @method("delete")
                                         @csrf
@@ -77,8 +77,9 @@
                                             <i class="fa fa-trash"></i>
                                         </button>
                                     </form>
-                                </td>
-                            @endforeach
+
+                                </td class="text-center">
+                                @endforeach
                         </tr>
                         </tbody>
                     </table>
