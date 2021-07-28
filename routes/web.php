@@ -6,6 +6,7 @@ use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\TipoProductosController;
 use App\Http\Controllers\UsuariosController;
+use App\Http\Controllers\ProveedoresController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Auth\RegisteredUserController;
@@ -54,3 +55,4 @@ Route::resource("empresas", EmpresasController::class)->parameters(["empresas" =
 Route::resource("productos", ProductosController::class)->parameters(["productos" => "producto"]);
 Route::resource("tipoproductos", TipoProductosController::class)->parameters(["tipoproductos" => "tipoproducto"]);
 Route::resource('empresas.colaboradores', ColaboradoresController::class)->parameters(['colaboradores' => 'colaborador']);
+Route::resource('proveedores', ProveedoresController::class)->parameters(['proveedores' => 'proveedor']);

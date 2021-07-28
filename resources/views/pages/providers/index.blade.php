@@ -26,8 +26,8 @@
                 </a>
             </div>
             <div class="bg-white  shadow-lg flex flex-col">
-                <button>Crear proovedor</button>
-                <button>Editar proovedor</button>
+                <a href="{{route('proveedores.create')}}">Crear proovedor</a>
+                <a href="{{route('proveedores.edit', $proveedores)}}">Editar proovedor</a>
             </div>
             <div class="bg-gray-50 shadow-lg p-2 md:rounded-b-3xl">
                 <p class="text-center text-gray-400">Komorebi</p>

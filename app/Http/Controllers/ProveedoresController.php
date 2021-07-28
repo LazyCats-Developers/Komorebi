@@ -73,7 +73,7 @@ class ProveedoresController extends Controller
      */
     public function edit(Proveedor $proveedor)
     {
-        //
+        return view('pages.providers.edit');
     }
 
     /**
