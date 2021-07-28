@@ -6,72 +6,68 @@
             <div class="w-full max-w-7xl">
                 <div class="flex flex-col space-y-3 md:flex-row md:space-y-0 md:justify-between bg-gray-50 shadow-lg grid-col p-2 border-b md:rounded-t-3xl">
                     <p class="font-bold text-xl"><i class="fas fa-cash-register p-3 bg-white rounded-full border"></i> VENTAS</p>
-                    <a href="{{ url('newsales') }}" class="flex justify-center w-full bg-gradient-to-r from-green-300 to-green-500 text-white text-xl hover:from-green-600 hover:to-green-600 focus:outline-none  p-2 rounded-full hover:bg-green-600 md:w-72">
+                    <a href="{{ url('newsales') }}" class="flex justify-center w-full bg-gradient-to-r from-green-300 to-green-500 text-white text-2xl p-2 rounded-full hover:from-green-600 hover:to-green-600 focus:outline-none md:text-xl md:w-40 2xl:w-44 2xl:text-xl">
                         Nueva venta
                     </a>
                 </div>
                 <div class="bg-white shadow-lg flex flex-col space-y-3 pt-3 px-3 md:space-y-0 md:flex-row md:justify-between">
                     <div class="flex flex-col space-y-3 md:flex-row md:space-y-0">
-                        <input type="text" placeholder="Codigo item" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-l-full md:w-64">
-                        <button class="bg-blue-400 w-full text-white p-3 rounded-3xl md:rounded-r-full md:w-36 hover:bg-blue-500">
+                        <input type="text" placeholder="Codigo item" class="w-full placeholder-gray-400 text-xl px-5 py-3 border border-gray-300 md:w-36 md:text-base md:rounded-l-full 2xl:w-40 2xl:text-xl">
+                        <button class="bg-blue-400 w-full text-white text-2xl p-3 rounded-3xl md:text-base md:rounded-r-full md:w-36 hover:bg-blue-500 2xl:w-40 2xl:text-xl">
                             Buscar item
                         </button>
                     </div>
+                    <!-- busqueda y filtros -->
                     <div class="flex flex-row">
-                        <button class="w-full bg-blue-400 text-white py-3 px-6 rounded-l-full md:w-24 hover:bg-blue-500">
+                        <button class="w-full bg-blue-400 text-white text-2xl py-3 px-5 rounded-l-full hover:bg-blue-500 md:w-20 md:text-base 2xl:w-24 2xl:text-xl">
                             Semana
                         </button>
-                        <button class="w-full bg-blue-400 text-white py-3 px-6 md:w-24 hover:bg-blue-500">
+                        <button class="w-full bg-blue-400 text-white text-2xl py-3 px-5 hover:bg-blue-500 md:text-base md:w-20 md:text-base 2xl:w-24 2xl:text-xl">
                             Mes
                         </button>
-                        <button class="w-full bg-blue-400 text-white py-3 px-6 rounded-r-full  md:w-24 hover:bg-blue-500">
+                        <button class="w-full bg-blue-400 text-white text-2xl py-3 px-5 rounded-r-full hover:bg-blue-500 md:w-20 md:text-base 2xl:w-24 2xl:text-xl">
                             Año
                         </button>
                     </div>
                 </div>
-                <div class="bg-white shadow-lg space-y-3 p-3 border-b">
+                <!-- tabla de datos -->
+                <div class="bg-white shadow-lg p-3 border-b">
                     <table class="w-full">
                         <thead>
-                            <tr class="grid grid-cols-6 justify-items-center bg-gray-100 border rounded-t-3xl">
-                                <th>ID</th>
-                                <th>Fecha</th>
-                                <th>Hora</th>
-                                <th>Valor</th>
-                                <th>Vendedor</th>
-                                <th>Tipo</th>
-                            </tr>
+                        <tr class="grid grid-cols-5 md:grid-cols-7 bg-gray-200 border rounded-t-md md:rounded-t-xl text-base 2xl:text-xl">
+                            <th>Código</th>
+                            <th>Nombre</th>
+                            <th>Marca</th>
+                            <th><p class="md:hidden">Cant</p><p class="hidden md:block">Cantidad</p></th>
+                            <th class="hidden md:block">Medida</th>
+                            <th class="hidden md:block">Descipcion</th>
+                            <th>Opcion</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr class="grid grid-cols-6 justify-items-center border rounded-b-3xl">
-                                <td>1111111</td>
-                                <td>01/01/0001</td>
-                                <td>01:01</td>
-                                <td>1000</td>
-                                <td>Yisus</td>
-                                <td>Factura</td>
+                        <tr class="grid grid-cols-5 md:grid-cols-7 border rounded-b-md md:rounded-b-xl text-base 2xl:text-xl">
+                                <!-- en esta linea va el foreach -->
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="hidden md:block text-center"></td>
+                                <td class="hidden md:block text-center"></td>
+                                <td class="flex justify-around">
+                                    <a class="btn btn-warning" href="">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <form action="" method="post">
+                                        @method("delete")
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </form>
 
-                                <td>1111111</td>
-                                <td>01/01/0001</td>
-                                <td>01:01</td>
-                                <td>1000</td>
-                                <td>Yisus</td>
-                                <td>Factura</td>
-
-                                <td>1111111</td>
-                                <td>01/01/0001</td>
-                                <td>01:01</td>
-                                <td>1000</td>
-                                <td>Yisus</td>
-                                <td>Factura</td>
-
-                                <td>1111111</td>
-                                <td>01/01/0001</td>
-                                <td>01:01</td>
-                                <td>1000</td>
-                                <td>Yisus</td>
-                                <td>Factura</td>
-
-                            </tr>
+                                </td class="text-center">
+                                <!-- en esta linea va el endforeach -->
+                        </tr>
                         </tbody>
                     </table>
                 </div>
