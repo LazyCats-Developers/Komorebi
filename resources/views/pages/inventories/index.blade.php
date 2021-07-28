@@ -64,7 +64,7 @@
                                 <td class="text-center">{{$producto->nombre}}</td>
                                 <td class="text-center">{{$producto->marca}}</td>
                                 <td class="text-center">{{$producto->cantidad}}</td>
-                                <td class="hidden md:block text-center">{{$producto->unidad_id}}</td>
+                                <td class="hidden md:block text-center">{{$producto->unidad}}</td>
                                 <td class="hidden md:block text-center">{{$producto->descripcion}}</td>
                                 <td class="flex justify-around">
                                     <a class="btn btn-warning" href="{{ route("productos.edit", $producto) }}">
