@@ -9,7 +9,7 @@
       <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
 
         <div class="ml-3 relative">
-          <div class="invisible">
+          <div >
             <button class="text-xl text-white px-4 py-2 focus:outline-none"
             id="notificationsBtn"><i class="far fa-bell"></i></button>
           </div>

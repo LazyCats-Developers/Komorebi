@@ -8,7 +8,9 @@ use App\Models\TipoProducto;
 use App\Models\Unidad;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use App\Models\Product_Notification;
+use App\Events\Product_NotificacionEvent;
+use App\Http\Controllers\Product_NotificationController;
 class ProductosController extends Controller
 {
     public function index()
@@ -44,7 +46,12 @@ class ProductosController extends Controller
         try {
             $producto = Producto::query()->create($valid['producto']);
             $producto->inventarios()->create($valid['inventario']);
+            $prono=new Product_NotificationController();
+
+            $prono->store('Producto creado','Producto  fue creado exitosamente');    
+
             DB::commit();
+            
         } catch (\Exception $exception) {
             report($exception);
             DB::rollBack();
@@ -56,6 +63,8 @@ class ProductosController extends Controller
                     'message' => 'Ocurrio el siguiente error: ' . $exception->getMessage()
                 ]);
         }
+
+        
 
         return redirect()->route('inventory.index');
     }

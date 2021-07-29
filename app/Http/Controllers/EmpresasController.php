@@ -34,7 +34,7 @@ class EmpresasController extends Controller
             "email" => "string|max:255",
             "rut" => "string|max:255",
             "descripcion" => "string|max:255",
-            "empresa_rrss" => "string|max:255",
+            "empresa_rrss" => "string|max:255"
         ]);
 
         DB::beginTransaction();
@@ -88,7 +88,7 @@ class EmpresasController extends Controller
             "email" => "string|max:255",
             "rut" => "string|max:255",
             "descripcion" => "string|max:255",
-            "empresa_rrss" => "string|max:255",
+            "empresa_rrss" => "string|max:255"
         ]);
 
         $empresa->update($valid);

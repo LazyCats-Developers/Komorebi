@@ -40,17 +40,23 @@ Route::middleware('auth')
         Route::get('/provider', [PagesController::class, 'provider'])->name('provider.index');
         Route::get('/cashflow', [PagesController::class, 'cashflow']);
         Route::get('/modules', [PagesController::class, 'modules']);
-
         Route::get('/profile', [PagesController::class, 'profile'])->name('profile');
+
+        
         Route::post('/profile/update', [UsuariosController::class, 'update'])->name('profile.update');
         Route::post('/profile/change-avatar', [UsuariosController::class, 'update_avatar'])->name('profile.change-avatar');
+
+
+        Route::resource('product_notification','Product_NotificationController');
+        Route::resource("empresas", EmpresasController::class)->parameters(["empresas" => "empresa"]);
+        Route::resource("productos", ProductosController::class)->parameters(["productos" => "producto"]);
+        Route::resource("tipoproductos", TipoProductosController::class)->parameters(["tipoproductos" => "tipoproducto"]);
+        Route::resource('empresas.colaboradores', ColaboradoresController::class)->parameters(['colaboradores' => 'colaborador']);
     });
 
 require __DIR__ . '/auth.php';
 
 Route::get('main', [PagesController::class, 'main'])->name('main');
 
-Route::resource("empresas", EmpresasController::class)->parameters(["empresas" => "empresa"]);
-Route::resource("productos", ProductosController::class)->parameters(["productos" => "producto"]);
-Route::resource("tipoproductos", TipoProductosController::class)->parameters(["tipoproductos" => "tipoproducto"]);
-Route::resource('empresas.colaboradores', ColaboradoresController::class)->parameters(['colaboradores' => 'colaborador']);
+
+

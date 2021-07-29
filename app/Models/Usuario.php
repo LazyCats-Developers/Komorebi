@@ -73,4 +73,8 @@ class Usuario extends Authenticatable
 
         return Storage::disk('public')->url($this->avatar);
     }
+
+    public function product_notifications(){
+        return $this->hasMany(Product_Notifications::class);
+    }
 }
