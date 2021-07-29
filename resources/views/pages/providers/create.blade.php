@@ -22,20 +22,12 @@
         <div class="w-full max-w-7xl">
             <div class="flex flex-col space-y-3 md:flex-row md:space-y-0 md:justify-between bg-gray-50 shadow-lg grid-col p-2 border-b md:rounded-t-3xl">
                 <p class="font-bold text-xl"><i class="fas fa-user-edit p-3 bg-white rounded-full border"></i> CREACION DE PROVEEDOR</p>
-                <a href="" class="flex justify-center w-full bg-gradient-to-r from-green-300 to-green-500 text-white text-xl hover:from-green-600 hover:to-green-600 focus:outline-none  p-2 rounded-full hover:bg-green-600 md:w-72 invisible">
-                    Actualizar datos
-                </a>
             </div>
             <div class="bg-white flex flex-col md:flex-row">
-                <div class="w-96 p-3 py-5">
-                    <form enctype="multipart/form-data" action="" method="POST">
-                    @csrf
+                <div class="w-96 p-3 py-5 hidden md:block">
                         <div class="flex flex-col space-y-3 items-center">
-                            <img class="w-60 rounded-full" src="{{ auth()->user()->avatar_url }}">
-                            <input class="bg-gray-100 w-60" type="file" name="avatar">
-                            <input class="w-full bg-blue-400 text-white py-3 px-6 rounded-full  md:w-52 hover:bg-blue-500" type="submit">
+                            <img class="w-60 rounded-full" src="../img/default.jpg">
                         </div>
-                    </form>
                 </div>
                 <div class="w-full">
                     <form action="" method="POST">
