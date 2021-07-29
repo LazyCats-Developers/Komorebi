@@ -23,7 +23,7 @@ class Product_NotificationListener
     /**
      * Handle the event.
      *
-     * @param  object  $event
+     * @param object $event
      * @return void
      */
     public function handle($event)
@@ -31,8 +31,8 @@ class Product_NotificationListener
         $usuario = auth()->user();
         $empresa = $usuario->empresas()->firstOrFail();
 
-        
-        Notification::send(Usuario::query()->whereHas('colaboradores',fn($query) =>$query->where('empresa_id',$empresa->id))->get()
-        , new Product_Notification($event->pron));
+
+        $usuarios = Usuario::query()->whereHas('colaboradores', fn($query) => $query->where('empresa_id', $empresa->id))->get();
+        Notification::send($usuarios, new Product_Notification($event->pron));
     }
 }

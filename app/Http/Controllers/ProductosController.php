@@ -6,11 +6,14 @@ use App\Models\Inventario;
 use App\Models\Producto;
 use App\Models\TipoProducto;
 use App\Models\Unidad;
+use App\Models\Usuario;
+use App\Notifications\ProductoActualizado;
+use App\Notifications\ProductoCreado;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Facades\DB;
-use App\Models\Product_Notification;
-use App\Events\Product_NotificacionEvent;
-use App\Http\Controllers\Product_NotificationController;
+use Illuminate\Support\Facades\Notification;
+
 class ProductosController extends Controller
 {
     public function index()
@@ -46,12 +49,8 @@ class ProductosController extends Controller
         try {
             $producto = Producto::query()->create($valid['producto']);
             $producto->inventarios()->create($valid['inventario']);
-            $prono=new Product_NotificationController();
-
-            $prono->store('Producto creado','Producto  fue creado exitosamente');    
 
             DB::commit();
-            
         } catch (\Exception $exception) {
             report($exception);
             DB::rollBack();
@@ -64,7 +63,9 @@ class ProductosController extends Controller
                 ]);
         }
 
-        
+        // Notificar usuarios de la creación
+        $usuarios = Usuario::query()->whereHas('colaboradores', fn($query) => $query->where('empresa_id', $empresa->id))->get();
+        Notification::send($usuarios, new ProductoCreado());
 
         return redirect()->route('inventory.index');
     }
@@ -113,6 +114,10 @@ class ProductosController extends Controller
             "inventario.costo_unitario" => "numeric",
             "inventario.tipo_producto_id" => "required|numeric|min:1",
         ]);
+
+        $usuario = auth()->user();
+        $empresa = $usuario->empresas()->firstOrFail();
+
         DB::beginTransaction();
         try {
             $producto->update($valid['producto']);
@@ -126,6 +131,11 @@ class ProductosController extends Controller
                 'message' => 'Ocurrio el siguiente error: ' . $exception->getMessage()
             ]);
         }
+
+        // Notificar usuarios de la actualización
+        $usuarios = Usuario::query()->whereHas('colaboradores', fn($query) => $query->where('empresa_id', $empresa->id))->get();
+        Notification::send($usuarios, new ProductoActualizado());
+
         return redirect()->route('inventory.index');
     }
 
