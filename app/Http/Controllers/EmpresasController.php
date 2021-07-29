@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Empresa;
+use App\Repositories\EmpresasRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -65,21 +66,14 @@ class EmpresasController extends Controller
         //
     }
 
-    public function showAll()
-    {
-        $usuario = auth()->user();
-        $empresas = $usuario->empresas()->get();
-        return $empresas;
-    }
-
     public function edit(Empresa $empresa)
     {
         //
     }
 
-    public function update(Request $request)
+    public function update(Request $request, EmpresasRepository $empresa)
     {
-        $empresa = auth()->user()->empresas()->firstOrFail();
+        $empresa = $empresa->getEmpresa();
 
         $valid = $this->validate($request, [
             "nombre" => "required|string|max:255",

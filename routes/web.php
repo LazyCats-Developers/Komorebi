@@ -38,9 +38,11 @@ Route::middleware('auth')
         Route::get('/shopping', [PagesController::class, 'shopping']);
         Route::get('/newshop', [PagesController::class, 'newshop']);
         Route::get('/inventory', [PagesController::class, 'inventory'])->name('inventory.index');
-        Route::get('/provider', [PagesController::class, 'provider'])->name('provider.index');
         Route::get('/cashflow', [PagesController::class, 'cashflow']);
         Route::get('/modules', [PagesController::class, 'modules']);
+
+        Route::get('/provider', [PagesController::class, 'provider'])->name('provider.index');
+        Route::post('/provider/create', [ProveedoresController::class, 'store'])->name('provider.create');
 
         Route::get('/profile', [PagesController::class, 'profile'])->name('profile');
         Route::post('/profile/update', [UsuariosController::class, 'update'])->name('profile.update');

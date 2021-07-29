@@ -6,6 +6,8 @@ use App\Models\Inventario;
 use App\Models\Producto;
 use App\Models\Proveedor;
 use App\Models\Unidad;
+use App\Repositories\EmpresasRepository;
+use App\Repositories\ProductosRepository;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
@@ -58,11 +60,10 @@ class PagesController extends Controller
 
     }
 
-    public function inventory()
+    public function inventory(ProductosRepository $productos)
     {
-        $usuario = auth()->user();
-        $empresa = $usuario->empresas()->first();
-        $productos = Producto::query()->whereHas('inventarios', fn($query) => $query->where('empresa_id', $empresa->id))->get();
+
+        $productos = $productos->getProducts();
 
         foreach ($productos as $producto){
             $inventario = Inventario::query()
@@ -82,10 +83,9 @@ class PagesController extends Controller
         ]);
     }
 
-    public function provider()
+    public function provider(EmpresasRepository $empresa)
     {
-        $usuario = auth()->user();
-        $empresa = $usuario->empresas()->first();
+        $empresa = $empresa->getEmpresa();
         $proveedores = Proveedor::query()->whereHas('transacciones', fn($query) => $query->where('empresa_id', $empresa->id))->get();
 
         return view("pages.providers.index", [

@@ -38,29 +38,35 @@
                     </form>
                 </div>
                 <div class="w-full">
-                    <form action="" method="POST">
+                    <form action="{{ route('proveedores.store')}}" method="POST">
                     @csrf
                         <div class="flex-col p-3">
                             <p>Datos personales</p>
                         </div>
                         <div class="flex flex-col space-y-3 md:flex-row md:space-y-0 md:space-x-5 p-3">
-                            <input type="text" id="nombre" name="nombre" placeholder="Nombre proveedor" class="border border-gray w-full rounded-md py-3 px-4">
-                            <input type="text" id="rut" name="rut" placeholder="Rut proveedor" class="border border-gray w-full rounded-md py-3 px-4">
+                            <input type="text" name="proveedor[nombre]" placeholder="Nombre proveedor" class="border border-gray w-full rounded-md py-3 px-4">
+                            <input type="text" name="proveedor[rut]" placeholder="Rut proveedor" class="border border-gray w-full rounded-md py-3 px-4">
                         </div>
                         <div class="flex-col px-3 pt-3">
                             <p>Datos de Contactos</p>
                         </div>
                         <div class="flex flex-col space-y-3 md:flex-row md:space-y-0 md:space-x-5 p-3">
-                            <input type="text" id="email" name="email" placeholder="E-Mail proveedor" class="border border-gray w-full rounded-md py-3 px-4">
-                            <input type="text" id="telefono" name="telefono" placeholder="Telefono proveedor" class="border border-gray w-full rounded-md py-3 px-4">
+                            <input type="text" name="proveedor[email]" placeholder="E-Mail proveedor" class="border border-gray w-full rounded-md py-3 px-4">
+                            <input type="number" name="proveedor[telefono]" placeholder="Telefono proveedor" class="border border-gray w-full rounded-md py-3 px-4">
                         </div>
                         <div class="flex flex-col space-y-3 md:flex-row md:space-y-0 md:space-x-5 p-3">
-                            <input type="text" id="direccion" name="direccion" placeholder="Direccion proveedor" class="border border-gray w-full rounded-md py-3 px-4">
-                            <input type="text" id="empresa_rrss" name="empresa_rrss" placeholder="RRSS proveedor" class="border border-gray w-full rounded-md py-3 px-4">
+                            <input type="text" name="proveedor[direccion]" placeholder="Direccion proveedor" class="border border-gray w-full rounded-md py-3 px-4">
+                            <input type="text" name="proveedor[proveedor_rrss]" placeholder="RRSS proveedor" class="border border-gray w-full rounded-md py-3 px-4">
                         </div>
                         <div class="flex flex-col space-y-3 p-3">
-                            <input type="text" id="descripcion" name="descripcion" placeholder="Descripcion proveedor" class="border border-gray w-full rounded-md py-3 px-4">
+                            <input type="text" name="proveedor[descripcion]" placeholder="Descripcion proveedor" class="border border-gray w-full rounded-md py-3 px-4">
                         </div>
+                        <select name="transaccion[producto_id]" placeholder="producto" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full" required>
+                            <option value="" selected>-- Elegir producto --</option>
+                            @foreach ($productos as $producto)
+                                <option value="{{$producto->id}}">{{$producto->nombre}}</option>
+                            @endforeach
+                        </select>
                         <div class="flex flex-col space-y-3 p-3 items-center">
                             <button type="submit" class="w-full bg-blue-400 text-white py-3 px-6 rounded-full  md:w-52 hover:bg-blue-500">
                                 Actualizar datos

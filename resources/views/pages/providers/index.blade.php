@@ -41,15 +41,16 @@
                     </thead>
                     <tbody>
                     <tr class="grid grid-cols-5 md:grid-cols-7 border rounded-b-md md:rounded-b-xl text-base 2xl:text-xl">
-                            <!-- en esta linea va el foreach -->
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="hidden md:block text-center"></td>
-                            <td class="hidden md:block text-center"></td>
+                        @foreach ($proveedores as $proveedor)
+
+                            <td class="text-center">{{$proveedor->nombre}}</td>
+                            <td class="text-center">{{$proveedor->rut}}</td>
+                            <td class="text-center">{{$proveedor->email}}</td>
+                            <td class="text-center">{{$proveedor->telefono}}</td>
+                            <td class="hidden md:block text-center">{{$proveedor->proveedor_rrss}}</td>
+                            <td class="hidden md:block text-center">{{$proveedor->descripcion}}</td>
                             <td class="flex justify-around">
-                                <a class="btn btn-warning" href="{{route('proveedores.edit', $proveedores)}}">
+                                <a class="btn btn-warning" href="{{route('proveedores.edit', $proveedor)}}">
                                     <i class="fa fa-edit"></i>
                                 </a>
                                 <form action="" method="post">
@@ -61,7 +62,8 @@
                                 </form>
 
                             </td class="text-center">
-                            <!-- en esta linea va el endforeach -->
+
+                        @endforeach
                     </tr>
                     </tbody>
                 </table>

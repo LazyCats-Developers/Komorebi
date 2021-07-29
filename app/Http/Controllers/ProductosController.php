@@ -6,6 +6,7 @@ use App\Models\Inventario;
 use App\Models\Producto;
 use App\Models\TipoProducto;
 use App\Models\Unidad;
+use App\Repositories\EmpresasRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -21,7 +22,7 @@ class ProductosController extends Controller
         return view("pages.inventories.create", ["tipoproductos" => TipoProducto::all(), "unidades" => Unidad::all()]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request, EmpresasRepository $empresa)
     {
         $valid = $this->validate($request, [
             "producto.nombre" => "required|string|max:255",
@@ -35,8 +36,7 @@ class ProductosController extends Controller
             "inventario.tipo_producto_id" => "required|numeric|min:1",
         ]);
 
-        $usuario = auth()->user();
-        $empresa = $usuario->empresas()->firstOrFail();
+        $empresa = $empresa->getEmpresa();
 
         $valid['inventario']['empresa_id'] = $empresa->id;
 
@@ -69,15 +69,6 @@ class ProductosController extends Controller
     public function show(Producto $producto)
     {
         //
-    }
-
-    public function showAll()
-    {
-        $usuario = auth()->user();
-        $em = $usuario->empresas()->first();
-        $productos = Inventario::query()->where('empresa_id', $em->id)->get();
-
-        return $productos;
     }
 
     public function edit(Producto $producto)
