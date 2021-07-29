@@ -26,7 +26,7 @@
             <div class="bg-white flex flex-col md:flex-row">
                 <div class="w-96 p-3 py-5 hidden md:block">
                         <div class="flex flex-col space-y-3 items-center">
-                            <img class="w-60 rounded-full" src="../img/default.jpg">
+                            <img class="w-60 border rounded-md" src="/img/provider.png">
                         </div>
                 </div>
                 <div class="w-full">
@@ -60,12 +60,6 @@
                         </div>
                     </form>
                 </div>
-            </div>
-            <div class="bg-white shadow-lg flex flex-col space-y-3 pt-3 px-3 md:space-y-0 md:flex-row md:justify-between">
-            </div>
-            <div class="bg-white shadow-lg space-y-3 p-3 border-b">
-
-
             </div>
             <div class="bg-gray-50 shadow-lg p-2 md:rounded-b-3xl">
                 <p class="text-center text-gray-400">Komorebi</p>
