@@ -14,6 +14,7 @@ class AlterProductosTable extends Migration
     public function up()
     {
         Schema::table('productos', function(Blueprint $table){
+            $table->string('codigo');
             $table->unsignedBigInteger('unidad_id')->nullable();
             $table->dropColumn('unidad');
             $table->foreign('unidad_id')->references('id')->on('unidades');
@@ -28,6 +29,7 @@ class AlterProductosTable extends Migration
     public function down()
     {
         Schema::table('productos', function(Blueprint $table){
+            $table->dropColumn('codigo');
             $table->dropForeign(['unidad_id']);
             $table->string('unidad');
             $table->dropColumn('unidad_id');

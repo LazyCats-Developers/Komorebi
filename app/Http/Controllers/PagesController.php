@@ -39,7 +39,7 @@ class PagesController extends Controller
         return view('pages.profile', array('user' => Auth::user()));
     }
 
-    public function sales()
+    public function sales(ProductosRepository $productos)
     {
         return view('pages.sales');
     }
@@ -49,9 +49,31 @@ class PagesController extends Controller
         return view('pages.newsales');
     }
 
-    public function shopping()
+    public function shopping(ProductosRepository $productos)
     {
-        return view('pages.shopping');
+        $productos = $productos->getProducts();
+
+        foreach ($productos as $producto){
+            $inventario = Inventario::query()
+            ->where('producto_id', $producto->id)
+                ->first();
+
+                //si, cambiar esta wea, son las 7AM y mi mente esta hecha paté, chupenlo
+            if($inventario->tipo_producto_id == 1|| $inventario->tipo_producto_id == 3){
+                $unidad = Unidad::query()
+                ->where('id', $producto->unidad_id)
+                    ->first('nombre');
+
+                    $producto ['cantidad'] = $inventario['cantidad'];
+                    $producto ['unidad'] = $unidad['nombre'];
+
+                $insumo = $producto;
+            };
+        };
+
+        return view("pages.shopping", [
+            "productos" => $insumo,
+        ]);
     }
 
     public function newshop()

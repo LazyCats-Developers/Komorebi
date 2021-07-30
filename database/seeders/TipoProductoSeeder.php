@@ -17,6 +17,7 @@ class TipoProductoSeeder extends Seeder
         $tipo = [
             ['nombre' => 'Insumo', 'descripcion' => 'Insumo usado en la creacion de productos'],
             ['nombre' => 'Producto', 'descripcion' => 'Producto en venta'],
+            ['nombre' => 'Ambos', 'descripcion' => 'Item que es tanto insumo como producto de venta'],
         ];
 
         TipoProducto::query()->insert($tipo);
