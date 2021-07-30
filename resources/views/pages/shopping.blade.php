@@ -46,18 +46,18 @@
                         </thead>
                         <tbody>
                         <tr class="grid grid-cols-5 md:grid-cols-7 border rounded-b-md md:rounded-b-xl text-base 2xl:text-xl">
-                                <!-- en esta linea va el foreach -->
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-                                <td class="hidden md:block text-center"></td>
-                                <td class="hidden md:block text-center"></td>
+                        @foreach($productos as $producto)
+                                <td class="text-center">{{$producto->codigo}}</td>
+                                <td class="text-center">{{$producto->nombre}}</td>
+                                <td class="text-center">{{$producto->marca}}</td>
+                                <td class="text-center">{{$producto->cantidad}}</td>
+                                <td class="hidden md:block text-center">{{$producto->unidad}}</td>
+                                <td class="hidden md:block text-center">{{$producto->descripcion}}</td>
                                 <td class="flex justify-around">
-                                    <a class="btn btn-warning" href="">
+                                    <a class="btn btn-warning" href="{{ route("productos.edit", $producto) }}">
                                         <i class="fa fa-edit"></i>
                                     </a>
-                                    <form action="" method="post">
+                                    <form action="{{route("productos.destroy", $producto)}}" method="post">
                                         @method("delete")
                                         @csrf
                                         <button type="submit" class="btn btn-danger">
@@ -66,7 +66,7 @@
                                     </form>
 
                                 </td class="text-center">
-                                <!-- en esta linea va el endforeach -->
+                                @endforeach
                         </tr>
                         </tbody>
                     </table>

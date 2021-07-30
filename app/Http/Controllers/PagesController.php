@@ -11,6 +11,7 @@ use App\Repositories\ProductosRepository;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
+use PhpParser\ErrorHandler\Collecting;
 
 class PagesController extends Controller
 {
@@ -41,7 +42,30 @@ class PagesController extends Controller
 
     public function sales(ProductosRepository $productos)
     {
-        return view('pages.sales');
+        $productos = $productos->getProductsVenta();
+        ;
+        foreach ($productos as $producto) {
+
+            $inventario = Inventario::query()
+                ->where('producto_id', $producto->id)
+                ->first();
+/*
+            //si, cambiar esta wea, son las 7AM y mi mente esta hecha paté, chupenlo
+            if ($inventario->tipo_producto_id == 1 || $inventario->tipo_producto_id == 3) {*/
+                $unidad = Unidad::query()
+                    ->where('id', $producto->unidad_id)
+                    ->first('nombre');
+
+                $producto['cantidad'] = $inventario['cantidad'];
+                $producto['unidad'] = $unidad['nombre'];
+                /*array_push($insumo,$producto);*/
+            } 
+        
+
+
+            return view('pages.sales', [
+                "productos" => $productos,
+            ]);
     }
 
     public function newsales()
@@ -51,29 +75,57 @@ class PagesController extends Controller
 
     public function shopping(ProductosRepository $productos)
     {
-        $productos = $productos->getProducts();
+        $productos = $productos->getProductsInsumo();
+        ;
+        foreach ($productos as $producto) {
 
-        foreach ($productos as $producto){
             $inventario = Inventario::query()
-            ->where('producto_id', $producto->id)
+                ->where('producto_id', $producto->id)
                 ->first();
-
-                //si, cambiar esta wea, son las 7AM y mi mente esta hecha paté, chupenlo
-            if($inventario->tipo_producto_id == 1|| $inventario->tipo_producto_id == 3){
+/*
+            //si, cambiar esta wea, son las 7AM y mi mente esta hecha paté, chupenlo
+            if ($inventario->tipo_producto_id == 1 || $inventario->tipo_producto_id == 3) {*/
                 $unidad = Unidad::query()
-                ->where('id', $producto->unidad_id)
+                    ->where('id', $producto->unidad_id)
                     ->first('nombre');
 
-                    $producto ['cantidad'] = $inventario['cantidad'];
-                    $producto ['unidad'] = $unidad['nombre'];
+                $producto['cantidad'] = $inventario['cantidad'];
+                $producto['unidad'] = $unidad['nombre'];
+                /*array_push($insumo,$producto);*/
+            } 
+        
 
-                $insumo = $producto;
-            };
-        };
 
-        return view("pages.shopping", [
-            "productos" => $insumo,
-        ]);
+            return view('pages.shopping', [
+                "productos" => $productos,
+            ]);
+        /*
+        $productos = Producto::query()->whereHas('inventarios', fn($query) => $query->where('empresa_id', $empresa->id));
+        ;
+        foreach ($productos as $producto) {
+
+            $inventario = Inventario::query()
+                ->where('producto_id', $producto->id)
+                ->first();
+
+            //si, cambiar esta wea, son las 7AM y mi mente esta hecha paté, chupenlo
+            if ($inventario->tipo_producto_id == 1 || $inventario->tipo_producto_id == 3) {
+                $unidad = Unidad::query()
+                    ->where('id', $producto->unidad_id)
+                    ->first('nombre');
+
+                $producto['cantidad'] = $inventario['cantidad'];
+                $producto['unidad'] = $unidad['nombre'];
+                array_push($insumo,$producto);
+            } 
+        
+
+
+            return view("pages.shopping", [
+                "productos" => $insumo,
+            ]);
+        }
+        */
     }
 
     public function newshop()

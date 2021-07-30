@@ -16,6 +16,18 @@ class ProductosRepository
         return $productos;
     }
 
+    public function getProductsInsumo(){
+        $empresa = auth()->user()->empresas()->firstOrFail();
+        $productos = Producto::query()->whereHas('inventarios', fn($query) => $query->where('empresa_id', $empresa->id)->where('tipo_producto_id',1))->get();
+
+        return $productos;
+    }public function getProductsVenta(){
+        $empresa = auth()->user()->empresas()->firstOrFail();
+        $productos = Producto::query()->whereHas('inventarios', fn($query) => $query->where('empresa_id', $empresa->id)->where('tipo_producto_id',2))->get();
+
+        return $productos;
+    }
+
     //Get a specific product of the user business
     public function getProduct(Number $id)
     {
@@ -23,4 +35,5 @@ class ProductosRepository
 
         return $producto;
     }
+    
 }
