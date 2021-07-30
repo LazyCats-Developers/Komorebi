@@ -2,13 +2,13 @@
 
 @section('content')
     @if(session('status'))
-        <div>
+        <div class="hidden">
             {{ session('status')['message'] }}
         </div>
     @endif
 
     @if($errors->any())
-        <div>
+        <div class="hidden">
             <ul>
                 @foreach($errors->all() as $error)
                     {{ $error }}

@@ -8,6 +8,20 @@
                     <p class="font-bold text-xl"><i class="fas fa-chart-line p-3 bg-white rounded-full border"></i> FINANZAS</p>
                 </div>
                 <div class="bg-white shadow-lg flex flex-col space-y-3 p-3 md:space-y-0 md:flex-row md:justify-between">
+                    <div class="flex flex-row">
+                        <p class="w-24 placeholder-gray-400 px-6 py-3 border border-gray-300 text-center md:rounded-l-full">Ingresos</p>
+                        <input type="text" value="0" placeholder="Total Compra" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 text-right md:rounded-r-full md:w-40" disabled>
+                    </div>
+                    <div class="flex flex-row">
+                        <p class="w-24 placeholder-gray-400 px-6 py-3 border border-gray-300 text-center md:rounded-l-full">Egresos</p>
+                        <input type="text" value="0" placeholder="Total Compra" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 text-right md:rounded-r-full md:w-40" disabled>
+                    </div>
+                    <div class="flex flex-row">
+                        <p class="w-24 placeholder-gray-400 px-6 py-3 border border-gray-300 text-center md:rounded-l-full">Balance</p>
+                        <input type="text" value="0" placeholder="Total Compra" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 text-right md:rounded-r-full md:w-40" disabled>
+                    </div>
+                </div>
+                <div class="bg-white shadow-lg flex flex-col space-y-3 p-3 md:space-y-0 md:flex-row md:justify-between">
                     <div class="flex flex-col space-y-3 md:flex-row md:space-y-0">
                         <input type="text" placeholder="Codigo item" class="w-full placeholder-gray-400 text-xl px-5 py-3 border border-gray-300 md:w-36 md:text-base md:rounded-l-full 2xl:w-40 2xl:text-xl">
                         <button class="bg-blue-400 w-full text-white text-2xl p-3 rounded-3xl md:text-base md:rounded-r-full md:w-36 hover:bg-blue-500 2xl:w-40 2xl:text-xl">
