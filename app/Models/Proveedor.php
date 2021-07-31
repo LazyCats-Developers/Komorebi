@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Proveedor extends Model
 {
     use HasFactory;
-    protected $table="provedores";
-    public $timestamps = false;
+
+    protected $table = "proveedores";
 
     protected $fillable = [
         'nombre',
@@ -21,8 +21,8 @@ class Proveedor extends Model
         'descripcion'
     ];
 
-    public function transacciones() 
+    public function transacciones()
     {
         return $this->hasMany(Transaccion::class);
-    }    
+    }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class RemoveIvaFromInventario extends Migration
+class CreateModulosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class RemoveIvaFromInventario extends Migration
      */
     public function up()
     {
-        Schema::table('inventarios', function (Blueprint $table) {
-            $table->dropColumn('iva');
+        Schema::create('modulos', function (Blueprint $table) {
+            $table->id();
+            $table->string('nombre');
+            $table->string('descripcion');
+            $table->float('valor');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +29,6 @@ class RemoveIvaFromInventario extends Migration
      */
     public function down()
     {
-        Schema::table('inventarios', function (Blueprint $table) {
-            $table->float('iva',10,8);
-        });
+        Schema::dropIfExists('modulos');
     }
 }

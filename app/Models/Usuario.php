@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Storage;
 class Usuario extends Authenticatable
 {
     use HasFactory, Notifiable;
-    public $timestamps = false;
+
     protected $table = 'usuarios';
 
     protected $fillable = [

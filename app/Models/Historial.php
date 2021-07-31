@@ -9,14 +9,14 @@ class Historial extends Model
 {
     use HasFactory;
     protected $table="historiales";
-    public $timestamps = false;
 
-    public function usuario() 
+
+    public function usuario()
     {
         return $this->belongsTo(Usuario::class);
     }
 
-    public function tipoLog() 
+    public function tipoLog()
     {
         return $this->belongsTo(TipoLog::class);
     }

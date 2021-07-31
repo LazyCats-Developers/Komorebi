@@ -8,19 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Venta extends Model
 {
     use HasFactory;
-    public $timestamps = false;
 
-    public function usuario() 
+
+    public function usuario()
     {
         return $this->belongsTo(Usuario::class);
     }
 
-    public function documento() 
+    public function documento()
     {
         return $this->belongsTo(Documento::class);
     }
 
-    public function carrosVenta() 
+    public function carrosVenta()
     {
         return $this->hasMany(CarroVenta::class);
     }

@@ -9,7 +9,7 @@ class Colaborador extends Model
 {
     use HasFactory;
     protected $table="colaboradores";
-    public $timestamps = false;
+
 
     protected $fillable = [
         'usuario_id',
@@ -18,17 +18,17 @@ class Colaborador extends Model
         'rol_id'
     ];
 
-    public function usuario() 
+    public function usuario()
     {
         return $this->belongsTo(Usuario::class);
     }
 
-    public function rol() 
+    public function rol()
     {
         return $this->belongsTo(Rol::class);
     }
 
-    public function empresa() 
+    public function empresa()
     {
         return $this->belongsTo(Empresa::class);
     }

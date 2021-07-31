@@ -9,9 +9,9 @@ class CarroVenta extends Model
 {
     use HasFactory;
     protected $table = "carro_venta";
-    public $timestamps = false;
 
-    public function venta() 
+
+    public function venta()
     {
         return $this->belongsTo(Venta::class);
     }
