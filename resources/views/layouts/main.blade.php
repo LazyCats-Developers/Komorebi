@@ -26,7 +26,7 @@
                         <p><i class="fas fa-cash-register mr-3"></i>Ventas</p>
                     </div>
                 </a>
-                <a href="{{ url('shopping') }}" class="active-nav-link nav-item">
+                <a href="{{ url('shop') }}" class="active-nav-link nav-item">
                     <div class="text-gray-100 rounded-full px-6 py-3 hover:text-black hover:bg-gray-100">
                         <p><i class="fas fa-truck mr-3"></i></i>Compras</p>
                     </div>
