@@ -29,11 +29,14 @@ class ProductosRepository
     }
 
     //Get a specific product of the user business
-    public function getProduct(Number $id)
-    {
-        $producto = Producto::query()->where('id', $id)->firstOrFail();
-
+    public function getProduct($codigo)
+    {   try{
+        $producto = Producto::query()->where('codigo', $codigo)->firstOrFail();
         return $producto;
+    }catch(\Exception $exception){
+        return null;
+    }
+        
     }
     
 }

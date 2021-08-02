@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\TipoProductosController;
 use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\ProveedoresController;
+use App\Http\Controllers\VentasController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Auth\RegisteredUserController;
@@ -33,11 +34,18 @@ Route::middleware('auth')
     ->group(function () {
         Route::get('/main', [PagesController::class, 'main']);
         Route::get('/ups', [PagesController::class, 'ups']);
+        //route de sales y newsales, no borrar pls
         Route::get('/sales', [PagesController::class, 'sales']);
-        Route::get('/newsales', [PagesController::class, 'newsales']);
+        Route::get('/newsales', [PagesController::class, 'newsales'])->name('newsales');;
+        Route::get('/searchsales', [VentasController::class, 'search'])->name('ventas.search');
+        Route::get('/killsales', [VentasController::class, 'kill'])->name('ventas.kill');
+        Route::post('/addsales', [VentasController::class, 'add'])->name('ventas.add');
+        Route::post('/delsales', [VentasController::class, 'del'])->name('ventas.del');
+        //termina los route de sales y newsales, no borrar pls
         Route::get('/shopping', [PagesController::class, 'shopping']);
         Route::get('/newshop', [PagesController::class, 'newshop']);
         Route::get('/inventory', [PagesController::class, 'inventory'])->name('inventory.index');
+        
         Route::get('/cashflow', [PagesController::class, 'cashflow']);
         Route::get('/modules', [PagesController::class, 'modules']);
 
@@ -58,3 +66,5 @@ Route::resource("productos", ProductosController::class)->parameters(["productos
 Route::resource("tipoproductos", TipoProductosController::class)->parameters(["tipoproductos" => "tipoproducto"]);
 Route::resource('empresas.colaboradores', ColaboradoresController::class)->parameters(['colaboradores' => 'colaborador']);
 Route::resource('proveedores', ProveedoresController::class)->parameters(['proveedores' => 'proveedor']);
+
+Route::resource('ventas', VentasController::class)->parameters(['ventas' => 'venta']);

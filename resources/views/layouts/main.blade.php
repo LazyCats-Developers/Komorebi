@@ -110,7 +110,7 @@
             @endif
 
             @if(session('status'))
-                <div class="hidden">
+                <div >
                     {{ session('status')['message'] }}
                 </div>
             @endif
