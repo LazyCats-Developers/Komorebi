@@ -31,9 +31,8 @@
                 <div class="grid grid-col gap-3 md:grid-cols-2">
                     <input value="{{$inventario->cantidad}}" name="inventario[cantidad]" type="text" placeholder="Cantidad" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full">
                     <select name="producto[unidad_id]" placeholder="Unidad de medida" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full" required>
-                        <option value="0" selected>-- Elegir Unidad de medida --</option>
                         @foreach ($unidades as $unidad)
-                            <option value="{{$unidad->id}}">{{$unidad->nombre}}</option>
+                            <option value="{{$unidad->id}}" {{ ($unidad->id == $producto->unidad_id) ? 'selected' : '' }} >{{$unidad->nombre}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -41,9 +40,8 @@
             <div class="bg-white flex flex-col space-y-3 p-3 border-b">
                 <div class="grid grid-col gap-3 md:grid-cols-2">
                     <select name="inventario[tipo_producto_id]" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 md:rounded-full" required>
-                        <option value="" selected>-- Elegir tipo de item --</option>
                         @foreach ($tipoproductos as $tp)
-                            <option value="{{$tp->id}}">{{$tp->nombre}}</option>
+                            <option value="{{$tp->id}}" {{ ($tp->id == $inventario->tipo_producto_id) ? 'selected' : '' }} >{{$tp->nombre}}</option>
                         @endforeach
                     </select>
                 </div>

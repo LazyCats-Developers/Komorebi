@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Proveedor;
 use App\Repositories\EmpresasRepository;
 use App\Repositories\ProductosRepository;
+use Exception;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
@@ -16,9 +17,14 @@ class ProveedoresController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(EmpresasRepository $empresa)
     {
-        return view("pages.providers.index");
+        $empresa = $empresa->getEmpresa();
+        $proveedores = Proveedor::query()->whereHas('transacciones', fn($query) => $query->where('empresa_id', $empresa->id))->get();
+
+        return view("pages.providers.index", [
+            "proveedores" => $proveedores
+        ]);
     }
 
     /**
@@ -95,12 +101,16 @@ class ProveedoresController extends Controller
      * @param  \App\Models\Proveedor  $proveedor
      * @return \Illuminate\Http\Response
      */
-    public function edit(Proveedor $proveedor)
+    public function edit(ProductosRepository $productos,Proveedor $proveedor)
     {
-        $transaccion = $proveedor->transacciones()->first();
+        $onRecord = $productos->getProviderProduct($proveedor->id);
+        $productos = $productos->getProducts();
+
+        //dd($pro, $productos);
         return view('pages.providers.edit', [
-            "transaccion" => $transaccion,
-            "proveedor" => $proveedor
+            "productos" => $productos,
+            "proveedor" => $proveedor,
+            "onRecord" => $onRecord
         ]);
     }
 
@@ -117,18 +127,33 @@ class ProveedoresController extends Controller
             "proveedor.nombre" => "required|string|max:255",
             "proveedor.rut" => "string|max:255",
             "proveedor.telefono" => "string|max:255",
-            "proveedor.email" => "string|max_255",
-            "proveedor.direccion" => "string|max_255",
-            "proveedor.proveedor_rrss" => "string|max_255",
+            "proveedor.email" => "string|max:255",
+            "proveedor.direccion" => "string|max:255",
+            "proveedor.proveedor_rrss" => "string|max:255",
             "proveedor.descripcion" => "string",
+            "transaccion.producto_id" => "numeric",
+
         ]);
 
-        $proveedor->update($valid);
+        DB::beginTransaction();
+        try{
+            $proveedor->update($valid['proveedor']);
+            $proveedor->transacciones()->update($valid['transaccion']);
+            DB::commit();
 
-        session()->flash('status', [
-            'type' => 'success',
-            'message' => 'Datos de proveedor actualizados.'
-        ]);
+        } catch (\Exception $exception) {
+            report($exception);
+            DB::rollBack();
+
+            return redirect()
+                ->back()
+                ->withInput($request->input())
+                ->withErrors([
+                    'message' => 'Ocurrio el siguiente error: ' . $exception->getMessage()
+                ]);
+        }
+
+        return redirect()->route('provider.index');
     }
 
     /**
@@ -139,6 +164,26 @@ class ProveedoresController extends Controller
      */
     public function destroy(Proveedor $proveedor)
     {
-        $proveedor->delete();
+        DB::beginTransaction();
+        try{
+
+            // $proveedor->transacciones()
+            //     ->delete();
+
+            $proveedor
+                ->delete();
+
+            DB::commit();
+
+        } catch (Exception $exception) {
+            report($exception);
+            DB::rollBack();
+
+            return redirect()
+                ->back()
+                ->withErrors([
+                    'message' => 'Ocurrio el siguiente error: ' . $exception->getMessage()
+                ]);
+        }
     }
 }

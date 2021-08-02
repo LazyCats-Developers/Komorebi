@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Usuario;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Image\Image;
@@ -17,7 +18,7 @@ class UsuariosController extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.profile', array('user' => Auth::user()));
     }
 
     /**

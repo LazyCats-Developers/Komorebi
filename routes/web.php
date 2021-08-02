@@ -31,27 +31,34 @@ Route::middleware('guest')
 
 Route::middleware('auth')
     ->group(function () {
-        Route::get('/main', [PagesController::class, 'main']);
+        Route::get('/main', [PagesController::class, 'main'])->name('main');
         Route::get('/ups', [PagesController::class, 'ups']);
         Route::get('/sales', [PagesController::class, 'sales']);
         Route::get('/newsales', [PagesController::class, 'newsales']);
-        Route::get('/shopping', [PagesController::class, 'shopping']);
-        Route::get('/newshop', [PagesController::class, 'newshop']);
         Route::get('/inventory', [PagesController::class, 'inventory'])->name('inventory.index');
         Route::get('/cashflow', [PagesController::class, 'cashflow']);
         Route::get('/modules', [PagesController::class, 'modules']);
 
-        Route::get('/provider', [PagesController::class, 'provider'])->name('provider.index');
-        Route::post('/provider/create', [ProveedoresController::class, 'store'])->name('provider.create');
+        Route::group(['prefix' => 'provider'],function () {
+            Route::get('/', [ProveedoresController::class, 'index'])->name('provider.index');
+            Route::post('/create', [ProveedoresController::class, 'store'])->name('provider.create');
+            Route::post('/edit', [ProveedoresController::class, 'edit'])->name('provider.edit');
+        });
 
-        Route::get('/profile', [PagesController::class, 'profile'])->name('profile');
-        Route::post('/profile/update', [UsuariosController::class, 'update'])->name('profile.update');
-        Route::post('/profile/change-avatar', [UsuariosController::class, 'update_avatar'])->name('profile.change-avatar');
+        Route::group(['prefix' => 'profile'],function () {
+            Route::get('/', [UsuariosController::class, 'index'])->name('profile');
+            Route::post('/update', [UsuariosController::class, 'update'])->name('profile.update');
+            Route::post('/change-avatar', [UsuariosController::class, 'update_avatar'])->name('profile.change-avatar');
+        });
+
+        Route::group(['prefix' => 'shop'],function () {
+            Route::get('/', [PagesController::class, 'shop'])->name('shop');
+            Route::get('/newshop', [PagesController::class, 'newshop'])->name('newshop');
+        });
+
     });
 
 require __DIR__ . '/auth.php';
-
-Route::get('main', [PagesController::class, 'main'])->name('main');
 
 Route::resource("empresas", EmpresasController::class)->parameters(["empresas" => "empresa"]);
 Route::resource("productos", ProductosController::class)->parameters(["productos" => "producto"]);
