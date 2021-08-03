@@ -41,7 +41,7 @@ Route::middleware('auth')
 
         Route::group(['prefix' => 'provider'],function () {
             Route::get('/', [ProveedoresController::class, 'index'])->name('provider.index');
-            Route::post('/create', [ProveedoresController::class, 'store'])->name('provider.create');
+            Route::get('/create', [ProveedoresController::class, 'create'])->name('provider.create');
             Route::post('/edit', [ProveedoresController::class, 'edit'])->name('provider.edit');
         });
 

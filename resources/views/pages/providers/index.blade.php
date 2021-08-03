@@ -21,7 +21,7 @@
         <div class="w-full max-w-7xl">
             <div class="flex flex-col space-y-3 md:flex-row md:space-y-0 md:justify-between bg-gray-50 shadow-lg grid-col p-2 border-b md:rounded-t-3xl">
                 <p class="font-bold text-xl"><i class="far fa-handshake p-3 bg-white rounded-full border"></i> PROVEEDORES</p>
-                <a href="{{route('proveedores.create')}}" class="flex justify-center w-full bg-gradient-to-r from-green-300 to-green-500 text-white text-xl hover:from-green-600 hover:to-green-600 focus:outline-none  p-2 rounded-full hover:bg-green-600 md:w-72">
+                <a href="{{route('provider.create')}}" class="flex justify-center w-full bg-gradient-to-r from-green-300 to-green-500 text-white text-xl hover:from-green-600 hover:to-green-600 focus:outline-none  p-2 rounded-full hover:bg-green-600 md:w-72">
                     Crear proovedor
                 </a>
             </div>
@@ -53,14 +53,9 @@
                                 <a class="btn btn-warning" href="{{route('proveedores.edit', $proveedor)}}">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <form action="" method="post">
-                                    @method("delete")
-                                    @csrf
-                                    <button type="submit" class="btn btn-danger">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
-                                </form>
-
+                                <a class="btn btn-danger" href="{{route('proveedores.destroy', $proveedor)}}">
+                                    <i class="fa fa-trash"></i>
+                                </a>
                             </td class="text-center">
 
                         @endforeach

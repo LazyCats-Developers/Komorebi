@@ -185,5 +185,7 @@ class ProveedoresController extends Controller
                     'message' => 'Ocurrio el siguiente error: ' . $exception->getMessage()
                 ]);
         }
+
+        return redirect()->route('provider.index');
     }
 }

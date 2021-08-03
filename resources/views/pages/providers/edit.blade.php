@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="w-full">
-                    <form action="{{ route('proveedores.store')}}" method="POST">
+                    <form action="{{ route('proveedores.update', $proveedor)}}" method="POST">
                     @csrf
                         <div class="flex-col p-3">
                             <p>Datos personales</p>
@@ -54,7 +54,7 @@
                             <input type="text" name="proveedor[descripcion]" value="{{$proveedor->descripcion}}" class="border border-gray w-full rounded-xl py-3 px-4">
                         </div>
                         <div class="flex flex-col p-3">
-                            <select name="producto[producto_id]" placeholder="producto" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 rounded-xl md:rounded-full" required>
+                            <select name="transaccion[producto_id]" placeholder="producto" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 rounded-xl md:rounded-full" required>
                                 @foreach ($productos as $producto)
                                     <option value="{{$producto->id}}" {{ ( $producto->id == $onRecord ) ? 'selected' : ''}}> {{$producto->nombre}}</option>
                                 @endforeach
@@ -62,7 +62,7 @@
                         </div>
                         <div class="flex flex-col p-3 items-center">
                             <button type="submit" class="w-full bg-blue-400 text-white py-3 px-6 rounded-full  md:w-52 hover:bg-blue-500">
-                                Crear proveedor
+                                Editar proveedor
                             </button>
                         </div>
                     </form>
