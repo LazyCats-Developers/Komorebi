@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Venta;
 use App\Models\Inventario;
-use App\Models\Producto;
 use App\Repositories\ProductosRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;

@@ -8,9 +8,11 @@ use App\Http\Controllers\TipoProductosController;
 use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\ProveedoresController;
 use App\Http\Controllers\VentasController;
+use App\Http\Controllers\TransaccionesController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Auth\RegisteredUserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +44,6 @@ Route::middleware('auth')
         Route::post('/addsales', [VentasController::class, 'add'])->name('ventas.add');
         Route::post('/delsales', [VentasController::class, 'del'])->name('ventas.del');
         //termina los route de sales y newsales, no borrar pls
-        Route::get('/shopping', [PagesController::class, 'shopping']);
         Route::get('/newshop', [PagesController::class, 'newshop']);
         Route::get('/inventory', [PagesController::class, 'inventory'])->name('inventory.index');
         
@@ -64,6 +65,10 @@ Route::middleware('auth')
         Route::group(['prefix' => 'shop'],function () {
             Route::get('/', [PagesController::class, 'shop'])->name('shop');
             Route::get('/newshop', [PagesController::class, 'newshop'])->name('newshop');
+            Route::get('/searchshop', [TransaccionesController::class, 'search'])->name('transacciones.search');
+            Route::get('/killshop', [TransaccionesController::class, 'kill'])->name('transacciones.kill');
+            Route::post('/addshop', [TransaccionesController::class, 'add'])->name('transacciones.add');
+            Route::post('/delshop', [TransaccionesController::class, 'del'])->name('transacciones.del');
         });
 
     });
@@ -75,5 +80,5 @@ Route::resource("productos", ProductosController::class)->parameters(["productos
 Route::resource("tipoproductos", TipoProductosController::class)->parameters(["tipoproductos" => "tipoproducto"]);
 Route::resource('empresas.colaboradores', ColaboradoresController::class)->parameters(['colaboradores' => 'colaborador']);
 Route::resource('proveedores', ProveedoresController::class)->parameters(['proveedores' => 'proveedor']);
-
+Route::resource('transacciones', TransaccionesController::class)->parameters(['transacciones' => 'transaccion']);
 Route::resource('ventas', VentasController::class)->parameters(['ventas' => 'venta']);
