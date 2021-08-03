@@ -33,7 +33,7 @@ class VentasController extends Controller
         $holder['total']=session()->get('totalventa');
         $holder['usuario_id']=auth()->user()->id;
         $c=Venta::query()->count()+1;
-        $holder['numero_documento']="{$empresa->getEmpresa()->id}00{$c}";
+        $holder['numero_documento']="{$empresa->getEmpresa()->id}-00-{$c}";
         $holder['fecha']=date('d-m-Y');
         $holder['documento_id']=1;
         DB::beginTransaction();
@@ -45,8 +45,12 @@ class VentasController extends Controller
                 $carro['precio_unitario']=$producto['precio_unitario'];
                 $carro['descuento']=0;
                 $venta->carrosVenta()->create($carro);
+                $inv=Inventario::query()->where('producto_id',$producto['id'])->where('empresa_id',$empresa->getEmpresa()->id)->first();
+                $inv->cantidad=$inv->cantidad-$producto['cantidad'];
+                $inv->update();
             }
             DB::commit();
+            session()->forget(['carroventa', 'buscaPro', 'totalventa']);
         }catch (\Exception $exception) {
             report($exception);
             DB::rollBack();
