@@ -49,7 +49,6 @@
             @endif
         </nav>
     </aside>
-
     <!-- Mobile Dashboard -->
     <div class="w-full flex flex-col h-screen overflow-y-hidden">
         <!-- Mobile Dashboard Header & Nav -->
@@ -88,33 +87,34 @@
                 @endif
             </nav>
         </header>
-
         <main class="w-full overflow-x-hidden">
             @if(in_array(request()->path(), ['main','sales','shopping','inventory','cashflow','modules']))
                 @if(!auth()->user()->empresas()->exists())
-                    <div class="grid-col">
-                        <div class="flex justify-center bg-red-200 p-5 md:rounded-t-md">
-                            <p>ATENCION</p>
-                        </div>
-                        <div class="flex justify-center bg-white p-5">
-                            <p>No tienes ninguna empresa registrada aun, registra una empresa para poder usar los módulos.</p>
-                        </div>
-
-                        <div class="flex justify-center bg-white pb-5 px-5 md:rounded-b-md">
-                            <a href="{{route('empresas.create')}}" class="flex justify-center w-full bg-blue-400 text-white font-semibold py-3 px-6 rounded-md hover:bg-green-600 md:w-80">
-                                Crear empresa
-                            </a>
+                    <div class="flex flex-col shadow-lg md:p-5 items-center">
+                        <div class="w-full max-w-7xl">
+                            <div class="flex flex-col space-y-3 md:flex-row md:space-y-0 md:justify-between bg-gray-50 shadow-lg grid-col p-2 border-b md:rounded-t-3xl">
+                                <p class="font-bold text-xl"><i class="fas fa-house-user p-3 bg-white rounded-full border"></i> PAGINA PRINCIPAL</p>
+                            </div>
+                            <div class="flex justify-center bg-white flex flex-col md:flex-row p-5">
+                                <p>No tienes ninguna empresa registrada aun, registra una empresa para poder usar los módulos.</p>
+                            </div>
+                            <div class="flex justify-center bg-white pb-5 px-5">
+                                <a href="{{route('empresas.create')}}" class="flex justify-center w-full bg-blue-400 text-white font-semibold py-3 px-6 rounded-full hover:bg-green-600 md:w-80">
+                                    Crear empresa
+                                </a>
+                            </div>
+                            <div class="bg-gray-50 shadow-lg p-2 md:rounded-b-3xl border-t">
+                                <p class="text-center text-gray-400">Komorebi</p>
+                            </div>
                         </div>
                     </div>
                 @endif
             @endif
-
             @if(session('status'))
-                <div class="hidden">
+                <div >
                     {{ session('status')['message'] }}
                 </div>
             @endif
-
             @if($errors->any())
                 <div>
                     <ul>
@@ -124,7 +124,6 @@
                     </ul>
                 </div>
             @endif
-
             @yield('content')
         </main>
     </div>
