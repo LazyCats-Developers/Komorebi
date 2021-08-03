@@ -8,8 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class CarroVenta extends Model
 {
     use HasFactory;
+    
     protected $table = "carro_venta";
-
+    protected $fillable = [
+        'producto_id',
+        'cantidad',
+        'precio_unitario',
+        'descuento',
+    ];
 
     public function venta()
     {

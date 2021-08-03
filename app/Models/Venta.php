@@ -8,7 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Venta extends Model
 {
     use HasFactory;
-
+    protected $table = "ventas";
+    protected $fillable = [
+        'usuario_id',
+        'documento_id',
+        'numero_documento',
+        'fecha',
+        'total'
+    ];
 
     public function usuario()
     {

@@ -37,12 +37,13 @@ Route::middleware('auth')
         Route::get('/main', [PagesController::class, 'main'])->name('main');
         Route::get('/ups', [PagesController::class, 'ups']);
         //route de sales y newsales, no borrar pls
-        Route::get('/sales', [PagesController::class, 'sales']);
+        Route::get('/sales', [PagesController::class, 'sales'])->name('sales');
         Route::get('/newsales', [PagesController::class, 'newsales'])->name('newsales');
         Route::get('/searchsales', [VentasController::class, 'search'])->name('ventas.search');
         Route::get('/killsales', [VentasController::class, 'kill'])->name('ventas.kill');
         Route::post('/addsales', [VentasController::class, 'add'])->name('ventas.add');
         Route::post('/delsales', [VentasController::class, 'del'])->name('ventas.del');
+        Route::post('/createsales', [VentasController::class, 'create'])->name('ventas.create');
         //termina los route de sales y newsales, no borrar pls
         Route::get('/newshop', [PagesController::class, 'newshop']);
         Route::get('/inventory', [PagesController::class, 'inventory'])->name('inventory.index');

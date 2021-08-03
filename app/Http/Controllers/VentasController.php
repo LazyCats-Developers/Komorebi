@@ -7,6 +7,8 @@ use App\Models\Inventario;
 use App\Repositories\ProductosRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use App\Repositories\EmpresasRepository;
+use Illuminate\Support\Facades\DB;
 
 class VentasController extends Controller
 {
@@ -25,20 +27,43 @@ class VentasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(EmpresasRepository $empresa)
     {
-        //
+        $productos=session('carroventa');
+        $holder['total']=session()->get('totalventa');
+        $holder['usuario_id']=auth()->user()->id;
+        $c=Venta::query()->count()+1;
+        $holder['numero_documento']="{$empresa->getEmpresa()->id}00{$c}";
+        $holder['fecha']=date('d-m-Y');
+        $holder['documento_id']=1;
+        DB::beginTransaction();
+        try{
+            $venta=Venta::query()->create($holder);
+            foreach($productos as $producto){
+                $carro['producto_id']=$producto['id'];
+                $carro['cantidad']=$producto['cantidad'];
+                $carro['precio_unitario']=$producto['precio_unitario'];
+                $carro['descuento']=0;
+                $venta->carrosVenta()->create($carro);
+            }
+            DB::commit();
+        }catch (\Exception $exception) {
+            report($exception);
+            DB::rollBack();
+
+            return redirect()
+                ->back()
+                ->withErrors([
+                    'message' => 'Ocurrio el siguiente error: ' . $exception->getMessage()
+                ]);
+        }
+        return redirect()->route('sales');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    
+    public function store()
     {
-        //
+        
     }
 
     /**
@@ -125,7 +150,7 @@ class VentasController extends Controller
                         $pros['cantidad'] = $pros['cantidad'] + $cantidad;
                         //aqui recorre la session carroventa para actualizar el valor total de venta
                         foreach (session('carroventa') as $pro) {
-                            $total = $total + ($pro['valor'] * $pro['cantidad']);
+                            $total = $total + ($pro['precio_unitario'] * $pro['cantidad']);
                             session(['totalventa' => $total]);
                         }
                         //elimina la session buscaPro, que se usa para buscar el producto por el codigo
@@ -141,12 +166,12 @@ class VentasController extends Controller
             //setea la cantidad obtenida en request al producto creado
             $producto['cantidad'] = $cantidad;
             //ingresa el valor unitario del producto
-            $producto['valor'] = $inventario['precio_unitario'];
+            $producto['precio_unitario'] = $inventario['precio_unitario'];
             //lo añade a la session carroventa
             session()->push('carroventa', $producto);
             //aqui recorre la session carroventa para actualizar el valor total de venta
             foreach (session('carroventa') as $pro) {
-                $total = $total + ($pro['valor'] * $pro['cantidad']);
+                $total = $total + ($pro['precio_unitario'] * $pro['cantidad']);
                 session(['totalventa' => $total]);
             }
             //elimina la session buscaPro, que se usa para buscar el producto por el codigo
@@ -177,12 +202,32 @@ class VentasController extends Controller
         }
         if (session()->exists('carroventa')) {
             foreach (session('carroventa') as $pro) {
-                $total = $total + ($pro['valor'] * $pro['cantidad']);
+                $total = $total + ($pro['precio_unitario'] * $pro['cantidad']);
                 session(['totalventa' => $total]);
             }
         }
         
     }
-    return redirect()->route('newsales');
-}
+        return redirect()->route('newsales');
+    }
+
+/*
+            ______              
+       .d$$$******$$$$c.        
+    .d$P"            "$$c      
+   $$$$$.           .$$$*$.    
+ .$$ 4$L*$$.     .$$Pd$  '$b   
+ $F   *$. "$$e.e$$" 4$F   ^$b  
+d$     $$   z$$$e   $$     '$. 
+$P     `$L$$P` `"$$d$"      $$ 
+$$     e$$F       4$$b.     $$ 
+$b  .$$" $$      .$$ "4$b.  $$ 
+$$e$P"    $b     d$`    "$$c$F 
+'$P$$$$$$$$$$$$$$$$$$$$$$$$$$  
+ "$c.      4$.  $$       .$$   
+  ^$$.      $$ d$"      d$P    
+    "$$c.   `$b$F    .d$P"     
+      `4$$$c.$$$..e$$P"        
+          `^^^^^^^`
+*/ 
 }
