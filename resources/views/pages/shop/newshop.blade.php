@@ -8,9 +8,9 @@
                 <p class="font-bold text-xl"><i class="fas fa-ambulance p-3 bg-white rounded-full border"></i> INGRESO DE INSUMOS</p>
             </div>
             <div class="flex flex-row gap-3">
-                <button class="flex justify-center w-full bg-gradient-to-r from-green-300 to-green-500 text-white text-xl hover:from-green-600 hover:to-green-600 focus:outline-none  p-2 rounded-full hover:bg-green-600 md:w-72">
+            <a href="{{route('transacciones.create')}}" class="flex justify-center w-full bg-gradient-to-r from-green-300 to-green-500 text-white text-xl hover:from-green-600 hover:to-green-600 focus:outline-none  p-2 rounded-full hover:bg-green-600 md:w-72">
                     Ingresar compra
-                </button>
+                </a>
                 <a href="{{route('transacciones.kill')}}" class="flex justify-center w-full bg-gradient-to-r from-red-300 to-red-500 text-white text-xl hover:from-green-600 hover:to-green-600 focus:outline-none  p-2 rounded-full hover:bg-green-600 md:w-72">
                     Cancelar
                 </a>
@@ -81,7 +81,7 @@
                     <td class="text-center">{{$producto->nombre}}</td>
                     <td class="text-center">{{$producto->valor}}</td>
                     <td class="text-center">{{$producto->cantidad}}</td>
-                    <td class="text-center">{{$producto->valor * $producto->cantidad}}</td>
+                    <td class="text-center">{{$producto->precio_unitario * $producto->cantidad}}</td>
 
 
                     <td>

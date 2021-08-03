@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Transaccion;
+use App\Models\Venta;
 use Illuminate\Http\Request;
 use App\Models\Inventario;
 use App\Repositories\ProductosRepository;
+use App\Repositories\EmpresasRepository;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 
 class TransaccionesController extends Controller
 {
@@ -25,9 +28,41 @@ class TransaccionesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(EmpresasRepository $empresa)
     {
-        //
+        $productos=session('carrocompra');
+        $holder['total']=session()->get('totalcompra');
+        $holder['usuario_id']=auth()->user()->id;
+        $c=Venta::query()->count()+1;
+        $holder['numero_documento']="{$empresa->getEmpresa()->id}-01-00-{$c}";
+        $holder['fecha']=date('d-m-Y');
+        $holder['documento_id']=2;
+        DB::beginTransaction();
+        try{
+            $venta=Venta::query()->create($holder);
+            foreach($productos as $producto){
+                $carro['producto_id']=$producto['id'];
+                $carro['cantidad']=$producto['cantidad'];
+                $carro['precio_unitario']=$producto['precio_unitario'];
+                $carro['descuento']=0;
+                $venta->carrosVenta()->create($carro);
+                $inv=Inventario::query()->where('producto_id',$producto['id'])->where('empresa_id',$empresa->getEmpresa()->id)->first();
+                $inv->cantidad=$inv->cantidad-$producto['cantidad'];
+                $inv->update();
+            }
+            DB::commit();
+            session()->forget(['carrocompra', 'buscaPros', 'totalcompra']);
+        }catch (\Exception $exception) {
+            report($exception);
+            DB::rollBack();
+
+            return redirect()
+                ->back()
+                ->withErrors([
+                    'message' => 'Ocurrio el siguiente error: ' . $exception->getMessage()
+                ]);
+        }
+        return redirect()->route('sales');
     }
 
     /**
@@ -126,7 +161,7 @@ class TransaccionesController extends Controller
                         $pros['cantidad'] = $pros['cantidad'] + $cantidad;
                         //aqui recorre la session carroventa para actualizar el valor total de venta
                         foreach (session('carrocompra') as $pro) {
-                            $total = $total + ($pro['valor'] * $pro['cantidad']);
+                            $total = $total + ($pro['precio_unitario'] * $pro['cantidad']);
                             session(['totalcompra' => $total]);
                         }
                         //elimina la session buscaPro, que se usa para buscar el producto por el codigo
@@ -142,12 +177,12 @@ class TransaccionesController extends Controller
             //setea la cantidad obtenida en request al producto creado
             $producto['cantidad'] = $cantidad;
             //ingresa el valor unitario del producto
-            $producto['valor'] = $inventario['precio_unitario'];
+            $producto['precio_unitario'] = $inventario['precio_unitario'];
             //lo añade a la session carroventa
             session()->push('carrocompra', $producto);
             //aqui recorre la session carroventa para actualizar el valor total de venta
             foreach (session('carrocompra') as $pro) {
-                $total = $total + ($pro['valor'] * $pro['cantidad']);
+                $total = $total + ($pro['precio_unitario'] * $pro['cantidad']);
                 session(['totalcompra' => $total]);
             }
             //elimina la session buscaPro, que se usa para buscar el producto por el codigo
@@ -178,7 +213,7 @@ class TransaccionesController extends Controller
         }
         if (session()->exists('carrocompra')) {
             foreach (session('carrocompra') as $pro) {
-                $total = $total + ($pro['valor'] * $pro['cantidad']);
+                $total = $total + ($pro['precio_unitario'] * $pro['cantidad']);
                 session(['totalcompra' => $total]);
             }
         }
