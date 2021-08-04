@@ -34,7 +34,7 @@ class TransaccionesController extends Controller
         $holder['total']=session()->get('totalcompra');
         $holder['usuario_id']=auth()->user()->id;
         $c=Venta::query()->count()+1;
-        $holder['numero_documento']="{$empresa->getEmpresa()->id}-01-00-{$c}";
+        $holder['numero_documento']="{$empresa->getEmpresa()->id}-01-{$c}";
         $holder['fecha']=date('d-m-Y');
         $holder['documento_id']=2;
         DB::beginTransaction();
@@ -62,7 +62,7 @@ class TransaccionesController extends Controller
                     'message' => 'Ocurrio el siguiente error: ' . $exception->getMessage()
                 ]);
         }
-        return redirect()->route('sales');
+        return redirect()->route('shop');
     }
 
     /**

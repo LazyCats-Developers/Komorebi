@@ -75,7 +75,7 @@ class PagesController extends Controller
         $productos = $productos->getProductsInsumo();
         $compras=Venta::query()
             ->where('documento_id',2)
-            ->where('numero_documento','LIKE',"{$empresa->id}-00%")
+            ->where('numero_documento','LIKE',"{$empresa->id}-01%")
             ->get();
             foreach($compras as $compra){
                 $st=explode('-', $compra['numero_documento']);
