@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Inventario;
+use App\Models\Venta;
 use App\Models\Unidad;
 use App\Repositories\ProductosRepository;
 
@@ -33,9 +34,17 @@ class PagesController extends Controller
     }
 
     public function sales(ProductosRepository $productos)
-    {
+    {   
+        $empresa = auth()->user()->empresas()->firstOrFail();
         $productos = $productos->getProductsVenta();
-
+        $ventas=Venta::query()
+            ->where('documento_id',1)
+            ->where('numero_documento','LIKE',"{$empresa->id}-00%")
+            ->get();
+            foreach($ventas as $venta){
+                $st=explode('-', $venta['numero_documento']);
+                $venta['n_documento']=$st[2];
+            }
         foreach ($productos as $producto) {
 
             $inventario = Inventario::query()
@@ -51,6 +60,7 @@ class PagesController extends Controller
 
         return view('pages.sales', [
             "productos" => $productos,
+            "ventas" => $ventas
         ]);
     }
 
@@ -61,8 +71,16 @@ class PagesController extends Controller
 
     public function shop(ProductosRepository $productos)
     {
+        $empresa = auth()->user()->empresas()->firstOrFail();
         $productos = $productos->getProductsInsumo();
-        ;
+        $compras=Venta::query()
+            ->where('documento_id',2)
+            ->where('numero_documento','LIKE',"{$empresa->id}-00%")
+            ->get();
+            foreach($compras as $compra){
+                $st=explode('-', $compra['numero_documento']);
+                $compra['n_documento']=$st[2];
+            }
         foreach ($productos as $producto) {
 
             $inventario = Inventario::query()
@@ -79,6 +97,7 @@ class PagesController extends Controller
 
             return view('pages.shop.index', [
                 "productos" => $productos,
+                "compras" => $compras
             ]);
     }
 

@@ -30,6 +30,41 @@
                         </button>
                     </div>
                 </div>
+                <!-- Tabla de ventas-->
+                <div class="bg-white shadow-lg p-3 border-b">
+                    <table class="w-full">
+                        <thead>
+                        <tr class="grid grid-cols-5 md:grid-cols-5 bg-gray-200 border rounded-t-md md:rounded-t-xl text-base 2xl:text-xl">
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>N° Documento</th>
+                            <th>Total</th>
+                            <th>Anular</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="grid grid-cols-5 md:grid-cols-5 border rounded-b-md md:rounded-b-xl text-base 2xl:text-xl">
+                            @foreach ($compras as $compra)
+                                <td class="text-center">{{$compra->fecha}}</td>
+                                <td class="text-center">{{$compra->created_at->format('H:i:s')}}</td>
+                                <td class="text-center">{{$compra->n_documento}}</td>
+                                <td class="text-center">{{$compra->total}}</td>
+                                <td class="flex justify-around">
+                                    <form action="{{route('transacciones.destroy', $compra)}}" method="post">
+                                        @method("delete")
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </form>
+
+                                </td class="text-center">
+                            @endforeach
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!--Fin tabla de ventas -->
                 <!-- tabla de datos -->
                 <div class="bg-white shadow-lg p-3 border-b">
                     <table class="w-full">

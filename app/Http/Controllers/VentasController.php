@@ -112,7 +112,9 @@ class VentasController extends Controller
      */
     public function destroy(Venta $venta)
     {
-        //
+        $venta->total=0;
+        $venta->update();
+        return redirect()->route('sales');
     }
     //magia que busca un producto por el codigo y lo añade a session buscaPro
     public function search(Request $request, ProductosRepository $productos)

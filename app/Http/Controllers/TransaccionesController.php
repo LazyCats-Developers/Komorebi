@@ -47,7 +47,7 @@ class TransaccionesController extends Controller
                 $carro['descuento']=0;
                 $venta->carrosVenta()->create($carro);
                 $inv=Inventario::query()->where('producto_id',$producto['id'])->where('empresa_id',$empresa->getEmpresa()->id)->first();
-                $inv->cantidad=$inv->cantidad-$producto['cantidad'];
+                $inv->cantidad=$inv->cantidad+$producto['cantidad'];
                 $inv->update();
             }
             DB::commit();
@@ -118,7 +118,9 @@ class TransaccionesController extends Controller
      */
     public function destroy(Transaccion $transaccion)
     {
-        //
+        $transaccion->total=0;
+        $transaccion->update();
+        return redirect()->route('sales');
     }
 
     //magia que busca un producto por el codigo y lo añade a session buscaPro
