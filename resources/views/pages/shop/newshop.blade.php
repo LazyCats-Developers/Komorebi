@@ -79,7 +79,7 @@
                     @foreach (\Session::get('carrocompra') as $producto)
                     <td class="text-center">{{$producto->codigo}}</td>
                     <td class="text-center">{{$producto->nombre}}</td>
-                    <td class="text-center">{{$producto->valor}}</td>
+                    <td class="text-center">{{$producto->precio_unitario}}</td>
                     <td class="text-center">{{$producto->cantidad}}</td>
                     <td class="text-center">{{$producto->precio_unitario * $producto->cantidad}}</td>
 

@@ -133,7 +133,25 @@ class PagesController extends Controller
 
     public function cashflow()
     {
-        return view('pages.cashflow');
+        $resultados['ingresos']=0;
+        $resultados['egresos']=0;
+        $ventas=Venta::query()->whereMonth('fecha', date('m'))->whereYear('fecha',date('Y'))->get();
+        foreach($ventas as $venta){
+            if($venta['documento_id']==1){
+                $resultados['ingresos']=$resultados['ingresos']+$venta['total'];
+            }if($venta['documento_id']==2){
+                $resultados['egresos']=$resultados['egresos']+$venta['total'];
+            }
+        }
+        $util=$resultados['ingresos']-$resultados['egresos'];
+        if($util>0){
+            $resultados['utilidad']="+{$util}";
+        }else{
+            $resultados['utilidad']="{$util}";
+        }
+        return view('pages.cashflow',[
+            "resultados" => $resultados
+        ]);
     }
 
     public function modules()

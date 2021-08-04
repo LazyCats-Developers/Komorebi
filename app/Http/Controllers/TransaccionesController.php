@@ -175,11 +175,11 @@ class TransaccionesController extends Controller
         }
         //en caso de no existir coinsidencias, se añade un producto a la sesion carroventa, actualizando los datos correspondientes
         //primero verifica si la cantidad ingresada es menos o igual a la disponible en stock
-        if ($producto['cantidad'] >= $cantidad) {
+        
             //setea la cantidad obtenida en request al producto creado
             $producto['cantidad'] = $cantidad;
             //ingresa el valor unitario del producto
-            $producto['precio_unitario'] = $inventario['precio_unitario'];
+            $producto['precio_unitario'] = $inventario['costo_unitario'];
             //lo añade a la session carroventa
             session()->push('carrocompra', $producto);
             //aqui recorre la session carroventa para actualizar el valor total de venta
@@ -190,12 +190,8 @@ class TransaccionesController extends Controller
             //elimina la session buscaPro, que se usa para buscar el producto por el codigo
             session()->forget('buscaPros');
             return redirect()->route('newshop');
-        } //en caso de no haber stock suficiente, vuelve a la pagina anterior y manda mensaje de producto sin stock
-        else {
-            return redirect()->route('newshop')->with([
-                'message' => 'Producto sin stock suficiente'
-            ]);
-        }
+        
+        
     }
     //magia que borra un objeto de session carroventa
     public function del(Request $request)

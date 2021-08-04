@@ -10,15 +10,15 @@
                 <div class="bg-white shadow-lg flex flex-col space-y-3 p-3 md:space-y-0 md:flex-row md:justify-between">
                     <div class="flex flex-row">
                         <p class="w-24 placeholder-gray-400 px-6 py-3 border border-gray-300 text-center md:rounded-l-full">Ingresos</p>
-                        <input type="text" value="0" placeholder="Total Compra" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 text-right md:rounded-r-full md:w-40" disabled>
+                        <input type="text" value="+{{$resultados['ingresos']}}" placeholder="Total Compra" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 text-right md:rounded-r-full md:w-40" disabled>
                     </div>
                     <div class="flex flex-row">
                         <p class="w-24 placeholder-gray-400 px-6 py-3 border border-gray-300 text-center md:rounded-l-full">Egresos</p>
-                        <input type="text" value="0" placeholder="Total Compra" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 text-right md:rounded-r-full md:w-40" disabled>
+                        <input type="text" value="-{{$resultados['egresos']}}" placeholder="Total Compra" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 text-right md:rounded-r-full md:w-40" disabled>
                     </div>
                     <div class="flex flex-row">
-                        <p class="w-24 placeholder-gray-400 px-6 py-3 border border-gray-300 text-center md:rounded-l-full">Balance</p>
-                        <input type="text" value="0" placeholder="Total Compra" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 text-right md:rounded-r-full md:w-40" disabled>
+                        <p class="w-24 placeholder-gray-400 px-6 py-3 border border-gray-300 text-center md:rounded-l-full">Utilidad</p>
+                        <input type="text" value="{{$resultados['utilidad']}}" placeholder="Total Compra" class="w-full placeholder-gray-400 px-6 py-3 border border-gray-300 text-right md:rounded-r-full md:w-40" disabled>
                     </div>
                 </div>
                 <div class="bg-white shadow-lg flex flex-col space-y-3 p-3 md:space-y-0 md:flex-row md:justify-between">
