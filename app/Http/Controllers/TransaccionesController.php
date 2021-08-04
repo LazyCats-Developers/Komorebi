@@ -116,11 +116,11 @@ class TransaccionesController extends Controller
      * @param  \App\Models\Transaccion  $transaccion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Transaccion $transaccion)
+    public function destroy(Venta $transaccion)
     {
         $transaccion->total=0;
         $transaccion->update();
-        return redirect()->route('sales');
+        return redirect()->route('shop');
     }
 
     //magia que busca un producto por el codigo y lo añade a session buscaPro
