@@ -18,7 +18,7 @@
             <input type="password" id="password" name="password" placeholder="Contraseña" class="border border-gray w-full rounded-md py-3 px-4 text-md 2xl:text-lg" required>
             <input type="checkbox" id="remember" name='remember'><label for="remember" class="text-sm 2xl:text-lg"> Recuérdame</label>
             <button class="min-w-full bg-blue-400 text-white font-semibold py-3 px-6 rounded-md hover:bg-green-600">
-                Iniciar sesión
+                Iniciar sesión 2
             </button>
         </form>
     </div>
