@@ -17,7 +17,7 @@ return [
     |
     */
 
-    'default' => env('LOG_CHANNEL', 'stack'),
+    'default' => $_SERVER['LOG_CHANNEL'] ?? env('LOG_CHANNEL', 'cloudwatch'),
 
     /*
     |--------------------------------------------------------------------------

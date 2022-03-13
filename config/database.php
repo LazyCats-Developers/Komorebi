@@ -1,10 +1,5 @@
 <?php
 
-define('RDS_HOSTNAME', $_SERVER['RDS_HOSTNAME']);
-define('RDS_USERNAME', $_SERVER['RDS_USERNAME']);
-define('RDS_PASSWORD', $_SERVER['RDS_PASSWORD']);
-define('RDS_DB_NAME', $_SERVER['RDS_DB_NAME']);
-
 use Illuminate\Support\Str;
 
 return [
@@ -70,12 +65,12 @@ return [
 
         'pgsql' => [
             'driver' => 'pgsql',
-            'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', RDS_HOSTNAME),
-            'port' => env('DB_PORT', '5432'),
-            'database' => env('DB_DATABASE', RDS_DB_NAME),
-            'username' => env('DB_USERNAME', RDS_USERNAME),
-            'password' => env('DB_PASSWORD', RDS_PASSWORD),
+            'url' => $_SERVER['DATABASE_URL'] ?? env('DATABASE_URL'),
+            'host' => $_SERVER['DB_HOST'] ?? env('DB_HOST', '127.0.0.1'),
+            'port' => $_SERVER['DB_PORT'] ?? env('DB_PORT', '5432'),
+            'database' => $_SERVER['DB_DATABASE'] ?? env('DB_DATABASE', 'forge'),
+            'username' => $_SERVER['DB_USERNAME'] ?? env('DB_USERNAME', 'forge'),
+            'password' => $_SERVER['DB_PASSWORD'] ?? env('DB_PASSWORD', ''),
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
@@ -128,7 +123,7 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
-            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
+            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_') . '_database_'),
         ],
 
         'default' => [
