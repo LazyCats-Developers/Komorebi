@@ -1,5 +1,10 @@
 <?php
 
+define('RDS_HOSTNAME', $_SERVER['RDS_HOSTNAME']);
+define('RDS_USERNAME', $_SERVER['RDS_USERNAME']);
+define('RDS_PASSWORD', $_SERVER['RDS_PASSWORD']);
+define('RDS_DB_NAME', $_SERVER['RDS_DB_NAME']);
+
 use Illuminate\Support\Str;
 
 return [
@@ -66,11 +71,11 @@ return [
         'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', '127.0.0.1'),
+            'host' => env('DB_HOST', RDS_HOSTNAME),
             'port' => env('DB_PORT', '5432'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'database' => env('DB_DATABASE', RDS_DB_NAME),
+            'username' => env('DB_USERNAME', RDS_USERNAME),
+            'password' => env('DB_PASSWORD', RDS_PASSWORD),
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
