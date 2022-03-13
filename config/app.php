@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => $_SERVER['APP_NAME'] ?? env('APP_NAME', 'Laravel'),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => $_SERVER['APP_URL'] ?? env('APP_URL', 'http://localhost'),
 
     'asset_url' => env('ASSET_URL', null),
 
