@@ -26,6 +26,9 @@
         <p class="text-gray-700 font-medium text-md xl:text-lg 2xl:text-xl">¿No tienes una cuenta?</p>
         <a class="text-blue-500 font-medium text-md xl:text:lg 2xl:text-xl" href="{{ route('signup') }}">Regístrate</a>
     </div>
+    <div class="w-full bg-white flex justify-center items-center p-3 space-x-2 sm:rounded-xl sm:w-72 xl:w-80 2xl:w-96 ">
+        <a class="text-blue-500 font-medium text-md xl:text:lg 2xl:text-xl" href="{{ url('landingpage') }}">Landing Page</a>
+    </div>
 </div>
 </body>
 </html>

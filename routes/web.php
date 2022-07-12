@@ -28,6 +28,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 Route::middleware('guest')
     ->group(function () {
         Route::get('/', [PagesController::class, 'login'])->name('login');
+        Route::get('/landingpage', [PagesController::class, 'landingpage']);
         Route::get('/signup', [RegisteredUserController::class, 'create'])->name('signup');
         Route::post('/signup', [RegisteredUserController::class, 'store']);
     });
@@ -47,7 +48,7 @@ Route::middleware('auth')
         //termina los route de sales y newsales, no borrar pls
         Route::get('/newshop', [PagesController::class, 'newshop']);
         Route::get('/inventory', [PagesController::class, 'inventory'])->name('inventory.index');
-        
+
         Route::get('/cashflow', [PagesController::class, 'cashflow']);
         Route::get('/modules', [PagesController::class, 'modules']);
 
