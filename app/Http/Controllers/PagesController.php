@@ -34,7 +34,7 @@ class PagesController extends Controller
     }
 
     public function sales(ProductosRepository $productos)
-    {   
+    {
         $empresa = auth()->user()->empresas()->firstOrFail();
         $productos = $productos->getProductsVenta();
         $ventas=Venta::query()
@@ -157,5 +157,10 @@ class PagesController extends Controller
     public function modules()
     {
         return view('pages.modules');
+    }
+
+    public function landingpage()
+    {
+        return view('landingpage');
     }
 }
