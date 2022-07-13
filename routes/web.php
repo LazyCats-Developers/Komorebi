@@ -12,7 +12,7 @@ use App\Http\Controllers\TransaccionesController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Auth\RegisteredUserController;
-
+use App\Http\Controllers\DatosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,3 +83,9 @@ Route::resource('empresas.colaboradores', ColaboradoresController::class)->param
 Route::resource('proveedores', ProveedoresController::class)->parameters(['proveedores' => 'proveedor']);
 Route::resource('transacciones', TransaccionesController::class)->parameters(['transacciones' => 'transaccion']);
 Route::resource('ventas', VentasController::class)->parameters(['ventas' => 'venta']);
+Route::resource('datos', DatosController::class)->parameters(['datos' => 'datos']);
+Route::group(['prefix' => 'datos'],function(){
+    route::get('/', [DatosController::class, 'index'])->name('datos');
+    route::get('/storedato',[DatosController::class,'store'])->name('datos.store');
+    
+});
