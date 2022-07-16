@@ -9,6 +9,7 @@
 
 <body>
     <!-- Basic Blade Template Created Using: LaraBit -->
+    Hola
 </body>
 
 </html>
