@@ -31,11 +31,9 @@ Route::middleware('guest')
         Route::get('/landingpage', [PagesController::class, 'landingpage']);
         Route::get('/signup', [RegisteredUserController::class, 'create'])->name('signup');
         Route::post('/signup', [RegisteredUserController::class, 'store']);
-        Route::group(['prefix' => 'datos'],function(){
-            route::get('/', [DatosController::class, 'index'])->name('datos');
-            route::get('/storedato',[DatosController::class,'store'])->name('datos.store');
-            
-        });
+        route::get('/datos', [DatosController::class, 'index'])->name('datos');
+        route::get('/storedato',[DatosController::class,'store'])->name('datos.store');
+
     });
 
 Route::middleware('auth')
