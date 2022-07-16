@@ -49,6 +49,7 @@ class DatosController extends Controller
         DB::beginTransaction();
         try{
             $dato=Datos::query()->create($valid);
+            DB::commit();
             return view("login");
         }catch(\Exception $exception){
             report($exception);
