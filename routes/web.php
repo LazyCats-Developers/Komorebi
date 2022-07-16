@@ -87,5 +87,5 @@ Route::resource('empresas.colaboradores', ColaboradoresController::class)->param
 Route::resource('proveedores', ProveedoresController::class)->parameters(['proveedores' => 'proveedor']);
 Route::resource('transacciones', TransaccionesController::class)->parameters(['transacciones' => 'transaccion']);
 Route::resource('ventas', VentasController::class)->parameters(['ventas' => 'venta']);
-Route::resource('datos', DatosController::class)->parameters(['datos' => 'datos']);
+
 
